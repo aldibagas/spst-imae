@@ -1,11 +1,11 @@
 <?php 
  include '_loader.php';
- $setTemplate=true;
+ $Template=true;
  if(isset($_GET['halaman'])){
     $halaman=$_GET['halaman'];
   }
   else{
-    $halaman='beranda';
+    $halaman='login';
   }
   ob_start();
   $file='_halaman/'.$halaman.'.php';
@@ -18,7 +18,7 @@
   $content = ob_get_contents();
   ob_end_clean();
 
-  if($setTemplate==true){
+  if($Template==true){
 ?>
 
 <!DOCTYPE html>

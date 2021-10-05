@@ -6,17 +6,17 @@
 <script src="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
  <script src="assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js"></script>
 
-    <script src="assets/js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
+   <script src="assets/js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
 
    <script type="text/javascript">
 
-   	var map = L.map('mapid').setView([-7.288120, 112.813499], 20);
+   	var map = L.map('mapid').setView([-7.288120, 112.813499], 20); //setview([latitute,longitude], zoom)
 
    	var LayerKita=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 	});
 	map.addLayer(LayerKita);
-	L.marker([-7.288120, 112.813499]).addTo(map);
+	// L.marker([-7.288120, 112.813499]).addTo(map);
 
 	// marker
 	var myIcon = L.icon({
@@ -27,8 +27,8 @@
 	//rute
 	var control = L.Routing.control({
 	    waypoints: [
-	        L.latLng(-7.288120, 112.813499),
-	        L.latLng(-7.5532, 112.813499)
+	        L.latLng(-7.288120, 112.813499), //titik awal
+	        L.latLng(-7.5532, 112.813499) //titik tujuan
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,

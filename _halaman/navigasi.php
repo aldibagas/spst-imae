@@ -1,6 +1,7 @@
 <?php
    $title="Navigasi";
    $fileJS='navigasi-js';
+   $Template=true;
 ?>
 
 <div class="mb-2 align-items-center">

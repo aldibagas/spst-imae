@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="nav-item w-100">
-              <a href="#charts" data-toggle="collapse" aria-expanded="false" class="nav-link">
+              <a href="<?=url('profil')?>" data-toggle="collapse" aria-expanded="false" class="nav-link">
                 <i class="fe fe-user fe-16"></i>
                 <span class="ml-3 item-text">Profil</span>
               </a>

@@ -1,3 +1,7 @@
+<?php
+   $Template=false;
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
