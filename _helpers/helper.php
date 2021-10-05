@@ -60,3 +60,8 @@ function modal($id='', $m_judul='', $isi=''){
     </div>
   </div>';
 }
+
+function slice_modal ($m2_judul=''){
+  return '
+  ';
+}

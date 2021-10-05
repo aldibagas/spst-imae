@@ -37,19 +37,19 @@
               </a>
             </li>
             <li class="nav-item w-100">
-              <a href="#forms" data-toggle="collapse" aria-expanded="false" class="nav-link">
+              <a href="<?=url('history-petugas')?>" class="nav-link">
                 <i class="fe fe-clock fe-16"></i>
                 <span class="ml-3 item-text">Riwayat Pengambilan</span>
               </a>
             </li>
             <li class="nav-item w-100">
-              <a href="#tables" data-toggle="collapse" aria-expanded="false" class="nav-link">
+              <a href="<?=url('history-pemesan')?>" class="nav-link">
                 <i class="fe fe-clock fe-16"></i>
                 <span class="ml-3 item-text">Riwayat Aktivitas</span>
               </a>
             </li>
             <li class="nav-item w-100">
-              <a href="<?=url('profil')?>" data-toggle="collapse" aria-expanded="false" class="nav-link">
+              <a href="<?=url('profil')?>" class="nav-link">
                 <i class="fe fe-user fe-16"></i>
                 <span class="ml-3 item-text">Profil</span>
               </a>
