@@ -52,14 +52,15 @@ function modal($id='', $m_judul='', $isi=''){
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="defaultModalLabel">'.$m_judul.'</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
-        <div class="modal-body">'.$isi.'</div>
+        <div class="modal-body">
+          '.$isi.'
+        </div>
+        <br>
         <div class="modal-footer">
-          <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Pesan</button>
         </div>
+        </br>
       </div>
     </div>
   </div>';
@@ -78,4 +79,25 @@ function mini_tab($t1='', $t1_link='', $t2='', $t2_link='', $t3='', $t3_link='')
     <a class="nav-link" id="contact-tab" data-toggle="tab" href="<?=url('.$t3_link.')?>" role="tab" aria-controls="contact" aria-selected="false">'.$t3.'</a>
   </li>
 </ul>';
+}
+
+function modal_select($id='', $m_judul='', $isi=''){
+  return'
+  <!-- Modal -->
+  <div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="defaultModalLabel">'.$m_judul.'</h5>
+        </div>
+        <div class="modal-body">
+          '.$isi.'
+        </div>
+        <div class="modal-footer">
+        <br>
+          <button type="button" class="btn btn-outline-primary">Pesan</button>
+        </div>
+      </div>
+    </div>
+  </div>';
 }
