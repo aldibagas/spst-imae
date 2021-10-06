@@ -17,6 +17,10 @@ function templates($a=''){
     return assets($GLOBALS['template'].$a);
 }
 
+function img($a=''){
+  return assets($GLOBALS['img'].$a);
+}
+
 function content_open($judul=''){
   return '
   <div class="row">
@@ -61,7 +65,17 @@ function modal($id='', $m_judul='', $isi=''){
   </div>';
 }
 
-function slice_modal ($m2_judul=''){
+function mini_tab($t1='', $t1_link='', $t2='', $t2_link='', $t3='', $t3_link=''){
   return '
-  ';
+  <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="<?=url('.$t1_link.')?>" role="tab" aria-controls="home" aria-selected="true">'.$t1.'</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="<?=url('.$t2_link.')?>" role="tab" aria-controls="profile" aria-selected="false">'.$t2.'</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="<?=url('.$t3_link.')?>" role="tab" aria-controls="contact" aria-selected="false">'.$t3.'</a>
+  </li>
+</ul>';
 }
