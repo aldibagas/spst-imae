@@ -10,7 +10,7 @@
 
    <script type="text/javascript">
 
-   	var map = L.map('mapid').setView([-7.288120, 112.813499], 20); //setview([latitute,longitude], zoom)
+   	var map = L.map('mapid').setView([-7.288120, 112.813499], 15); //setview([latitute,longitude], zoom)
 
    	var LayerKita=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -28,7 +28,7 @@
 	var control = L.Routing.control({
 	    waypoints: [
 	        L.latLng(-7.288120, 112.813499), //titik awal
-	        L.latLng(-7.5532, 112.813499) //titik tujuan
+	        L.latLng(-7.5532, 112.824599) //titik tujuan
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,
@@ -43,8 +43,4 @@
 		}
 	})
 	control.addTo(map);
-	function keSini(lat,lng){
-        var latLng=L.latLng(lat, lng);
-		control.spliceWaypoints(control.getWaypoints().length - 1, 1, latLng);
-	}
    </script>

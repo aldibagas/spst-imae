@@ -11,7 +11,7 @@
    <script type="text/javascript">
       let infoWindow;
 
-   	var map = L.map('mapid').setView([-7.292904, 112.809361], 22); //setview([latitute,longitude], zoom)
+   	var map = L.map('mapid').setView([-7.292904, 112.809361], 10); //setview([latitute,longitude], zoom)
 
    	var LayerKita=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
