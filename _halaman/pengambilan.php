@@ -1,55 +1,50 @@
-<?php
-   $title="Pesan Pengambilan";
-   $fileJS='pengambilan-js';
-?>
+<link rel="stylesheet" href="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
 
-<div class="mb-2 align-items-center">
-    <div class="card shadow mb-4">
-         <div class="card-body">
-             <p id="notif" class="lead text-muted"></p>
-             <div class = "row">
-               <div class = "col-md">
-                  <input type="text" id="example-helping" class="form-control" placeholder="Lokasi pengambilan sampah">
-               </div>
-               <div class = ".col-sm">
-                  <button type="button" class="btn mb-2 btn-primary">Cari</button>
-               </div>
-               <div class = ".col-sm">
-                  <button type="button" class="btn mb-2 btn-outline-primary" onclick="getLocation()">Lokasi saat ini</button>
-               </div>
-             </div>
-            <div id="mapid"></div>
-            <div class = "row-sm">
-                <?=button_modal('Buat Pesanan', 'm_pesanan')?>
-             </div>
-             <?=modal_select('m_pesanan', 'Masukkan Data Sampah', '
-             <div class="form-row">
-             <div class="form-group col-md-6">
-               <label for="simple-select2">sampah</label>
-               <select class="form-control select2" id="simple-select2">
-                 <optgroup label="Plastik">
-                   <option value="PET">PET</option>
-                   <option value="HDPE">HDPE</option>
-                   <option value="PVC">PVC</option>
-                   <option value="LDPE">LDPE</option>
-                   <option value="PP">PP</option>
-                   <option value="PS">PS</option>
-                 </optgroup>
-                 <optgroup label="Kertas">
-                   <option value="HVS">HVS</option>
-                   <option value="KRT">Karton</option>
-                   <option value="KRD">Kardus</option>
-                 </optgroup>
-                 <optgroup label="Organik">
-                 <option value="SB">Sampah Basah</option>
-                 <option value="SK">Sampah Kering</option>
-               </optgroup>
-               </select>
-             </div> <!-- form-group -->
-             <div class="form-group col-md-6">
-               <label>Jumlah (Kilograms)</label>
-               <input type="text" class="form-control" placeholder="berat sampah" aria-label="berat sampah">
-             </div>')?>
-        </div>
-    </div>
-</div>
+<script src="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+ <script src="assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js"></script>
+
+   <script src="assets/js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
+
+   <script type="text/javascript">
+      let infoWindow;
+
+   	var map = L.map('mapid').setView([-7.292904, 112.809361], 10); //setview([latitute,longitude], zoom)
+
+   	var LayerKita=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+	});
+
+	map.addLayer(LayerKita);
+	
+   var popup = L.popup();
+
+   function onMapClick(e) {
+      popup
+         .setLatLng(e.latlng)
+         .setContent("You clicked the map at " + e.latlng.toString())
+         .openOn(map);
+   }
+
+   map.on('click', onMapClick);
+
+	function onLocationFound(e) {
+		var radius = e.accuracy / 10;
+
+		L.marker(e.latlng).addTo(map)
+			.bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+		L.circle(e.latlng, radius).addTo(map);
+	}
+
+	function onLocationError(e) {
+		alert(e.message);
+	}
+
+	map.on('locationfound', onLocationFound);
+	map.on('locationerror', onLocationError);
+
+	map.locate({setView: true, maxZoom: 22});
+   </script>
