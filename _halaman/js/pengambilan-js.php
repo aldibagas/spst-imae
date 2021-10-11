@@ -18,10 +18,7 @@
 	});
 
 	map.addLayer(LayerKita);
-
-	L.marker([-7.292122, 112.8092]).addTo(map);
-		// .bindPopup("<b>lokasi sekarang!</b><br />-7.288120, 112.813499.").openPopup();
-   
+	
    var popup = L.popup();
 
    function onMapClick(e) {
