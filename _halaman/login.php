@@ -1,4 +1,3 @@
-<head>
 <?php
 $title="masuk";
 $Template=false;
@@ -6,7 +5,7 @@ $Template=false;
 	$servername = "localhost";
 
 	/* nama database kita */
-    $database = "spst_user"; 
+    $database = "spst"; 
 
     /* nama user yang terdaftar pada database (default: root) */
     $username = "root";
@@ -16,32 +15,31 @@ $Template=false;
 
     // membuat koneksi
     $conn = mysqli_connect($servername, $username, $password, $database);
-	if(isset($_POST['kirim'])){
-		$user = $_POST['username'];
-		$pass = $_POST['pass'];
-	
-		$sql = "SELECT * FROM `tb_pengguna` WHERE `Nama` = '$user' and `Kata Sandi` = '$pass'";
-		$run = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($run);
-	
-		if($row > 0){
-			session_start();
-			$_SESSION['nama'] = $row['Nama'];
-			header('location:index.php?halaman=beranda');
-		}else{
-			echo'
-			<script type="text/JavaScript">
-				var myModal = new bootstrap.Modal(document.getElementById("myModal"));
-				myModal.show();
-			</script>';
-		}
+
+
+if(isset($_POST['kirim'])){
+	$user = $_POST['username'];
+	$pass = $_POST['pass'];
+
+	$sql = "SELECT * FROM `pengguna` WHERE `Nama` = '$user' and `Kata Sandi` = '$pass'";
+	$run = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($run);
+
+	if($row > 0){
+		session_start();
+		$_SESSION['nama'] = $row['Nama'];
+		header('location:index.php?halaman=beranda');
+	}else{
+		echo'
+			<div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Gagal</div>"
+		';
 	}
+}
 
 ?>
-
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 <title>Masuk</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
 <style>
 	.login{
@@ -52,18 +50,18 @@ $Template=false;
 </head>
 
 <body>
-
+      
 <div class="d-flex justify-content-center">
 	<div class="card" style="margin: 50px">
 	<div class="card-body">
 	
 		<h1 class="text-center">Masuk</h1>	
 		<form action="" method="post" >
-			<label class="card-title">nama pengguna</label><br>
+			<label class="card-title">Nama Pengguna</label><br>
 			<input name="username" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
-			<label class="card-title">kata sandi</label><br>
+			<label class="card-title">Kata Sandi</label><br>
 			<input name="pass" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="password"/><br>
-			<input type="submit" name="kirim" value="Masuk" class="btn login btn-block rounded-pill" data-target="#exampleModalLong"> 
+			<input type="submit" name="kirim" value="Masuk" class="btn login btn-block rounded-pill">
 			</br>
 			<span class="d-flex justify-content-center">Lupa Kata Sandi?</span>
 			</br>
@@ -103,7 +101,7 @@ $Template=false;
 
 
 			<p> Belum punya akun?
-			<a href="index.php?halaman=daftar" style="color:#30e64c;">Register di sini</a>
+			<a href="index.php?halaman=registrasi" style="color:#30e64c;">Register di sini</a>
 			</p>
 		</form>
 		
