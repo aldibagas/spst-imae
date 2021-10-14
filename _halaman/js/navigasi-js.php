@@ -27,8 +27,8 @@
 	//rute
 	var control = L.Routing.control({
 	    waypoints: [
-	        L.latLng(-7.288120, 112.813499), //titik awal
-	        L.latLng(-7.5532, 112.824599) //titik tujuan
+	         //titik awal
+	        
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,
