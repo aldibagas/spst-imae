@@ -103,7 +103,7 @@ $Template=false;
 
 
 			<p> Belum punya akun?
-			<a href="index.php?halaman=daftar" style="color:#30e64c;">Register di sini</a>
+			<a href="index.php?halaman=registrasi" style="color:#30e64c;">Register di sini</a>
 			</p>
 		</form>
 		
