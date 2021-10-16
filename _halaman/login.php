@@ -4,7 +4,7 @@ $Template=false;
 
 	$servername = "localhost";
 
-	/* nama database kita */
+	/* nama database */
     $database = "spst"; 
 
     /* nama user yang terdaftar pada database (default: root) */
