@@ -1,3 +1,28 @@
+<?php
+   $connection = mysqli_connect("localhost","root","");
+   $db = mysqli_select_db($connection,'spst');
+
+   if(isset($_POST['insert'])) 
+   {
+     $latitude = $_POST ['position.coords.latitude'];
+     $longitude = $_POST ['position.coords.latitude,position.coords.longitude'];
+
+     $query = "INSERT INTO jual (position.coords.latitude,position.coords.longitude) VALUES ('$latitude','$longitude') ";
+     $query_run = mysqli_query($connection,$query); 
+   
+   if($query_run)
+   {
+     echo ' <script type="text/javaScript"> alert("Data Tersimpan") 
+     </script>';
+   }
+
+   else
+   {
+     echo ' <script type="text/javaScript"> alert("Data Not Saved") 
+     </script>';
+   }
+ }
+ ?>
 <link rel="stylesheet" href="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
 <!-- Make sure you put this AFTER Leaflet's CSS -->
  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
@@ -7,7 +32,7 @@
  <script src="assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js"></script>
 
    <script src="assets/js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
-
+   <script src="js/topojson.min.js"></script>
    <script type="text/javascript">
       let infoWindow;
 
@@ -34,7 +59,7 @@
 		var radius = e.accuracy / 10;
 
 		L.marker(e.latlng).addTo(map)
-			.bindPopup("You are within " + radius + " meters from this point").openPopup();
+			.setContent("You clicked the map at " + e.latlng.toString()).openPopup();
 
 		L.circle(e.latlng, radius).addTo(map);
 	}
@@ -47,4 +72,25 @@
 	map.on('locationerror', onLocationError);
 
 	map.locate({setView: true, maxZoom: 22});
+
+	
+	setInterval(() => {
+		getLocation();
+	}, 3000);
+
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		}
+	}
+
+	function showPosition(position) {
+		console.log('Posisi Sekarang',position.coords.latitude,position.coords.longitude)
+
+		$("[name=latNow]").val(position.coords.latitude);
+		$("[name=lngNow").val(position.coords.longitude);
+	}
+
    </script>
