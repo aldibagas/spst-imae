@@ -1,78 +1,82 @@
 <?php
-   $title="Pesan Pengambilan";
-   $fileJS='pengambilan-js';
-   $connection = mysqli_connect("localhost","root","");
-   $db = mysqli_select_db($connection,'spst');
+ $title="Registrasi";
+ $Template=false;
+ 
+    $servername = "localhost";
 
-   if(isset($_POST['insert'])) 
-   {
-     $sampah = $_POST ['sampah'];
-     $jumlah = $_POST ['jumlah'];
+ /* nama database kita */
+    $database = "spst"; 
 
-     $query = "INSERT INTO jual (sampah,jumlah) VALUES ('$sampah','$jumlah') ";
-     $query_run = mysqli_query($connection,$query); 
-   
-   if($query_run)
-   {
-     echo ' <script type="text/javaScript"> alert("Data Tersimpan") 
-     </script>';
-   }
+    /* nama user yang terdaftar pada database (default: root) */
+    $username = "root";
 
-   else
-   {
-     echo ' <script type="text/javaScript"> alert("Data Gagal Tersimpan") 
-     </script>';
-   }
+    /* password yang terdaftar pada database (default : "") */ 
+    $password = ""; 
+
+    // membuat koneksi
+    $conn = mysqli_connect($servername, $username, $password, $database);
+
+ if(isset($_POST['kirim'])){
+    $user = $_POST['username'];
+    $telp = $_POST['telp'];
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    $confirpass = $_POST['confirpass'];
+
+
+    $sql = "
+    INSERT INTO `pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`, `email`) 
+    VALUES (default,'testing','$user','$telp','$pass','$email')";
+ 
+ 	if($run = mysqli_query($conn, $sql)){
+        echo 'berhasil daftar';
+    }else{
+        echo 'gagal daftar';
+    }
  }
+
 ?>
-<div class="mb-2 align-items-center">
-    <div class="card shadow mb-4">
-         <div class="card-body">
-             <p id="notif" class="lead text-muted"></p>
-             <div class = "row">
-               <div class = "col-md">
-                  <input type="text" id="example-helping" class="form-control" placeholder="Lokasi pengambilan sampah">
-               </div>
-               <div class = ".col-sm">
-                  <button type="button" class="btn mb-2 btn-primary">Cari</button>
-               </div>
-               <div class = ".col-sm">
-                  <button type="button" class="btn mb-2 btn-outline-primary" onclick="getLocation()">Lokasi saat ini</button>
-                  
-               </div>
-             </div>
-            <div id="mapid"></div>
-            <div class = "row-sm">
-             </div>
-               <div class="container">
-               <form action="" method="POST">  
-               <label> Sampah </label><br>
-                 <select name="sampah">
-                 <option value="">- Plastik -</option>
-                 <option value="PET">PET</option>
-                   <option value="HDPE">HDPE</option>
-                   <option value="PVC">PVC</option>
-                   <option value="LDPE">LDPE</option>
-                   <option value="PP">PP</option>
-                   <option value="PS">PS</option>
+<html>
+<head>
+<title>Daftar</title>
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+<style>
+ .login{
+  background-color: #30e64c;
+  color: white;
+ }
+</style>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<body>
       
-                 <option value="">- Kertas -</option>
-                   <option value="HVS">HVS</option>
-                   <option value="KRT">Karton</option>
-                   <option value="KRD">Kardus</option>
-                 </optgroup>
-                 <option value="">- Organik -</option>
-                 <option value="SB">Sampah Basah</option>
-                 <option value="SK">Sampah Kering</option>
-               </optgroup>
-               </select><br><br>
-             </div> <!-- form-group -->
-             <div class="form-group col-md-6">
-               <label>Jumlah (Kilograms)</label><br>
-               <input type="jumlah" class="int" name="jumlah"> </div>
-               <input type="submit" class="txt" name="insert" value="Buat Pesanan"/>
-               
-              </div>
-        </div>
-    </div>
-</div>
+<div class="d-flex justify-content-center">
+ <div class="card" style="margin: 50px">
+ <div class="card-body">
+ 
+  <h1 class="text-center">Daftar</h1> 
+  <form action="" method="post" >
+   <label class="card-title">Nama</label><br>
+   <input name ="username" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
+   <label class="card-title">Email</label><br>
+   <input name ="email" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
+   <label class="card-title">Nomor Ponsel</label><br>
+   <input name = "telp" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
+   <label class="card-title">Alamat</label><br>
+   <input name ="alamat" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
+   <label class="card-title">Kata Sandi</label><br>
+   <input name ="pass"class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="password"/><br>
+   <label class="card-title">Konfirmasi Kata Sandi</label><br>
+   <input name ="confirpass" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="password"/><br>
+   <input type="submit" name="kirim" value="Register" class="btn login btn-block rounded-pill">
+   </br>
+
+   <p> Sudah Memiliki Akun?
+   <a href="index.php?halaman=login" style="color:#30e64c;">Masuk</a>
+   </p>
+  </form>
+  
+ </div>
+ </div>
+</body>
+</html>
