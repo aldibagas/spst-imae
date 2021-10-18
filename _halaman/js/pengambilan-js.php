@@ -4,10 +4,10 @@
 
    if(isset($_POST['insert'])) 
    {
-     $latitude = $_POST ['position.coords.latitude'];
-     $longitude = $_POST ['position.coords.latitude,position.coords.longitude'];
+     $latitude = $_POST ['latNow'];
+     $longitude = $_POST ['lngNow'];
 
-     $query = "INSERT INTO jual (position.coords.latitude,position.coords.longitude) VALUES ('$latitude','$longitude') ";
+     $query = "INSERT INTO jual (latNow,lngNow) VALUES ('$latitude','$longitude') ";
      $query_run = mysqli_query($connection,$query); 
    
    if($query_run)
@@ -88,7 +88,9 @@
 
 	function showPosition(position) {
 		console.log('Posisi Sekarang',position.coords.latitude,position.coords.longitude)
-
+    
+    document.getElementById("insertLat").value = position.coords.latitude;
+    document.getElementById("insertLong").value = position.coords.longitude;
 		$("[name=latNow]").val(position.coords.latitude);
 		$("[name=lngNow").val(position.coords.longitude);
 	}
