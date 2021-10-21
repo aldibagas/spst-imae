@@ -66,6 +66,28 @@ function modal($id='', $m_judul='', $isi=''){
   </div>';
 }
 
+function modal_transaksi($id='', $m_judul='', $isi=''){
+  return'
+  <!-- Modal -->
+  <div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="defaultModalLabel">'.$m_judul.'</h5>
+        </div>
+        <div class="modal-body">
+          '.$isi.'
+        </div>
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Pesan</button>
+        </div>
+        </br>
+      </div>
+    </div>
+  </div>';
+}
+
 function mini_tab($t1='', $t1_link='', $t2='', $t2_link='', $t3='', $t3_link=''){
   return '
   <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">

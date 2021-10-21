@@ -1,6 +1,4 @@
 <?php
-   $connection = mysqli_connect("localhost","root","");
-   $db = mysqli_select_db($connection,'spst');
 
    if(isset($_POST['insert'])) 
    {
@@ -8,7 +6,7 @@
      $longitude = $_POST ['lngNow'];
 
      $query = "INSERT INTO jual (latNow,lngNow) VALUES ('$latitude','$longitude') ";
-     $query_run = mysqli_query($connection,$query); 
+     $query_run = mysqli_query($conn,$query); 
    
    if($query_run)
    {

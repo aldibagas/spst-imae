@@ -1,8 +1,7 @@
 <?php
    $title="Pesan Pengambilan";
    $fileJS='pengambilan-js';
-   $connection = mysqli_connect("localhost","root","");
-   $db = mysqli_select_db($connection,'spst');
+   include '_helper/db_con.php';
 
    if(isset($_POST['insert'])) 
    {
