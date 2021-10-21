@@ -1,6 +1,8 @@
 <?php
    $title="Pesan Pengambilan";
    $fileJS='pengambilan-js';
+   $connection = mysqli_connect("localhost","root","");
+   $db = mysqli_select_db($connection,'spst');
 
    if(isset($_POST['insert'])) 
    {
@@ -14,10 +16,10 @@
      $long= $_POST['long'];
 
      $query1 = "INSERT INTO pemesanan( pesanan_1 , jumlah_1 , pesanan_2 , jumlah_2 , pesanan_3 , jumlah_3) VALUES ('$p1','$j1','$p2','$j2','$p3','$j3') ";
-     $query_run1 = mysqli_query($conn,$query1); 
+     $query_run1 = mysqli_query($connection,$query1); 
 
      $query2 = "INSERT INTO navigasi( latitute , longitude ) VALUES ('$lat','$long') ";
-     $query_run2 = mysqli_query($conn,$query2); 
+     $query_run2 = mysqli_query($connection,$query2); 
    if($query_run1 && $query_run2)
    {
      echo ' <script type="text/javaScript"> alert("Data Tersimpan") 
