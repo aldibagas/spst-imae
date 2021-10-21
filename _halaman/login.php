@@ -21,7 +21,7 @@ if(isset($_POST['kirim'])){
 	$user = $_POST['username'];
 	$pass = $_POST['pass'];
 
-	$sql = "SELECT * FROM `pengguna` WHERE `Nama` = '$user' and `Kata Sandi` = '$pass'";
+	$sql = "SELECT * FROM `tb_pengguna` WHERE `Nama` = '$user' and `Kata Sandi` = '$pass'";
 	$run = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($run);
 
