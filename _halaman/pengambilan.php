@@ -1,7 +1,6 @@
 <?php
    $title="Pesan Pengambilan";
    $fileJS='pengambilan-js';
-   include '_helper/db_con.php';
 
    if(isset($_POST['insert'])) 
    {
