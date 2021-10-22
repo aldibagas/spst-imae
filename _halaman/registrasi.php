@@ -3,17 +3,9 @@
  $Template=false;
  
     $servername = "localhost";
-
-	/* nama database kita */
-    $database = "spst_user"; 
-
-    /* nama user yang terdaftar pada database (default: root) */
+    $database = "spst"; 
     $username = "root";
-
-    /* password yang terdaftar pada database (default : "") */ 
-    $password = ""; 
-
-    // membuat koneksi
+    $password = "";
     $conn = mysqli_connect($servername, $username, $password, $database);
 
  if(isset($_POST['kirim'])){
@@ -24,13 +16,14 @@
     $confirpass = $_POST['confirpass'];
     
     $sql = "
-    INSERT INTO `tb_pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`) 
+    INSERT INTO `pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`) 
     VALUES (default,'testing','$user','$telp','$pass')";
 	
 	if($run = mysqli_query($conn, $sql)){
-        echo 'berhasil daftar';
+        header('location:index.php?halaman=login');
+        echo 'Berhasil Daftar';
     }else{
-        echo 'gagal daftar';
+        echo 'Gagal Daftar';
     }
  }
 
@@ -60,7 +53,7 @@
    <label class="card-title">Email</label><br>
    <input name ="email" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Nomor Ponsel</label><br>
-   <input name = "telp" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="number"/><br>
+   <input name = "telp" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Alamat</label><br>
    <input name ="alamat" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Kata Sandi</label><br>
