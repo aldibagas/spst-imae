@@ -16,8 +16,8 @@
     $confirpass = $_POST['confirpass'];
     
     $sql = "
-    INSERT INTO `pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`) 
-    VALUES (default,'testing','$user','$telp','$pass')";
+    INSERT INTO `pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`, 'email') 
+    VALUES (default,'testing','$user','$telp','$pass','$email')";
 	
 	if($run = mysqli_query($conn, $sql)){
         header('location:index.php?halaman=login');
