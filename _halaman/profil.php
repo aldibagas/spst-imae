@@ -1,6 +1,20 @@
 <?php
-	$title = "Profil"
+session_start();
+	$title = "Profil";
+  $servername = "localhost";
+  $database = "spst"; 
+  $username = "root";
+  $password = "";
+  $conn = mysqli_connect($servername, $username, $password, $database);
+
+  $nama = $_SESSION['nama'];
+  $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
+  $run = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($run);
+  $email = $row['email'];
+  $telp = $row['Telepon'];
 ?>
+
 			<div class="my-4">
                 <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                   <li class="nav-item">
@@ -23,7 +37,7 @@
                     <div class="col">
                       <div class="row align-items-center">
                         <div class="col-md-7">
-                          <h4 class="mb-1">Beruang Sambel</h4>
+                          <h4 class="mb-1"><?php echo$_SESSION['nama'];?></h4>
                           <p class="small mb-3"><span class="badge badge-dark">Indonesia</span></p>
                         </div>
                       </div>
@@ -31,26 +45,34 @@
                         <div class="col">
                           <p class="small mb-0 text-muted">Jalan Gebang Lor</p>
                           <p class="small mb-0 text-muted">Keputih City, Indonesia</p>
-                          <p class="small mb-0 text-muted">(+62)8123456789</p>
+                          <p class="mb-1"><?php echo$telp;?></p>
+                         
+                          <hr class="my-4">
+                        <button type="submit" class="btn btn-primary">Ubah Profil</button>
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <hr class="my-4">
                   <div class="form-row">
                     <div class="form-group col-md-6">
-                      <label for="firstname">Nama Depan</label>
-                      <input type="text" id="firstname" class="form-control" placeholder="nama depan">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="lastname">Nama Belakang</label>
-                      <input type="text" id="lastname" class="form-control" placeholder="nama belakang">
+                      <label for="firstname">Nama</label>
+                      <input type="text" id="firstname" class="form-control" placeholder="Nama">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-row">
+                  <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
                     <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
                   </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="telp">Nomor Telepon</label>
+                    <input type="telp" class="form-control" id="telp" placeholder="Nomor Telepon">
+                  </div>
+                </div>
                   <div class="form-group">
                     <label for="inputAddress5">Alamat</label>
                     <input type="text" class="form-control" id="inputAddress5" placeholder="Alamat">
@@ -76,3 +98,10 @@
                   <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
               </div> <!-- /.card-body -->
+
+              <script>
+                document.getElementById('firstname').value =  '<?php echo$_SESSION['nama'];?>';
+                document.getElementById('inputEmail4').value =  '<?php echo$email;?>';
+                document.getElementById('telp').value =  '<?php echo$telp;?>';
+            
+                </script>
