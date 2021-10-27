@@ -1,5 +1,19 @@
 <?php
-   $title="Riwayat Aktivitas";
+session_start();
+  $title="Riwayat Aktivitas";
+  $servername = "localhost";
+  $database = "spst"; 
+  $username = "root";
+  $password = "";
+  $conn = mysqli_connect($servername, $username, $password, $database);
+
+  $nama = $_SESSION['nama'];
+  $sql ="SELECT * FROM `pemesanan` WHERE pesanan_1 = 'p1'";
+  $run = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($run);
+  $email = $row['email'];
+  $alamat = $row['alamat'];
+  $telp = $row['Telepon'];
 ?>
 
             <div class="row mb-4 items-align-center">
@@ -136,13 +150,16 @@
                     </th>
                     <th>ID</th>
                     <th>Tanggal Pemesanan</th>
-                    <th>Name Pemesan</th>
-                    <th>Phone</th>
+                    <th>Nama Petugas</th>
                     <th>Alamat</th>
-                    <th>Total</th>
-                    <th>Metode Pembayaran</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>Pesanan 1</th>
+                    <th>Jumlah</th>
+                    <th>Pesanan 2</th>
+                    <th>Jumlah</th>
+                    <th>Pesanan 3</th>
+                    <th>Jumlah</th>
+                    <th>Total Harga</th>
+                    <th>Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -155,9 +172,9 @@
                     </td>
                     <td>1331</td>
                     <td>2020-12-26 01:32:21</td>
-                    <td>Kasimir Lindsey</td>
-                    <td>(697) 486-2101</td>
-                    <td>996-3523 Et Ave</td>
+                    <td><?php echo$nama;?></td>
+                    <td><?php echo$telp;?></td>
+                    <td><?php echo$alamat;?></td>
                     <td>$3.64</td>
                     <td> Paypal</td>
                     <td><span class="dot dot-lg bg-success mr-2"></span></td>
@@ -216,7 +233,10 @@
                     <td>Ap #598-7581 Tellus Av.</td>
                     <td>$4.98</td>
                     <td>Credit Card </td>
-                    <td><span class="dot dot-lg bg-primary mr-2"></span></td>
+                    <td>Cred </td>
+                    <td>Rp </td>
+                    <td>
+                    <td>Rp 10.000 </td>
                     <td>
                       <div class="dropdown">
                         <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -237,416 +257,7 @@
                         <label class="custom-control-label"></label>
                       </div>
                     </td>
-                    <td>1227</td>
-                    <td>2021-01-22 13:28:00</td>
-                    <td>Timon Bauer</td>
-                    <td>(690) 965-1551</td>
-                    <td>840-2188 Placerat, Rd.</td>
-                    <td>$3.46</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-primary mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1956</td>
-                    <td>2019-11-11 16:23:17</td>
-                    <td>Kelly Barrera</td>
-                    <td>(117) 625-6737</td>
-                    <td>816 Ornare, Street</td>
-                    <td>$4.16</td>
-                    <td>Credit Card </td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1669</td>
-                    <td>2021-04-12 07:07:13</td>
-                    <td>Kellie Roach</td>
-                    <td>(422) 748-1761</td>
-                    <td>5432 A St.</td>
-                    <td>$3.53</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1909</td>
-                    <td>2020-05-14 00:23:11</td>
-                    <td>Lani Diaz</td>
-                    <td>(767) 486-2253</td>
-                    <td>3328 Ut Street</td>
-                    <td>$4.29</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-warning mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1234</td>
-                    <td>2020-01-25 07:56:57</td>
-                    <td>Hadley Raymond</td>
-                    <td>(356) 732-2834</td>
-                    <td>917-1461 Aliquam St.</td>
-                    <td>$3.94</td>
-                    <td>Credit Card </td>
-                    <td><span class="dot dot-lg bg-primary mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1085</td>
-                    <td>2020-10-08 20:15:34</td>
-                    <td>Simone Wright</td>
-                    <td>(545) 742-5090</td>
-                    <td>877-711 Dolor Rd.</td>
-                    <td>$3.36</td>
-                    <td>Credit Card </td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1872</td>
-                    <td>2020-06-10 19:57:09</td>
-                    <td>Lucas Bush</td>
-                    <td>(720) 141-7318</td>
-                    <td>6421 Integer Rd.</td>
-                    <td>$3.17</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1511</td>
-                    <td>2019-07-18 10:48:33</td>
-                    <td>Grant Maldonado</td>
-                    <td>(276) 751-9198</td>
-                    <td>P.O. Box 968, 3979 Duis Rd.</td>
-                    <td>$2.74</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1800</td>
-                    <td>2019-07-14 04:31:07</td>
-                    <td>Kiayada Reid</td>
-                    <td>(910) 140-7500</td>
-                    <td>6000 Phasellus St.</td>
-                    <td>$2.70</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-warning mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1296</td>
-                    <td>2019-10-09 13:56:11</td>
-                    <td>Flynn Collins</td>
-                    <td>(580) 287-6157</td>
-                    <td>P.O. Box 734, 7447 Curabitur Street</td>
-                    <td>$4.13</td>
-                    <td>Credit Card </td>
-                    <td><span class="dot dot-lg bg-warning mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1582</td>
-                    <td>2019-11-14 14:28:52</td>
-                    <td>Leonard Floyd</td>
-                    <td>(530) 682-3320</td>
-                    <td>5901 Rhoncus Rd.</td>
-                    <td>$3.20</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1371</td>
-                    <td>2021-04-12 16:52:25</td>
-                    <td>Noelani Fitzpatrick</td>
-                    <td>(143) 737-5060</td>
-                    <td>Ap #826-9238 Pellentesque Rd.</td>
-                    <td>$2.03</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-warning mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1437</td>
-                    <td>2019-08-23 23:18:12</td>
-                    <td>Fallon Rogers</td>
-                    <td>(345) 430-9053</td>
-                    <td>1531 Risus Av.</td>
-                    <td>$2.89</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1242</td>
-                    <td>2019-12-08 07:02:25</td>
-                    <td>Zane Jackson</td>
-                    <td>(327) 142-0897</td>
-                    <td>P.O. Box 688, 4186 Feugiat Rd.</td>
-                    <td>$3.25</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1573</td>
-                    <td>2020-01-14 01:04:42</td>
-                    <td>Bryar Reilly</td>
-                    <td>(873) 448-3021</td>
-                    <td>745-3818 Vitae, Ave</td>
-                    <td>$2.06</td>
-                    <td>Credit Card </td>
-                    <td><span class="dot dot-lg bg-success mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
+                   </div>
                       </div>
                     </td>
                   </tr>
