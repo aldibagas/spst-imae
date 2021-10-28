@@ -23,7 +23,6 @@ function img($a=''){
 
 function content_open($judul=''){
   return '
-  <div class="row">
   <div class="col-md-4 mb-4">
     <div class="card shadow">
       <div class="card-body">
@@ -34,8 +33,7 @@ function content_close(){
   return '
       </div>
     </div>
-  </div>
-</div> <!-- end section -->';
+  </div>';
 }
 
 function button_modal($label='',$target=''){
