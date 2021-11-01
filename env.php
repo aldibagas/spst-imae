@@ -16,5 +16,5 @@ $img='./img/';
 $_SESSION['prefix']='spst';
 
 //URI
-$setUri['base']='http://localhost/spst/';
+$setUri['base']='./public_html/spst-imae';
 $setUri['assets']='./assets/';
