@@ -1,6 +1,7 @@
-	<?php
+<?php
 	$title="masuk";
 	$Template=false;
+	
 
 		$servername = "localhost";
 
@@ -21,7 +22,7 @@
 		$user = $_POST['username'];
 		$pass = $_POST['pass'];
 
-		$sql = "SELECT * FROM `pengguna` WHERE `Nama` = '$user' and `Kata Sandi` = '$pass'";
+		echo$sql = "SELECT * FROM `pengguna` WHERE `Nama` = '$user' and `Sandi` = '$pass'";
 		$run = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($run);
 
@@ -101,7 +102,8 @@
 
 
 				<p> Belum punya akun?
-				<a href="index.php?halaman=daftar" style="color:#30e64c;">Register di sini</a>
+				<a href="index.php?halaman=daftar" style="color:#30e64c;">Pelanggan</a>
+				<a href="index.php?halaman=daftar" style="color:#30e64c;">Petugas</a>
 				</p>
 			</form>
 			
