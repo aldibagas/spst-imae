@@ -7,14 +7,14 @@ $setDb['db_user']='root';
 $setDb['db_password']='';
 
 //folder templates
-$template='./templates/tinydash/light/';
+$template='/templates/tinydash/light/';
 
 //folder gambar
-$img='../img/';
+$img='/img/';
 
 //session
 $_SESSION['prefix']='spst';
 
 //URI
 $setUri['base']='http://cypiral.org/spst-imae/';
-$setUri['assets']='./assets/';
+$setUri['assets']='/assets/';
