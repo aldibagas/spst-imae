@@ -1,21 +1,21 @@
-<script src="js/Chart.min.js"></script>
+<script src="<?=templates()?>js/Chart.min.js"></script>
 <script>
 /* defind global options */
     Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
     Chart.defaults.global.defaultFontColor = colors.mutedColor;
 </script>
-<script src="js/gauge.min.js"></script>
-<script src="js/jquery.sparkline.min.js"></script>
-<script src="js/apexcharts.min.js"></script>
-<script src="js/apexcharts.custom.js"></script>
-<script src='js/jquery.mask.min.js'></script>
-<script src='js/select2.min.js'></script>
-<script src='js/jquery.steps.min.js'></script>
-<script src='js/jquery.validate.min.js'></script>
-<script src='js/jquery.timepicker.js'></script>
-<script src='js/dropzone.min.js'></script>
-<script src='js/uppy.min.js'></script>
-<script src='js/quill.min.js'></script>
+<script src="<?=templates()?>js/gauge.min.js"></script>
+<script src="<?=templates()?>js/jquery.sparkline.min.js"></script>
+<script src="<?=templates()?>js/apexcharts.min.js"></script>
+<script src="<?=templates()?>js/apexcharts.custom.js"></script>
+<script src='<?=templates()?>js/jquery.mask.min.js'></script>
+<script src='<?=templates()?>js/select2.min.js'></script>
+<script src='<?=templates()?>js/jquery.steps.min.js'></script>
+<script src='<?=templates()?>js/jquery.validate.min.js'></script>
+<script src='<?=templates()?>js/jquery.timepicker.js'></script>
+<script src='<?=templates()?>js/dropzone.min.js'></script>
+<script src='<?=templates()?>js/uppy.min.js'></script>
+<script src='<?=templates()?>js/quill.min.js'></script>
 <script>
     $('.select2').select2(
     {
