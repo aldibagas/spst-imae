@@ -13,6 +13,7 @@ session_start();
   $row = mysqli_fetch_assoc($run);
   $email = $row['email'];
   $telp = $row['Telepon'];
+  $alamat = $row['alamat'];
 ?>
 
 			<div class="my-4">
@@ -43,8 +44,7 @@ session_start();
                       </div>
                       <div class="row mb-4">
                         <div class="col">
-                          <p class="small mb-0 text-muted">Jalan Gebang Lor</p>
-                          <p class="small mb-0 text-muted">Keputih City, Indonesia</p>
+                          <p class="small mb-0 text-muted"><?php echo$alamat;?></p>
                           <p class="mb-1"><?php echo$telp;?></p>
                          
                           <hr class="my-4">
@@ -103,5 +103,7 @@ session_start();
                 document.getElementById('firstname').value =  '<?php echo$_SESSION['nama'];?>';
                 document.getElementById('inputEmail4').value =  '<?php echo$email;?>';
                 document.getElementById('telp').value =  '<?php echo$telp;?>';
-            
+                document.getElementById('inputAddress5').value =  '<?php echo$alamat;?>';
+                
+                
                 </script>
