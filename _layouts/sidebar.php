@@ -22,8 +22,12 @@
                 <span class="ml-3 item-text">Beranda</span><span class="sr-only">(current)</span>
               </a>
             </li>
-          </ul>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item w-100">
+              <a class="nav-link" href="<?=url('dashboard')?>">
+                <i class="fe fe-monitor fe-16"></i>
+                <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
+              </a>
+            </li>
             <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('pengambilan')?>">
                 <i class="fe fe-box fe-16"></i>

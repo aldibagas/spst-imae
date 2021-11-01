@@ -6,6 +6,7 @@
 
    if(isset($_POST['insert'])) 
    {
+     $u = $_POST [1];
      $p1 = $_POST ['pesanan_1'];
      $j1 = $_POST ['jumlah_1'];
      $p2 = $_POST ['pesanan_2'];
@@ -15,10 +16,10 @@
      $lat = $_POST['lat'];
      $long= $_POST['long'];
 
-     $query1 = "INSERT INTO pemesanan( pesanan_1 , jumlah_1 , pesanan_2 , jumlah_2 , pesanan_3 , jumlah_3) VALUES ('$p1','$j1','$p2','$j2','$p3','$j3') ";
+     $query1 = "INSERT INTO `pemesanan`(`user_id`, `pesanan_1`, `jumlah_1`, `pesanan_2`, `jumlah_2`, `pesanan_3`, `jumlah_3`) VALUES ('$u' ,'$p1','$j1','$p2','$j2','$p3','$j3') ";
      $query_run1 = mysqli_query($connection,$query1); 
 
-     $query2 = "INSERT INTO navigasi( latitute , longitude ) VALUES ('$lat','$long') ";
+     $query2 = "INSERT INTO `navigasi`(`user_id`, `latitute`, `longitude`) VALUES ( '$u' , '$lat','$long') ";
      $query_run2 = mysqli_query($connection,$query2); 
    if($query_run1 && $query_run2)
    {

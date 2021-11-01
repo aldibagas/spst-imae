@@ -1,14 +1,14 @@
+
 <link rel="stylesheet" href="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
 <!-- Make sure you put this AFTER Leaflet's CSS -->
  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
 
 <script src="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
- <script src="assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js"></script>
- <script src="assets/js/leaflet-search/dist/leaflet-search.src.js"></script>
-   <script src="assets/js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
-
-   <script type="text/javascript">
+<script src="assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js"></script>
+<script src="assets/js/leaflet-search/dist/leaflet-search.src.js"></script>
+<script src="assets/js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
+<script type="text/javascript">
    	let latLng=[-3.824181, 114.8191513];
    	var map = L.map('mapid').setView(latLng, 15);
    	var Layer=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -40,11 +40,11 @@
         map.panTo(latLng);
 	}
 
-	// rute 
-
+	// rute
 	var control = L.Routing.control({
 	    waypoints: [
-	        latLng
+	        latLng,
+
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,

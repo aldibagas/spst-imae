@@ -2,6 +2,9 @@
    $title="Navigasi";
    $fileJS='navigasi-js';
    $Template=true;
+
+   $connection = mysqli_connect("localhost","root","");
+   $db = mysqli_select_db($connection,'spst');
 ?>
 
 <div class="mb-2 align-items-center">
