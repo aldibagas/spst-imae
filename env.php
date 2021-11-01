@@ -16,5 +16,5 @@ $img='../img/';
 $_SESSION['prefix']='spst';
 
 //URI
-$setUri['base']='http://cypiral.org/spst/';
+$setUri['base']='http://cypiral.org/spst-imae/';
 $setUri['assets']='./assets/';
