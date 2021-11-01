@@ -5,13 +5,13 @@
 		$servername = "localhost";
 
 		/* nama database kita */
-		$database = "spst"; 
+		$database = "cypr9718_spst"; 
 
 		/* nama user yang terdaftar pada database (default: root) */
-		$username = "root";
+		$username = "cypr9718";
 
 		/* password yang terdaftar pada database (default : "") */ 
-		$password = ""; 
+		$password = "pq6SPaHWYiKe38"; 
 
 		// membuat koneksi
 		$conn = mysqli_connect($servername, $username, $password, $database);
