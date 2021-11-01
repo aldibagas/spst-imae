@@ -10,11 +10,11 @@ $setDb['db_password']='';
 $template='./templates/tinydash/light/';
 
 //folder gambar
-$img='./img/';
+$img='../img/';
 
 //session
 $_SESSION['prefix']='spst';
 
 //URI
-$setUri['base']='./home/cypr9718/public_html/spst-imae';
+$setUri['base']='http://cypiral.org/spst/';
 $setUri['assets']='./assets/';
