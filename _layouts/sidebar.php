@@ -53,10 +53,34 @@
               </a>
             </li>
             <li class="nav-item w-100">
+              <a href="<?=url('uangmasuk')?>" class="nav-link">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Uang Masuk</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="<?=url('uangkeluar')?>" class="nav-link">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Uang Keluar</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="<?=url('rekap')?>" class="nav-link">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Rekapitulasi</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
               <a href="<?=url('profil')?>" class="nav-link">
                 <i class="fe fe-user fe-16"></i>
                 <span class="ml-3 item-text">Profil</span>
               </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="index.php?halaman=logout"  aria-expanded="false" class="nav-link">
+                <i class="fe fe-log-out fe-16"></i>
+                <span class="ml-3 item-text">Logout</span>
+                </a>
             </li>
           </ul>
         </nav>
