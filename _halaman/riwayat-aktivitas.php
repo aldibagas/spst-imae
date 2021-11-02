@@ -1,22 +1,5 @@
 <?php
-session_start();
   $title="Riwayat Aktivitas";
-  include 'connect.php';
-
-  $nama = $_SESSION['nama'];
-  $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
-  $sql2 ="SELECT * FROM `pemesanan` WHERE pesanan_1 = '$p1'";
-  $run = mysqli_query($conn, $sql, $sql2);
-  $row = mysqli_fetch_assoc($run);
-  $email = $row['email'];
-  $alamat = $row['alamat'];
-  $telp = $row['Telepon'];
-  $p1 = $_row ['pesanan_1'];
-  $j1 = $_row ['jumlah_1'];
-  $p2 = $_row ['pesanan_2'];
-  $j2 = $_row ['jumlah_2'];
-  $p3 = $_row ['pesanan_3'];
-  $j3 = $_row ['jumlah_3'];
 ?>
 
             <div class="row mb-4 items-align-center">
@@ -145,94 +128,35 @@ session_start();
             <table class="table border table-hover bg-white">
                 <thead>
                   <tr role="row">
-                    <th>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="all">
-                        <label class="custom-control-label" for="all"></label>
-                      </div>
-                    </th>
-                    <th>ID</th>
-                    <th>Tanggal Pemesanan</th>
+                    <th>Tanggal</th>
                     <th>Nama Petugas</th>
-                    <th>Alamat</th>
-                    <th>Pesanan 1</th>
-                    <th>Jumlah</th>
-                    <th>Pesanan 2</th>
-                    <th>Jumlah</th>
-                    <th>Pesanan 3</th>
-                    <th>Jumlah</th>
+                    <th>Data Sampah</th>
                     <th>Total Harga</th>
-                    <th>Opsi</th>
+                    <th>Metode Pembayaran</th>
+                    <th>Metode Transaksi</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                  <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                    <td>1</td>
-                    <td>2020-04-21 00:38:38</td>
-                    <td><?php echo$nama;?></td>
-                    <td><?php echo$alamat;?></td>
-                    <td><?php echo$p1;?></td>
-                    <td>$4.18</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-warning mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>2</td>
-                    <td>2019-06-25 19:13:36</td>
-                    <td>Aubrey Sweeney</td>
-                    <td>(422) 405-2736</td>
-                    <td>Ap #598-7581 Tellus Av.</td>
-                    <td>$4.98</td>
-                    <td>Credit Card </td>
-                    <td>Cred </td>
-                    <td>Rp </td>
-                    <td>
-                    <td>Rp 10.000 </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                   </div>
-                      </div>
-                    </td>
-                  </tr>
+                <?php
+                  $Query = "select * from pemesanan where idp=1";
+                  $Run = mysqli_query($conn, $Query);
+                  
+                  if(mysqli_num_rows($Run)>0){
+                    while($Fetch = mysqli_fetch_assoc($Run)){
+                      echo"
+                        <tr>
+                          <td>".$Fetch['tanggal']."</td>
+                          <td>".$Fetch['idp']."</td>
+                          <td>".$Fetch['pesanan_1']." , ".$Fetch['pesanan_2']." , ".$Fetch['pesanan_3']." </td>
+                          <td>".$Fetch['biaya']."</td>
+                          <td>".$Fetch['metodebayar']."</td>
+                          <td>".$Fetch['metodetransaksi']."</td>
+                          <td>".$Fetch['status']."</td>
+                        </tr>
+                      ";
+                    }
+                  }
+                ?>
                 </tbody>
               </table>
