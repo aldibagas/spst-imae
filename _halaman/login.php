@@ -1,22 +1,7 @@
 <?php
 	$title="masuk";
 	$Template=false;
-	
-
-		$servername = "localhost";
-
-		/* nama database kita */
-		$database = "cypr9718_spst"; 
-
-		/* nama user yang terdaftar pada database (default: root) */
-		$username = "cypr9718";
-
-		/* password yang terdaftar pada database (default : "") */ 
-		$password = "pq6SPaHWYiKe38"; 
-
-		// membuat koneksi
-		$conn = mysqli_connect($servername, $username, $password, $database);
-
+	include 'connect.php';
 
 	if(isset($_POST['kirim'])){
 		$user = $_POST['username'];
