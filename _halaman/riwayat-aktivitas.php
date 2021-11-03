@@ -1,5 +1,5 @@
 <?php
-  $title="Riwayat Aktivitas";
+
 ?>
 
             <div class="row mb-4 items-align-center">
@@ -139,15 +139,26 @@
                 </thead>
                 <tbody>
                 <?php
-                  $Query = "select * from pemesanan where idp=1";
-                  $Run = mysqli_query($conn, $Query);
+                    session_start();
+                    $title="Riwayat Aktivitas";  
+                    include '_helpers/connect.php';
+                  
+                    $nama = $_SESSION['nama'];
+                    $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
+                    $run = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_assoc($run);
+                    $Kelas = $row['Kelas'];
+                    $telp = $row['Telepon'];
+                    $Query = "select * from pemesanan where idp=1";
+                    $Run = mysqli_query($conn, $Query);
+                    $totalharga=(($jumlah_1*$daftarharga)+($jumlah_2*$daftarharga)+($jumlah_3*$daftarharga));
                   
                   if(mysqli_num_rows($Run)>0){
                     while($Fetch = mysqli_fetch_assoc($Run)){
                       echo"
                         <tr>
                           <td>".$Fetch['tanggal']."</td>
-                          <td>".$Fetch['idp']."</td>
+                          <td>".$row['Kelas']."</td>
                           <td>".$Fetch['pesanan_1']." , ".$Fetch['pesanan_2']." , ".$Fetch['pesanan_3']." </td>
                           <td>".$Fetch['biaya']."</td>
                           <td>".$Fetch['metodebayar']."</td>
