@@ -6,10 +6,6 @@
    $password = "";
    $conn = mysqli_connect($servername, $username, $password, $database);
    $title="Riwayat Transaksi";
-   $sql ="SELECT * FROM `pengguna` WHERE id = '$id'";
-   $run = mysqli_query($conn, $sql);
-   $row = mysqli_fetch_assoc($run);
-   $id = $row['idpemesan'];
 ?>
             <div class="row mb-4 items-align-center">
                 <div class="col-md">
@@ -146,62 +142,37 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                      </div>
-                    </td>
-                    <td>2020-12-26 01:32:21</td>
-                    <td><?php echo$_SESSION['nama'];?></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="dot dot-lg bg-warning mr-2"></span></td>
-                    <td></td>
-                    <td></td>
-
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="align-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <label class="custom-control-label"></label>
-                      </div>
-                    </td>
-                    <td>1156</td>
-                    <td>2020-04-21 00:38:38</td>
-                    <td>Melinda Levy</td>
-                    <td>(748) 927-4423</td>
-                    <td>Ap #516-8821 Vitae Street</td>
-                    <td>$4.18</td>
-                    <td> Paypal</td>
-                    <td><span class="dot dot-lg bg-warning mr-2"></span></td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="text-muted sr-only">Action</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-
-                    </td>
-                  </tr>
+<tbody>
+                <?php
+                  $Query = "select * from pemesanan";
+                  $Run = mysqli_query($conn, $Query);
+                  
+                  if(mysqli_num_rows($Run)>0){
+                    while($Fetch = mysqli_fetch_assoc($Run)){
+                      echo"
+                        <tr>
+                          <td>".$Fetch['tanggal']."</td>
+                          <td>".$Fetch['idp']."</td>
+                          <td>".$Fetch['biaya']."</td>
+                          <td>".$Fetch['metodebayar']."</td>
+                          <td>".$Fetch['metodetransaksi']."</td>
+                          <td>".$Fetch['status']."</td>
+                      ";
+                    }
+                  }
+                ?>
+                      <td>
+                            <div class="dropdown">
+                              <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="text-muted sr-only">Action</span>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="#">Remove</a>
+                                <a class="dropdown-item" href="#">Assign</a>
+                              </div>
+                            </div>
+                          </td>
+                      </tr>
                 </tbody>
               </table>
