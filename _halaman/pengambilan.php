@@ -50,6 +50,9 @@
                   <button type="button" class="btn mb-2 btn-primary">Cari</button>
                </div>
                <div class = "col d-grid gap-2 p-0">
+                  <button type="button" class="btn btn-outline-primary" >Setor</button>
+               </div>
+               <div class = "col d-grid gap-2 p-0">
                   <button type="button" class="btn btn-outline-primary" onclick="getLocation()">Lokasi saat ini</button>
                </div>
                <div class = "col d-grid gap-2 p-0">

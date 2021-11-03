@@ -1,5 +1,29 @@
 <?php
+   session_start();
    $title="Beranda";
+   include '_helpers/connect.php';
+
+   $nama = $_SESSION['nama'];
+   $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
+   $Query = "SELECT * FROM 'pemesanan' WHERE idp=1";
+   $run = mysqli_query($conn, $sql);
+   $row = mysqli_fetch_assoc($run);
+   $email = $row['email'];
+   $telp = $row['Telepon'];
+   $alamat = $row['alamat'];
+   $masuk = 10000;
+   $keluar = 5000;
+   $saldo = $masuk-$keluar;
+   $Cari="SELECT * FROM pemesanan";
+$Tampil = mysqli_query($conn, $Cari);
+while 
+(    $hasil = mysqli_fetch_array ($Tampil)) 
+{
+        $tanggal    = stripslashes ($hasil['tanggal']);
+        $pesanan_1  = stripslashes ($hasil['pesanan_1']);
+        $pesanan_2  = stripslashes ($hasil['pesanan_2']);
+        $pesanan_3  = stripslashes ($hasil['pesanan_3']);
+}
 ?>    
 <p class="lead text-muted">Selamat datang di SPST, mari bersama menjaga lingkungan yang bersih! </p>
             <div class="mb-2 align-items-center">
@@ -9,22 +33,26 @@
                       <div class="col-12 col-lg-4 text-left pl-4">
                         <span class="fe fe-credit-card text-success fe-12"></span>
                         <p class="mb-1 small text-muted">Saldo</p>
-                        <span class="h2">Rp 12,600</span>
+                        <span class="h2">Rp <?php echo$saldo;?></span>
+                     
+                     
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-success fe-12"></span>
                         <p class="mb-1 small text-muted">Pemasukan terakhir</p>
-                        <span class="h3">Rp 2,600</span><br />
+                        <span class="h3">2000</span><br />
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-success fe-12"></span>
                         <p class="mb-1 small text-muted">Pemasukan Bulan ini</p>
-                        <span class="h3">Rp 26,000</span><br />
+                        <span class="h3">10000
+
+                        </span><br />
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-down text-danger fe-12"></span>
                         <p class="mb-1 small text-muted">Pengeluaran Bulan ini</p>
-                        <span class="h3">Rp 6,000</span><br />
+                        <span class="h3">5000</span><br />
                       </div>
                     </div>
                   </div> <!-- .card-body -->
@@ -43,7 +71,7 @@
                     <div class="row mt-2">
                       <div class="col-6 text-center mb-3 border-right">
                         <p class="text-muted mb-1">PETE</p>
-                        <h6 class="mb-1">Rp 300</h6>
+                        <h6 class="mb-1">- Rp 300</h6>
                         <p class="text-muted mb-2">/kg</p>
                       </div>
                       <div class="col-6 text-center mb-3">
@@ -96,7 +124,7 @@
                   <div class="card shadow">
                     <div class="card-header">
                       <strong class="card-title float-left">Catatan Aktivitas</strong>
-                      <a class="float-right small text-muted" href="<?=url('history-pemesan')?>">Lihat Semua</a>
+                      <a class="float-right small text-muted" href="<?=url('riwayat-aktivitas')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">
                       <div class="list-group list-group-flush my-n3">
@@ -106,8 +134,8 @@
                               <span class="fe fe-arrow-up text-success fe-24"></span>
                             </div>
                             <div class="col">
-                              <small><strong>22 Oktober 2021</strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan PET, HDPE, PP</div>
+                              <small><str><strong><?php echo$tanggal?></strong></small>
+                              <div class="my-0 text-muted small">Menyerahkan <?php echo$pesanan_1;?>, <?php echo$pesanan_2?>, <?php echo$pesanan_3;?></div>
                               <small class="badge badge-light text-muted">kemarin</small>
                             </div>
                           </div>
@@ -118,9 +146,10 @@
                               <span class="fe fe-arrow-up text-success fe-24"></span>
                             </div>
                             <div class="col">
-                              <small><strong>22 Oktober 2021</strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan PET, HDPE, PP</div>
+                              <small><str><strong><?php echo$tanggal?></strong></small>
+                              <div class="my-0 text-muted small">Menyerahkan <?php echo$pesanan_1;?>, <?php echo$pesanan_2?>, <?php echo$pesanan_3;?></div>
                               <small class="badge badge-light text-muted">kemarin</small>
+                              
                             </div>
                           </div>
                         </div>
@@ -130,8 +159,8 @@
                               <span class="fe fe-arrow-up text-success fe-24"></span>
                             </div>
                             <div class="col">
-                              <small><strong>22 Oktober 2021</strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan PET, HDPE, PP</div>
+                              <small><strong><?php echo$tanggal?></strong></small>
+                              <div class="my-0 text-muted small">Menyerahkan <?php echo$pesanan_1;?>, <?php echo$pesanan_2?>, <?php echo$pesanan_3;?></div>
                               <small class="badge badge-light text-muted">kemarin</small>
                             </div>
                           </div>
@@ -220,7 +249,8 @@ Manfaat menjaga kebersihan lingkungan antara lain:
 </br>
 4. Air menjadi lebih bersih dan aman untuk di minum.
 </br>
-5. Lebih tenang dalam menjalankan aktivitas sehari hari.
+5. Lebih tenang dalam menjalankan aktivitas sehari hari.</br>
+</br>
 <!-- Wrapper for carousel items -->
 <div class="carousel-inner">
     <div class="carousel-item active">

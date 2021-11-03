@@ -153,6 +153,7 @@
                         <tr>
                           <td>".$Fetch['tanggal']."</td>
                           <td>".$Fetch['idp']."</td>
+                          <td></td>
                           <td>".$Fetch['biaya']."</td>
                           <td>".$Fetch['metodebayar']."</td>
                           <td>".$Fetch['metodetransaksi']."</td>

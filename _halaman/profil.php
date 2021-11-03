@@ -1,12 +1,17 @@
 <?php
 session_start();
 	$title = "Profil";
-  include 'connect.php';
+	include '_helpers/connect.php';
+
   $nama = $_SESSION['nama'];
   $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
   $run = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($run);
+  $email = $row['email'];
+  $telp = $row['Telepon'];
+  $alamat = $row['alamat'];
 ?>
+
 			<div class="my-4">
                 <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                   <li class="nav-item">
