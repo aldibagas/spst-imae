@@ -2,8 +2,6 @@
    session_start();
    $title="Pesan Pengambilan";
    $fileJS='pengambilan-js';
-   $connection = mysqli_connect("localhost","root","");
-   $db = mysqli_select_db($connection,'spst');
 
    if(isset($_POST['insert'])) 
    {
