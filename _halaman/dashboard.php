@@ -1,9 +1,34 @@
 <?php
    $title="Dashboard";
    $fileJS='dashboard-js';
+
+   $data = mysqli_query($conn, 'SELECT SUM(saldo) AS value_sum FROM tabungan'); 
+   $row = mysqli_fetch_assoc($data); 
+   $saldo_total = $row['value_sum'];
+   
+   $data1 = mysqli_query($conn, 'SELECT SUM(berat) AS berat_total FROM pemesanan'); 
+   $row1 = mysqli_fetch_assoc($data1); 
+   $berat_total = $row1['berat_total'];
+
+   $data2 = mysqli_query($conn, 'SELECT COUNT(status) AS n FROM pemesanan WHERE status=2'); 
+   $row2= mysqli_fetch_assoc($data2); 
+   $n = $row2['n'];
+
+   $data3 = mysqli_query($conn, 'SELECT COUNT(status) AS jumlah FROM pemesanan'); 
+   $row3= mysqli_fetch_assoc($data3); 
+   $jumlah = $row3['jumlah'];
+   $persen_proses = round(($n / $jumlah)*100,1);
+
+   $sekarang = 0;
+   $data4 = mysqli_query($conn, "SELECT SUM(berat) AS berat_avg FROM pemesanan WHERE date(tanggal) = CURDATE()"); 
+   $row4 = mysqli_fetch_assoc($data4); 
+   $berat_avg = $row4['berat_avg'];
+   if($berat_avg <= 1){
+     $berat_avg = 0;
+   }
 ?>
 
-<div class="row">
+              <div class="row">
                 <div class="col-md-6 col-xl-3 mb-4">
                   <div class="card shadow bg-primary text-white border-0">
                     <div class="card-body">
@@ -14,8 +39,8 @@
                           </span>
                         </div>
                         <div class="col pr-0">
-                          <p class="small text-muted mb-0">Pemasukan Bulanan</p>
-                          <span class="h3 mb-0 text-white">Rp 125,000</span>
+                          <p class="small text-muted mb-0">Total Saldo</p>
+                          <?php echo '<span class="h3 mb-0 text-white">Rp '.$saldo_total.'</span>'; ?>
                         </div>
                       </div>
                     </div>
@@ -32,7 +57,7 @@
                         </div>
                         <div class="col pr-0">
                           <p class="small text-muted mb-0">Total Penyimpanan</p>
-                          <span class="h3 mb-0">1,869</span>
+                          <?php echo '<span class="h3 mb-0">'.$berat_total.'</span>'; ?>
                           <span class="small text-success">kg</span>
                         </div>
                       </div>
@@ -52,11 +77,11 @@
                           <p class="small text-muted mb-0">Sudah Diproses</p>
                           <div class="row align-items-center no-gutters">
                             <div class="col-auto">
-                              <span class="h3 mr-2 mb-0"> 86.6% </span>
+                              <?php echo '<span class="h3 mr-2 mb-0">'.$persen_proses.' % </span>'; ?>
                             </div>
                             <div class="col-md-12 col-lg">
                               <div class="progress progress-sm mt-2" style="height:3px">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+                                <?php echo '<div class="progress-bar bg-success" role="progressbar" style="width: '.$persen_proses.'%" aria-valuenow="'.$persen_proses.'" aria-valuemin="0" aria-valuemax="100"></div>'; ?>
                               </div>
                             </div>
                           </div>
@@ -75,8 +100,9 @@
                           </span>
                         </div>
                         <div class="col">
-                          <p class="small text-muted mb-0">AVG Orders</p>
-                          <span class="h3 mb-0">$80</span>
+                          <p class="small text-muted mb-0">Pemasukan Harian</p>
+                          <?php echo'<span class="h3 mb-0">'.$berat_avg.'</span>'; ?>
+                          <span class="small text-success">kg</span>
                         </div>
                       </div>
                     </div>

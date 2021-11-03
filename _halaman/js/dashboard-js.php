@@ -1,11 +1,11 @@
-<script src="js/Chart.min.js"></script>
+<script src="<?=templates()?>js/Chart.min.js"></script>
 <script>
 /* defind global options */
     Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
     Chart.defaults.global.defaultFontColor = colors.mutedColor;
 </script>
 <script src="<?=templates()?>js/gauge.min.js"></script>
-<script src="j<?=templates()?>s/jquery.sparkline.min.js"></script>
+<script src="<?=templates()?>js/jquery.sparkline.min.js"></script>
 <script src="<?=templates()?>js/apexcharts.min.js"></script>
 <script src="<?=templates()?>js/apexcharts.custom.js"></script>
 <script src='<?=templates()?>js/jquery.mask.min.js'></script>
