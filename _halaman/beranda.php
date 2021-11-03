@@ -14,16 +14,12 @@
    $masuk = 10000;
    $keluar = 5000;
    $saldo = $masuk-$keluar;
-   $Cari="SELECT * FROM pemesanan";
-$Tampil = mysqli_query($conn, $Cari);
-while 
-(    $hasil = mysqli_fetch_array ($Tampil)) 
-{
-        $tanggal    = stripslashes ($hasil['tanggal']);
-        $pesanan_1  = stripslashes ($hasil['pesanan_1']);
-        $pesanan_2  = stripslashes ($hasil['pesanan_2']);
-        $pesanan_3  = stripslashes ($hasil['pesanan_3']);
-}
+   $Cari="SELECT * FROM pemesanan order by tanggal desc LIMIT 5";
+   $Tampil = mysqli_query($conn, $Cari);
+   $data = array();
+   while($row = mysqli_fetch_assoc($Tampil)){
+    $data[] = $row;
+   }
 ?>    
 <p class="lead text-muted">Selamat datang di SPST, mari bersama menjaga lingkungan yang bersih! </p>
             <div class="mb-2 align-items-center">
@@ -128,43 +124,21 @@ while
                     </div>
                     <div class="card-body">
                       <div class="list-group list-group-flush my-n3">
+                        <?php foreach($data as $item){ ?>
                         <div class="list-group-item">
                           <div class="row">
                             <div class="col-auto">
                               <span class="fe fe-arrow-up text-success fe-24"></span>
                             </div>
                             <div class="col">
-                              <small><str><strong><?php echo$tanggal?></strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan <?php echo$pesanan_1;?>, <?php echo$pesanan_2?>, <?php echo$pesanan_3;?></div>
+                              <small><str><strong><?php echo $item['tanggal'];?></strong></small>
+                              <div class="my-0 text-muted small">Menyerahkan <?php echo$item['pesanan_1'];?>, <?php echo$item['pesanan_2']?>, <?php echo$item['pesanan_3'];?></div>
                               <small class="badge badge-light text-muted">kemarin</small>
                             </div>
                           </div>
                         </div>
-                        <div class="list-group-item">
-                          <div class="row">
-                            <div class="col-auto">
-                              <span class="fe fe-arrow-up text-success fe-24"></span>
-                            </div>
-                            <div class="col">
-                              <small><str><strong><?php echo$tanggal?></strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan <?php echo$pesanan_1;?>, <?php echo$pesanan_2?>, <?php echo$pesanan_3;?></div>
-                              <small class="badge badge-light text-muted">kemarin</small>
-                              
-                            </div>
-                          </div>
-                        </div>
-                        <div class="list-group-item">
-                          <div class="row">
-                            <div class="col-auto">
-                              <span class="fe fe-arrow-up text-success fe-24"></span>
-                            </div>
-                            <div class="col">
-                              <small><strong><?php echo$tanggal?></strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan <?php echo$pesanan_1;?>, <?php echo$pesanan_2?>, <?php echo$pesanan_3;?></div>
-                              <small class="badge badge-light text-muted">kemarin</small>
-                            </div>
-                          </div>
-                        </div>
+                        <?php } ?>
+                        
                       </div> <!-- / .list-group -->
                     </div> <!-- / .card-body -->
                   </div> <!-- / .card -->
