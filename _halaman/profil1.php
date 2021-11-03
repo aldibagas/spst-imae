@@ -1,5 +1,5 @@
 <?php
-    $title = "Profil"
+    $title = "Profil";
 ?>
             <div class="my-4">
                 <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">

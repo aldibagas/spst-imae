@@ -1,19 +1,5 @@
 <?php
-session_start();
-  $title="Riwayat Aktivitas";
-  $servername = "localhost";
-  $database = "spst"; 
-  $username = "root";
-  $password = "";
-  $conn = mysqli_connect($servername, $username, $password, $database);
-
-  $nama = $_SESSION['nama'];
-  $sql ="SELECT * FROM `pemesanan` WHERE pesanan_1 = 'p1'";
-  $run = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($run);
-  $email = $row['email'];
-  $alamat = $row['alamat'];
-  $telp = $row['Telepon'];
+   $title="Riwayat Aktivitas";
 ?>
 
             <div class="row mb-4 items-align-center">

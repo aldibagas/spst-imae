@@ -1,3 +1,7 @@
+<?php
+// require '_helpers/connect.php';
+// require '_helpers/session.php';
+?>
 <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
         <a href="#" class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
           <i class="fe fe-x"><span class="sr-only"></span></i>
@@ -29,9 +33,9 @@
               </a>
             </li>
             <li class="nav-item w-100">
-              <a class="nav-link" href="<?=url('pengambilan')?>">
+              <a class="nav-link" href="<?=url('transaksi')?>">
                 <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Pesan Pengambilan</span>
+                <span class="ml-3 item-text">Transaksi</span>
               </a>
             </li>
             <li class="nav-item w-100">
