@@ -1,5 +1,6 @@
 <?php
    $title="Dashboard";
+   $fileJS='dashboard-js';
 ?>
 
 <div class="row">
