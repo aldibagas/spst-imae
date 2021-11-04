@@ -1,7 +1,7 @@
 <?php
 session_start();
 	$title = "Profil";
-	include '_helpers/connect.php';
+
 
   $nama = $_SESSION['nama'];
   $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";

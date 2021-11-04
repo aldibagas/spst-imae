@@ -1,8 +1,6 @@
 <?php
-@session_start();
 // require '_helpers/connect.php';
 // require '_helpers/session.php';
-
 ?>
 <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
         <a href="#" class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
@@ -21,9 +19,6 @@
               </svg>
             </a>
           </div>
-      <?php
-                  if ($_SESSION['kelas']=="pengguna") {
-                ?>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('beranda')?>">
@@ -32,40 +27,15 @@
               </a>
             </li>
             <li class="nav-item w-100">
-              <a class="nav-link" href="<?=url('pengambilan')?>">
-                <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Pesan Pengambilan</span>
+              <a class="nav-link" href="<?=url('dashboard')?>">
+                <i class="fe fe-monitor fe-16"></i>
+                <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('transaksi')?>">
                 <i class="fe fe-box fe-16"></i>
                 <span class="ml-3 item-text">Transaksi</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="<?=url('riwayat-aktivitas')?>" class="nav-link">
-                <i class="fe fe-clock fe-16"></i>
-                <span class="ml-3 item-text">Riwayat Aktivitas</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="<?=url('profil')?>" class="nav-link">
-                <i class="fe fe-user fe-16"></i>
-                <span class="ml-3 item-text">Profil</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="index.php?halaman=logout"  aria-expanded="false" class="nav-link">
-                <i class="fe fe-log-out fe-16"></i>
-                <span class="ml-3 item-text">Logout</span>
-                </a>
-            </li>
-            <?php } echo $_SESSION['nama']; ?>
-            <li class="nav-item w-100">
-              <a class="nav-link" href="<?=url('dashboard')?>">
-                <i class="fe fe-monitor fe-16"></i>
-                <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item w-100">
@@ -78,6 +48,30 @@
               <a href="<?=url('riwayat-transaksi')?>" class="nav-link">
                 <i class="fe fe-clock fe-16"></i>
                 <span class="ml-3 item-text">Riwayat Transaksi</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="<?=url('riwayat-aktivitas')?>" class="nav-link">
+                <i class="fe fe-clock fe-16"></i>
+                <span class="ml-3 item-text">Riwayat Aktivitas</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="<?=url('uangmasuk')?>" class="nav-link">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Uang Masuk</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="<?=url('uangkeluar')?>" class="nav-link">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Uang Keluar</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="<?=url('rekap')?>" class="nav-link">
+                <i class="fe fe-user fe-16"></i>
+                <span class="ml-3 item-text">Rekapitulasi</span>
               </a>
             </li>
             <li class="nav-item w-100">
