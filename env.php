@@ -12,6 +12,9 @@ $template='templates/tinydash/light/';
 //folder gambar
 $img='img/';
 
+//folder routing
+$route='js/leaflet-routing-machine/';
+
 //session
 $_SESSION['prefix']='workshop';
 

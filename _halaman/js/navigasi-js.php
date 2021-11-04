@@ -40,10 +40,16 @@
         map.panTo(latLng);
 	}
 
+	<?php
+	   $data = mysqli_query($conn, 'SELECT `latitude`, `longitude` FROM `navigasi` WHERE idp = 2'); 
+	   $row = mysqli_fetch_assoc($data); 
+	   $tlat = $row['latitude'];
+	   $tlong = $row['longitude'];
+	?>
 	// rute
 	var control = L.Routing.control({
 	    waypoints: [
-	        latLng,
+	        latLng, <?php $tlat ?> , <?php $tlong ?>
 
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
