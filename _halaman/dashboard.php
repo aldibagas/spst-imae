@@ -1,6 +1,5 @@
 <?php
    $title="Dashboard";
-   $fileJS='dashboard-js';
 
    $data = mysqli_query($conn, 'SELECT SUM(saldo) AS value_sum FROM tabungan'); 
    $row = mysqli_fetch_assoc($data); 
