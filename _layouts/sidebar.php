@@ -61,7 +61,9 @@
                 <span class="ml-3 item-text">Logout</span>
                 </a>
             </li>
-            <?php } echo $_SESSION['nama']; ?>
+          </ul>
+            <?php } if ($_SESSION['kelas']=="petugas") { ?>
+          <ul>
             <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('dashboard')?>">
                 <i class="fe fe-monitor fe-16"></i>
@@ -93,5 +95,6 @@
                 </a>
             </li>
           </ul>
+          <?php } ?>
         </nav>
       </aside>
