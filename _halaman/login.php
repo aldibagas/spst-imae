@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 	$title="masuk";
 	$Template=false;
 
@@ -11,9 +13,15 @@
 		$row = mysqli_fetch_assoc($run);
 
 		if($row > 0){
-			session_start();
-			$_SESSION['nama'] = $row['Nama'];
-			header('location:index.php?halaman=beranda');
+		$_SESSION['nama'] = $row['Nama'];
+		$userid = $row['id'];
+		$_SESSION['kelas'] = $row['Kelas'];
+		if ($row['Kelas']=="pengguna")	{
+			header('Location:index.php?halaman=beranda');
+		}
+		if ($row['Kelas']=="petugas")	{
+			header('Location:index.php?halaman=dashboard');
+		}
 		}else{
 			echo'
 				<div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Gagal</div>"
