@@ -61,9 +61,6 @@
                       <strong class="card-title">Daftar Harga Beli</strong>
                     </div>
                     <div class="card-body">
-                    <div class="chart-widget">
-                      <div id="columnChartWidget" width="300" height="200"></div>
-                    </div>
                     <div class="row mt-2">
                       <div class="col-6 text-center mb-3 border-right">
                         <p class="text-muted mb-1">PETE</p>
@@ -151,9 +148,6 @@
                       <strong class="card-title">Jasa Angkut Sampah</strong>
                     </div>
                     <div class="card-body">
-                    <div class="chart-widget">
-                      <div id="columnChartWidget" width="300" height="200"></div>
-                    </div>
                     <div class="row mt-2">
                       <div class="col-6 text-center mb-3 border-right">
                         <p class="text-muted mb-1">Sampah Basah</p>

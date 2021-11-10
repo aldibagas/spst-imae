@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
 <style>
  .login{
-  background-color: #30e64c;
+  background-color: #0045ce;
   color: white;
  }
 </style>
@@ -64,7 +64,7 @@
    </br>
 
    <p> Sudah Memiliki Akun?
-   <a href="index.php?halaman=login" style="color:#30e64c;">Masuk</a>
+   <a href="index.php?halaman=login" style="color:#0045ce;">Masuk</a>
    </p>
   </form>
   
