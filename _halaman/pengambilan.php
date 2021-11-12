@@ -72,7 +72,7 @@
                       <form action="" method="POST">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="simple-select2">sampah</label>
+                            <label for="simple-select2">Sampah</label>
                             <select class="form-control select2" id="simple-select2" name ="pesanan_1">
                                 <optgroup label="Plastik">
                                   <option value="PET">PET</option>

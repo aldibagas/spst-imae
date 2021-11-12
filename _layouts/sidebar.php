@@ -39,7 +39,7 @@
             </li>
             <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('transaksi')?>">
-                <i class="fe fe-box fe-16"></i>
+                <i class="fe fe-credit-card fe-16"></i>
                 <span class="ml-3 item-text">Transaksi</span>
               </a>
             </li>
@@ -47,6 +47,12 @@
               <a href="<?=url('riwayat-aktivitas')?>" class="nav-link">
                 <i class="fe fe-clock fe-16"></i>
                 <span class="ml-3 item-text">Riwayat Aktivitas</span>
+              </a>
+            </li>
+            <li class="nav-item w-100">
+              <a href="<?=url('pencairanuang')?>" class="nav-link">
+                <i class="fe fe-book fe-16"></i>
+                <span class="ml-3 item-text">Pencairan Uang</span>
               </a>
             </li>
             <li class="nav-item w-100">

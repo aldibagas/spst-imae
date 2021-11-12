@@ -1,7 +1,7 @@
 <?php
 session_start();
 	$title = "Profil";
-
+  
 
   $nama = $_SESSION['nama'];
   $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";

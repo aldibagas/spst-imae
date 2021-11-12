@@ -3,6 +3,7 @@
 session_start();
 	$title="masuk";
 	$Template=false;
+	include '_helpers/connect.php';
 
 	if(isset($_POST['kirim'])){
 		$user = $_POST['username'];

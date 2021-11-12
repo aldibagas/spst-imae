@@ -19,5 +19,5 @@ $route='js/leaflet-routing-machine/';
 $_SESSION['prefix']='workshop';
 
 //URI
-$setUri['base']='http://localhost/spst/';
+$setUri['base']='http://localhost/spst-imae/';
 $setUri['assets']='assets/';

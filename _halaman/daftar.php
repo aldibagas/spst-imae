@@ -1,7 +1,12 @@
 <?php
  $title="Registrasi";
  $Template=false;
- include '_helpers/connect.php';
+ 
+    $servername = "localhost";
+    $database = "spst"; 
+    $username = "root";
+    $password = "";
+    $conn = mysqli_connect($servername, $username, $password, $database);
 
  if(isset($_POST['kirim'])){
     $user = $_POST['username'];
@@ -12,7 +17,7 @@
     
     $sql = "
     INSERT INTO `pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`, 'email') 
-    VALUES (default,'testing','$user','$telp','$pass','$email')";
+    VALUES (default,'testing','$user','$telp','$pass', '$email')";
 	
 	if($run = mysqli_query($conn, $sql)){
         header('location:index.php?halaman=login');
