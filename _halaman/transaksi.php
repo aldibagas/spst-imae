@@ -33,7 +33,8 @@
                       <li></li>
                       <li></li>
                     </ul>
-                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modaltransaksi">AJUKAN</button>
+                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modaltarik">AJUKAN</button>
+                     <a href="index.php?pencairanuang" style="color:#30e64c;">AJUKAN</a> 
                </div>
              </div>
             <!-- Modal -->
@@ -132,7 +133,6 @@
                         </div>
                       </form>
                     </div>
-                  
                 </div>
                 </div>
             </div>
