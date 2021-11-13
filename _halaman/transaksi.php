@@ -12,7 +12,6 @@
                     <p class="text-muted"></p>
                     <ul class="list-unstyled">
                       <li>Setor sampah adalah program yang menawarkan setiap orang untuk berpartisipasi aktif mengelola sampahnya secara bertanggung jawab.</li>
-                      
                       <li></li>
                       <li></li>
                       <li></li>
@@ -20,10 +19,10 @@
                     <button type="button" class="btn mb-2 btn-primary btn-lg" data-toggle="modal" data-target="#modaltransaksi">SETOR</button>                    
                   </div> <!-- .card-body -->
                 </div> <!-- .card -->
-<div class="card mb-4">
-        
+<div class="card mb-4">      
                   <div class="card-body text-center my-4">
                     <a href="#">
+</a>
                     <p class="text-muted"></p>
                     <span class="h1 mb-0">Pencairan Uang</span>
                     <p class="text-muted"></p>
@@ -172,4 +171,3 @@
             </div>
         </div>
     </div>
-</div>
