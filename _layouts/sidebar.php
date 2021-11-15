@@ -68,7 +68,7 @@
                 </a>
             </li>
           </ul>
-            <?php } if ($_SESSION['kelas']=="petugas") { ?>
+            <?php } else { ?>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('dashboard')?>">
