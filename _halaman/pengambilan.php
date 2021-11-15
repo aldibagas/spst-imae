@@ -14,8 +14,9 @@
      $j3 = $_POST ['jumlah_3'];
      $lat = $_POST['lat'];
      $long= $_POST['long'];
+     $namapetugas= $_POST['operator'];
 
-     $query1 = "INSERT INTO `pemesanan`(`idp`, `pesanan_1`, `jumlah_1`, `pesanan_2`, `jumlah_2`, `pesanan_3`, `jumlah_3`) VALUES ('2' ,'$p1','$j1','$p2','$j2','$p3','$j3') ";
+     echo $query1 = "INSERT INTO `pemesanan`(`idp`, `pesanan_1`, `jumlah_1`, `pesanan_2`, `jumlah_2`, `pesanan_3`, `jumlah_3`, `namapetugas`) VALUES ('2' ,'$p1','$j1','$p2','$j2','$p3','$j3', '$namapetugas') ";
      $query_run1 = mysqli_query($conn,$query1); 
 
      $data = mysqli_query($conn, 'SELECT COUNT(idt) AS jumlah FROM pemesanan'); 
@@ -23,7 +24,8 @@
      $idt = $row3['jumlah'];
 
      $query2 = "INSERT INTO `navigasi`(`idt`,`idp`, `latitude`, `longitude`) VALUES ( '$idt' , '2' , '$lat','$long') ";
-     $query_run2 = mysqli_query($conn,$query2); 
+     $query_run2 = mysqli_query($conn,$query2);
+      
    if($query_run1 && $query_run2)
    {
      echo ' <script type="text/javaScript"> alert("Data Tersimpan") 
@@ -36,6 +38,7 @@
      </script>';
    }
  }
+ echo$_SESSION['nama'];
 ?>
 <div class="mb-2 align-items-center">
     <div class="card shadow mb-4">
@@ -148,7 +151,8 @@
                             </div> <!-- form-group -->
                             <div class="form-group col-md-6">
                             <input type="text" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="jumlah_3">
-                            </div>
+                            <input type="hidden" name="operator" value="<?php echo$_SESSION['nama']?>">  
+                          </div>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="lat" id="insertLat" value="">

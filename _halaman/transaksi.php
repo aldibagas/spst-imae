@@ -44,8 +44,7 @@
                                           <form role="form" method="POST">  
                                             <div class="form-group">
                                                 <label>Tanggal</label>
-                                                <?php
-                                                echo'date("d/m/Y h:i:s");' ?>
+                                                
                                                 <input class="form-control" type="date" name="tgl" />
                                             </div>
 
