@@ -142,9 +142,9 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-<tbody>
+              <tbody>
                 <?php
-                  $Query = "SELECT * FROM pemesanan";
+                  $Query = "SELECT * FROM pemesanan WHERE idp=2";
                   $Run = mysqli_query($conn, $Query);
                   
                   if(mysqli_num_rows($Run)>0){
