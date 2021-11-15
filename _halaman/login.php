@@ -37,7 +37,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
 	<style>
 		.login{
-			background-color: #30e64c;
+			background-color: #1b68ff;
 			color: white;
 		}
 	</style>
@@ -95,7 +95,7 @@ session_start();
 
 
 				<p> Belum punya akun?
-				<a href="index.php?halaman=daftar" style="color:#30e64c;">Register Disini</a>
+				<a href="index.php?halaman=daftar" style="color:#1b68ff;">Daftar</a>
 				</p>
 			</form>
 			
