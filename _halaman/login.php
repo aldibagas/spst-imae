@@ -93,10 +93,11 @@ session_start();
 				</div>
 				</br>
 
-
-				<p> Belum punya akun?
-				<a href="index.php?halaman=daftar" style="color:#1b68ff;">Daftar</a>
-				</p>
+				<div class="row d-flex justify-content-center">
+					<p> Belum punya akun?
+					<a  href="index.php?halaman=daftar" style="color:#1b68ff;">Daftar</a>
+					</p>
+				</div>
 			</form>
 			
 		</div>
