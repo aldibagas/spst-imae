@@ -144,7 +144,7 @@
                 </thead>
 <tbody>
                 <?php
-                  $Query = "select * from pemesanan";
+                  $Query = "SELECT * FROM pemesanan";
                   $Run = mysqli_query($conn, $Query);
                   
                   if(mysqli_num_rows($Run)>0){
