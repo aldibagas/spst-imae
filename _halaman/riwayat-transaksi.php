@@ -144,7 +144,7 @@
                 </thead>
               <tbody>
                 <?php
-                  $Query = "SELECT * FROM pemesanan WHERE idp=2";
+                  $Query = "SELECT `idp`, `tanggal`, `biaya`, `metodebayar`, `metodetransaksi`, `status` FROM `pemesanan`";
                   $Run = mysqli_query($conn, $Query);
                   
                   if(mysqli_num_rows($Run)>0){
