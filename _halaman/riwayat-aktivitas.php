@@ -1,5 +1,6 @@
 <?php
-
+  session_start();
+  $title="Riwayat Aktivitas";
 ?>
 
             <div class="row mb-4 items-align-center">

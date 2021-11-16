@@ -1,10 +1,5 @@
 <?php
    session_start();
-   $servername = "localhost";
-   $database = "spst"; 
-   $username = "root";
-   $password = "";
-   $conn = mysqli_connect($servername, $username, $password, $database);
    $title="Riwayat Transaksi";
 ?>
             <div class="row mb-4 items-align-center">
