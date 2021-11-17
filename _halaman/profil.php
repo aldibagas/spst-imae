@@ -71,7 +71,7 @@ session_start();
                 </div>
                   <div class="form-group">
                     <label for="inputAddress5">Alamat</label>
-                    <input type="text" class="form-control" id="inputAddress5" placeholder="Alamat">
+                    <input type="text" class="form-control" id=                       "inputAddress5" placeholder="Alamat">
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-6">

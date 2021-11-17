@@ -1,12 +1,37 @@
 <?php
    session_start();
    $title="Pencairan Uang";
+   include '_helpers/connect.php';
+                  
+                    $nama = $_SESSION['nama'];
+                    $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
+                    $run = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_assoc($run);
+                    $Kelas = $row['Kelas'];
+                    $telp = $row['Telepon'];
+                  $Query = "select * from pemesanan where idp=1";
+                  $Run = mysqli_query($conn, $Query);
+                  
+                  if(mysqli_num_rows($Run)>0){
+                    while($Fetch = mysqli_fetch_assoc($Run)){
+                      echo"
+                        <tr>
+                          <td>".$Fetch['tanggal']."</td>
+                          <td>". $row['Kelas']."</td>
+                          <td>".$Fetch['pesanan_1']." , ".$Fetch['pesanan_2']." , ".$Fetch['pesanan_3']." </td>
+                          <td>".$Fetch['biaya']."</td>
+                          <td>".$Fetch['metodebayar']."</td>
+                          <td>".$Fetch['metodetransaksi']."</td>
+                          <td>".$Fetch['status']."</td>
+                        </tr>
+                      ";
+                    }
+                  }
 ?>
 <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-]                           
+                        <div class="panel-heading">                           
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

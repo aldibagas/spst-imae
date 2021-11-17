@@ -1,6 +1,9 @@
 <?php
    session_start();
    $title="Transaksi";
+   $masuk = 10000;
+   $keluar = 5000;
+   $saldo = $masuk-$keluar;
 ?>
 <div class="card-deck my-4">
                 <div class="card mb-4 shadow">
@@ -43,21 +46,22 @@
                                           
                                           <form role="form" method="POST">  
                                             <div class="form-group">
-                                                <label>Tanggal</label>
-                                                
-                                                <input class="form-control" type="date" name="tgl" />
+                                                <?php
+                                                echo date("Y-m-d");
+                                                "</br>"
+                                                ?> 
                                             </div>
 
+                                            <div class="form-group">
+                                                <label>Saldo yang Tersedia</label>
+                                            </br>
+                                                <?php echo$saldo;?>
+                                            </div>
                                             <div class="form-group">
                                                 <label>Jumlah Uang yang Ditarik</label>
                                                 <input class="form-control" name="jml" type="number" />
                                             </div>
-
-
-                                            <div class="form-group">
-                                                <label>Saldo yang Tersedia</label>
-                                                <input class="form-control" name="jml" type="int" />
-                                            </div>
+                                            <input type="submit" class="btn mb-2 btn-primary" name="insert" value="Ajukan">
                </div>
              </div>
              </div>
@@ -161,7 +165,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="lat" id="insertLat" value="">
                             <input type="hidden" name="long" id="insertLong" value="">
-                            <input type="submit" class="btn mb-2 btn-primary" name="insert" value="pesan">
+                            <input type="submit" class="btn mb-2 btn-primary" name="insert" value="Setor">
                         </div>
                       </form>
                     </div>

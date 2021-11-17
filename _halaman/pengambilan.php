@@ -38,7 +38,7 @@
      </script>';
    }
  }
- echo$_SESSION['nama'];
+
 ?>
 <div class="mb-2 align-items-center">
     <div class="card shadow mb-4">
@@ -161,7 +161,6 @@
                         </div>
                       </form>
                     </div>
-                  
                 </div>
                 </div>
             </div>
