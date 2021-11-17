@@ -32,12 +32,6 @@
               </a>
             </li>
             <li class="nav-item w-100">
-              <a class="nav-link" href="<?=url('pengambilan')?>">
-                <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Pesan Pengambilan</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('transaksi')?>">
                 <i class="fe fe-credit-card fe-16"></i>
                 <span class="ml-3 item-text">Transaksi</span>
@@ -47,12 +41,6 @@
               <a href="<?=url('riwayat-aktivitas')?>" class="nav-link">
                 <i class="fe fe-clock fe-16"></i>
                 <span class="ml-3 item-text">Riwayat Aktivitas</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="<?=url('pencairanuang')?>" class="nav-link">
-                <i class="fe fe-book fe-16"></i>
-                <span class="ml-3 item-text">Pencairan Uang</span>
               </a>
             </li>
             <li class="nav-item w-100">
@@ -68,7 +56,7 @@
                 </a>
             </li>
           </ul>
-            <?php } if ($_SESSION['kelas']=="petugas") { ?>
+            <?php } else { ?>
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
               <a class="nav-link" href="<?=url('dashboard')?>">

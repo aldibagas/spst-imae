@@ -1,10 +1,5 @@
 <?php
    session_start();
-   $servername = "localhost";
-   $database = "spst"; 
-   $username = "root";
-   $password = "";
-   $conn = mysqli_connect($servername, $username, $password, $database);
    $title="Riwayat Transaksi";
 ?>
             <div class="row mb-4 items-align-center">
@@ -142,9 +137,9 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-<tbody>
+              <tbody>
                 <?php
-                  $Query = "select * from pemesanan";
+                  $Query = "SELECT `idp`, `tanggal`, `biaya`, `metodebayar`, `metodetransaksi` FROM `pemesanan`";
                   $Run = mysqli_query($conn, $Query);
                   
                   if(mysqli_num_rows($Run)>0){
