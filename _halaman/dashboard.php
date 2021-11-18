@@ -25,13 +25,6 @@
    if($berat_avg <= 1){
      $berat_avg = 0;
    }
-
-   $Cari="SELECT * FROM pemesanan order by tanggal desc LIMIT 5";
-   $Tampil = mysqli_query($conn, $Cari);
-   $data = array();
-   while($row = mysqli_fetch_assoc($Tampil)){
-    $data[] = $row;
-   }
 ?>
 
               <div class="row">
@@ -140,89 +133,3 @@
                   </div>
                 </div> <!-- .col -->
               </div> <!-- end section -->
-              <div class ="row">
-                <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header align-items-center">
-                      <strong class="card-title">Daftar Harga Beli</strong>
-                    </div>
-                    <div class="card-body">
-                    <div class="row mt-2">
-                      <div class="col-6 text-center mb-3 border-right">
-                        <p class="text-muted mb-1">PETE</p>
-                        <h6 class="mb-1">- Rp 300</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center mb-3">
-                        <p class="text-muted mb-1">HDPE</p>
-                        <h6 class="mb-1">Rp 830</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PVC</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">LDPE</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PP</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">PS</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">HVS</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">Karton</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">Kardus</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                    </div>
-                  </div> <!-- .card-body -->
-                  </div> <!-- / .card -->
-                </div> <!-- / .col-md-3 -->
-               <!-- Recent Activity -->
-               <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header">
-                      <strong class="card-title float-left">Catatan Aktivitas</strong>
-                      <a class="float-right small text-muted" href="<?=url('riwayat-transaksi')?>">Lihat Semua</a>
-                    </div>
-                    <div class="card-body">
-                      <div class="list-group list-group-flush my-n3">
-                        <?php foreach($data as $item){ ?>
-                        <div class="list-group-item">
-                          <div class="row">
-                            <div class="col-auto">
-                              <span class="fe fe-arrow-up text-success fe-24"></span>
-                            </div>
-                            <div class="col">
-                              <small><str><strong><?php echo $item['tanggal'];?></strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan <?php echo$item['pesanan_1'];?>, <?php echo$item['pesanan_2']?>, <?php echo$item['pesanan_3'];?></div>
-                              <small class="badge badge-light text-muted">kemarin</small>
-                            </div>
-                          </div>
-                        </div>
-                        <?php } ?>
-                        
-                      </div> <!-- / .list-group -->
-                    </div> <!-- / .card-body -->
-                  </div> <!-- / .card -->
-                </div> <!-- / .col-md-3 -->
-              </div>
