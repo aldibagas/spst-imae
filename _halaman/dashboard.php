@@ -170,6 +170,52 @@
                         }
                       }
                       ?>
+                    <div class="row mt-2">
+                      <div class="col-6 text-center mb-3 border-right">
+                        <p class="text-muted mb-1">PETE</p>
+                        <h6 class="mb-1">- Rp 300</h6>
+                        <p class="text-muted mb-2">/kg</p>
+                      </div>
+                      <div class="col-6 text-center mb-3">
+                        <p class="text-muted mb-1">HDPE</p>
+                        <h6 class="mb-1">Rp 830</h6>
+                        <p class="text-muted">/kg</p>
+                      </div>
+                      <div class="col-6 text-center border-right">
+                        <p class="text-muted mb-1">PVC</p>
+                        <h6 class="mb-1">Rp 200</h6>
+                        <p class="text-muted mb-2">/kg</p>
+                      </div>
+                      <div class="col-6 text-center">
+                        <p class="text-muted mb-1">LDPE</p>
+                        <h6 class="mb-1">Rp 430</h6>
+                        <p class="text-muted">/kg</p>
+                      </div>
+                      <div class="col-6 text-center border-right">
+                        <p class="text-muted mb-1">PP</p>
+                        <h6 class="mb-1">Rp 200</h6>
+                        <p class="text-muted mb-2">/kg</p>
+                      </div>
+                      <div class="col-6 text-center">
+                        <p class="text-muted mb-1">PS</p>
+                        <h6 class="mb-1">Rp 430</h6>
+                        <p class="text-muted">/kg</p>
+                      </div>
+                      <div class="col-6 text-center border-right">
+                        <p class="text-muted mb-1">HVS</p>
+                        <h6 class="mb-1">Rp 200</h6>
+                        <p class="text-muted mb-2">/kg</p>
+                      </div>
+                      <div class="col-6 text-center">
+                        <p class="text-muted mb-1">Karton</p>
+                        <h6 class="mb-1">Rp 430</h6>
+                        <p class="text-muted">/kg</p>
+                      </div>
+                      <div class="col-6 text-center border-right">
+                        <p class="text-muted mb-1">Kardus</p>
+                        <h6 class="mb-1">Rp 200</h6>
+                        <p class="text-muted mb-2">/kg</p>
+                      </div>
                     </div>
                   </div> <!-- .card-body -->
                   </div> <!-- / .card -->
