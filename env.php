@@ -19,5 +19,5 @@ $route='js/leaflet-routing-machine/';
 $_SESSION['prefix']='workshop';
 
 //URI
-$setUri['base']='https://localhost/spst/';
+$setUri['base']='https://spst.cypiral.org/';
 $setUri['assets']='assets/';
