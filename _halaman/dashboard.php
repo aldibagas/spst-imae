@@ -146,6 +146,7 @@
                   <div class="card shadow">
                     <div class="card-header align-items-center">
                       <strong class="card-title">Daftar Harga Beli</strong>
+                      <a class="float-right small text-muted" href="<?=url('pengaturan_harga')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">
                       <?php 
