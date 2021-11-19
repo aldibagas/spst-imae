@@ -1,10 +1,9 @@
 <?php
-   session_start();
    $title="Transaksi";
-   $masuk = 10000;
-   $keluar = 5000;
-   $saldo = $masuk-$keluar;
+   session_start();
+
 ?>
+
 <div class="card-deck my-4">
                 <div class="card mb-4 shadow">
                   <div class="card-body text-center my-4">
@@ -19,7 +18,7 @@
                       <li></li>
                       <li></li>
                     </ul>
-                    <button type="button" class="btn mb-2 btn-primary btn-lg" data-toggle="modal" data-target="#modaltransaksi">SETOR</button>                    
+                    <button type="button" class="btn mb-2 btn-primary btn-lg" data-toggle="modal" data-target="#modaltransaksi">Setor</button>                    
                   </div> <!-- .card-body -->
                 </div> <!-- .card -->
 <div class="card mb-4">      
@@ -34,34 +33,12 @@
                       <li</li>
                       <li></li>
                       <li></li>
-                    </ul>
-                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modaltarik">AJUKAN</button>
-                     <div class="modal fade" id="modaltarik" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="defaultModalLabel">Lengkapi Semua Data</h5>
+                    </ul>                     
+              <a class="nav-link" href="<?=url('pencairanuang')?>">
+                <span class="btn mb-2 btn-primary btn-lg ">Tarik</span><span class="sr-only">(current)</span>
+              </a>
+             
                     </div>
-                    <div class="modal-body">
-                                          
-                                          <form role="form" method="POST">  
-                                            <div class="form-group">
-                                                <?php
-                                                echo date("Y-m-d");
-                                                "</br>"
-                                                ?> 
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Saldo yang Tersedia</label>
-                                            </br>
-                                                <?php echo$saldo;?>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Jumlah Uang yang Ditarik</label>
-                                                <input class="form-control" name="jml" type="number" />
-                                            </div>
-                                            <input type="submit" class="btn mb-2 btn-primary" name="insert" value="Ajukan">
                </div>
              </div>
              </div>
@@ -165,7 +142,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="lat" id="insertLat" value="">
                             <input type="hidden" name="long" id="insertLong" value="">
-                            <input type="submit" class="btn mb-2 btn-primary" name="insert" value="Setor">
+                            <input type="submit" class="btn mb-2 btn-primary" name="insert" value="pesan">
                         </div>
                       </form>
                     </div>
