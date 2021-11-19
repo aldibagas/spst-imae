@@ -2,7 +2,6 @@
    session_start();
    $title="SETOR";
 ?>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <div class="row d-flex justify-content-center">
 					<div class="col-sm px-0 my-3">
 						<div class="border border-secondary"></div>
@@ -13,23 +12,10 @@
 					</div>
 				</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-    <center> <h2>Jenis</h2> <br> </center>
-    </div>
-    <div class="col-sm">
-    <center> <h2>Jumlah</h2> <br> </center>
-    </div>
-    <div class="col-sm">
-    <center> <h2>Harga</h2> <br> </center>
-    </div>
-  </div>
-</div>
-
 <form>
   <div class="row">
     <div class="col">
+    <center> <h2>Jenis</h2> <br> </center>
     <select class="form-control" id="sel1">
     <option>Jenis Plastik</option>
     <option>PET</option>
@@ -45,9 +31,11 @@
   </select>
     </div>
     <div class="col">
+    <center> <h2>Jumlah</h2> <br> </center>
       <input type="text" class="form-control" placeholder="Kilogram">
     </div>
     <div class="col">
+    <center> <h2>Harga</h2> <br> </center>
       <input type="text" class="form-control" placeholder="Rupiah">
     </div>
   </div>
