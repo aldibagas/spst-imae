@@ -1,5 +1,10 @@
 <?php
    session_start();
+   $servername = "localhost";
+   $database = "spst"; 
+   $username = "root";
+   $password = "";
+   $conn = mysqli_connect($servername, $username, $password, $database);
    $title="Riwayat Transaksi";
 ?>
             <div class="row mb-4 items-align-center">
@@ -134,12 +139,13 @@
                     <th>Biaya</th>
                     <th>Metode Pembayaran</th>
                     <th>Metode Transaksi</th>
-                    <th>Action</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
-              <tbody>
+<tbody>
                 <?php
-                  $Query = "SELECT `idp`, `tanggal`, `biaya`, `metodebayar`, `metodetransaksi` FROM `pemesanan`";
+                  $Query = "select * from pemesanan";
                   $Run = mysqli_query($conn, $Query);
                   
                   if(mysqli_num_rows($Run)>0){
@@ -153,22 +159,22 @@
                           <td>".$Fetch['metodebayar']."</td>
                           <td>".$Fetch['metodetransaksi']."</td>
                           <td>".$Fetch['status']."</td>
+                          <td>
+                          <div class='dropdown'>
+                            <button class='btn btn-sm dropdown-toggle more-vertical' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                              <span class='text-muted sr-only'>Action</span>
+                            </button>
+                            <div class='dropdown-menu dropdown-menu-right'>
+                              <a class='dropdown-item' href='#'>Pending</a>
+                              <a class='dropdown-item' href='#'>Terima</a>
+                              <a class='dropdown-item' href='#'>Tolak</a>
+                            </div>
+                          </div>
+                        </td>   
                       ";
                     }
                   }
                 ?>
-                      <td>
-                            <div class="dropdown">
-                              <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="text-muted sr-only">Action</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Assign</a>
-                              </div>
-                            </div>
-                          </td>
-                      </tr>
+                       
                 </tbody>
               </table>
