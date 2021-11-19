@@ -152,7 +152,7 @@
                           <td>".$Fetch['biaya']."</td>
                           <td>".$Fetch['metodebayar']."</td>
                           <td>".$Fetch['metodetransaksi']."</td>
-                          <td>".$Fetch['status']."</td>
+                          <td>".$Fetch['metodebayar']."</td>
                       ";
                     }
                   }

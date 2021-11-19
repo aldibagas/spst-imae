@@ -1,33 +1,88 @@
 <?php
    session_start();
    $title="Pencairan Uang";
-   include '_helpers/connect.php';
-                  
-                    $nama = $_SESSION['nama'];
-                    $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
-                    $run = mysqli_query($conn, $sql);
-                    $row = mysqli_fetch_assoc($run);
-                    $Kelas = $row['Kelas'];
-                    $telp = $row['Telepon'];
-                  $Query = "select * from pemesanan where idp=1";
-                  $Run = mysqli_query($conn, $Query);
-                  
-                  if(mysqli_num_rows($Run)>0){
-                    while($Fetch = mysqli_fetch_assoc($Run)){
-                      echo"
-                        <tr>
-                          <td>".$Fetch['tanggal']."</td>
-                          <td>". $row['Kelas']."</td>
-                          <td>".$Fetch['pesanan_1']." , ".$Fetch['pesanan_2']." , ".$Fetch['pesanan_3']." </td>
-                          <td>".$Fetch['biaya']."</td>
-                          <td>".$Fetch['metodebayar']."</td>
-                          <td>".$Fetch['metodetransaksi']."</td>
-                          <td>".$Fetch['status']."</td>
-                        </tr>
-                      ";
-                    }
-                  }
+   $masuk = 10000;
+   $keluar = 5000;
+   $saldo = $masuk-$keluar;
 ?>
+<form role="form" method="POST">  
+                                            <div class="form-group">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Saldo yang Tersedia</label>
+                                            </br>
+                                                <?php echo$saldo;?>
+                                            </div>
+                                            <div class="form-group">
+                                                <?php 
+                                            $tanggal = mktime(date('m'), date("d"), date('Y'));
+                                            echo "Tanggal : <b> " . date("d-m-Y", $tanggal ) . "</b>";
+                                            date_default_timezone_set("Asia/Jakarta");
+                                            $jam = date ("H:i:s");
+                                            echo " | Pukul : <b> " . $jam . " " ." </b> ";
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jumlah Uang yang Ditarik</label>
+                                                <input class="form-control" name="jml" type="number" />
+                                            </div>
+                                            
+               <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modaltarik">Ajukan</button>;
+                     <div class="modal fade" id="modaltarik" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel"></h5>
+                    </div>
+                    <div class="modal-body">
+                    <div class="form-group">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required="">
+          </div>
+          <div class="checkbox mb-3">
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Konfirmasi</button>
+               </div>
+             </div>
+             </div>
+                      </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+               </div>
+               </div>
+               </div>
+
+               <div class="modal fade" id="modaltarik" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel"></h5>
+                    </div>
+                    <div class="modal-body">
+                                          
+                                          <form role="form" method="POST">  
+                                            <div class="form-group">
+
+                                            <div class="form-group">
+                                                <label>Jumlah Uang yang Ditarik</label>
+                                                <input class="form-control" name="jml" type="number" />
+                                                <div class="form-group">
+                                                <label for="inputPassword" class="sr-only">Password</label>
+                                                <input type="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required="">
+                                            </div>
+                                            <div class="checkbox mb-3">
+                                             </div>
+                                            <button class="btn btn-lg btn-primary btn-block" type="submit">Konfirmasi</button>
+                                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="batal">Batal</button>
+                                                <button type="button" class="btn btn-primary btn-lg" ><a href="index.php?halaman=confirm-pass">Kirim</button>
+                                            </div>
+
 <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-primary">
@@ -40,9 +95,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Saldo Tabungan</th>
-                                            <th>Uang Cair</th>
-                                            <th>Saldo Akhir</th>
+                                            <th>Penarikan Uang</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,8 +124,6 @@
                          <!--halaman tambah-->
 
                         <div class="panel-body">
-                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
-                              Buat Pengajuan
                             </button>
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -138,8 +190,6 @@
                         ?>
                         <h3></h3>
                       <div class="panel-body">
-                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
-                              Konfirmasi
                             </button>
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
