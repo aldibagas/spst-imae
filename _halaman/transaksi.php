@@ -1,9 +1,7 @@
 <?php
    $title="Transaksi";
    session_start();
-
 ?>
-
 <div class="card-deck my-4">
                 <div class="card mb-4 shadow">
                   <div class="card-body text-center my-4">
@@ -26,15 +24,15 @@
                     <a href="#">
 </a>
                     <p class="text-muted"></p>
-                    <span class="h1 mb-0">Pencairan Uang</span>
+                    <span class="h1 mb-0">Penarikan Uang</span>
                     <p class="text-muted"></p>
                     <ul class="list-unstyled">
-                      <li>Uang yang telah terkumpul dari tabungan, dapat dicairkan melalui kantor. Nominal untuk pencairan uang sesuai dengan keinginan pelanggan.</li>
+                      <li>Uang yang telah terkumpul dari tabungan, dapat dicairkan melalui kantor. Nominal untuk penarikan uang sesuai dengan keinginan pelanggan.</li>
                       <li</li>
                       <li></li>
                       <li></li>
                     </ul>                     
-              <a class="nav-link" href="<?=url('pencairanuang')?>">
+              <a class="nav-link" href="<?=url('penarikanuang')?>">
                 <span class="btn mb-2 btn-primary btn-lg ">Tarik</span><span class="sr-only">(current)</span>
               </a>
              
