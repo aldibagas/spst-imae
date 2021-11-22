@@ -21,6 +21,19 @@
                   </div>
                 </div>
               </div>
+              <div class="list-group-item bg-transparent">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <span class="fe fe-inbox fe-24"></span>
+                        </div>
+                        <div class="col">
+                          <small><strong>Petugas menyetujui pengajuan pencairan uang</strong></small>
+                          <div class="my-0 text-muted small">Petugas</div>
+                          <small class="badge badge-pill badge-light text-muted">2m ago</small>
+                        </div>
+                      </div>
+                    </div>
+                    
               
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Hapus Semua</button>
