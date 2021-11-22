@@ -1,5 +1,6 @@
 <?php
-   
+   session_start();
+   include '_helpers/connect.php';
    $title="Penarikan Uang";
    $ambil = mysqli_query($conn, "SELECT SUM(saldo) AS value_sum FROM tabungan WHERE kode=3");
    $row = mysqli_fetch_assoc($ambil);
@@ -7,7 +8,20 @@
 
    if(isset($_POST['kirim'])){
  
-    $pass = $_POST['pass'];
+     $idt = $_POST ['idt'];
+     $idp = $_POST ['idp'];
+     $idp2 = $_POST ['idp2'];
+     $aktivitas = $_POST ['aktivitas'];
+     $data_transaksi = $_POST ['data_transaksi'];
+     $biaya = $_POST['biaya'];
+     $metode_bayar= $_POST['metode_bayar'];
+     $metode_transaksi= $_POST['metode_transaksi'];
+     $status= $_POST['status'];
+     $pass = $_POST['pass'];
+
+     $query1 = "INSERT INTO `transaksi` ( `idt`, `idp`, `idp2`, `aktivitas`, `data_transaksi`, `biaya`, `metode_bayar`, `metode_transaksi`, `status`, `sandi`) 
+     VALUES ('1', '3', '3', '1', '$data_transaksi', '$biaya', '0', '0', '2','$pass')";
+     $query_run1 = mysqli_query($conn,$query1); 
 
     $sql = "SELECT * FROM `pengguna` WHERE `Sandi` = '$pass'";
     $run = mysqli_query($conn, $sql);
@@ -50,7 +64,9 @@
                                             </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Waktu Pengambilan Uang</p>
-                                                <input class="form-control" name="time" type="time" />
+                                            <div class="form-group mb-3">
+                                            <label for="">Time</label>
+                                            <input type="time" name="time" class="form-control">
                                             </div>
                                             <?=button_modal('Ajukan','confirm-pass')?>
                                             </div>
@@ -65,4 +81,3 @@
 </div>
 <input type="submit" name="kirim" value="Konfirmasi" button class="btn btn-lg btn-primary btn-lg" type="submit"></button>
 ')?>
-
