@@ -12,24 +12,16 @@
      $idp = $_POST ['idp'];
      $idp2 = $_POST ['idp2'];
      $aktivitas = $_POST ['aktivitas'];
-<<<<<<< HEAD
      $waktu_transaksi = $_POST ['waktu_transaksi'];
-=======
-     $data_transaksi = $_POST ['data_transaksi'];
->>>>>>> 47349270ecd7e92c1bb86b4970b9ce5434db9691
      $biaya = $_POST['biaya'];
      $metode_bayar= $_POST['metode_bayar'];
      $metode_transaksi= $_POST['metode_transaksi'];
      $status= $_POST['status'];
      $pass = $_POST['pass'];
+     
 
-<<<<<<< HEAD
      $query1 = "INSERT INTO `transaksi` ( `idt`, `idp`, `idp2`, `aktivitas`, `waktu_transaksi`, `biaya`, `metode_bayar`, `metode_transaksi`, `status`, `sandi`) 
      VALUES ('3', '2', '3', '1', '$waktu_transaksi', '$biaya', '0', '0', '2','$pass')";
-=======
-     $query1 = "INSERT INTO `transaksi` ( `idt`, `idp`, `idp2`, `aktivitas`, `data_transaksi`, `biaya`, `metode_bayar`, `metode_transaksi`, `status`, `sandi`) 
-     VALUES ('1', '3', '3', '1', '$data_transaksi', '$biaya', '0', '0', '2','$pass')";
->>>>>>> 47349270ecd7e92c1bb86b4970b9ce5434db9691
      $query_run1 = mysqli_query($conn,$query1); 
 
     $sql = "SELECT * FROM `pengguna` WHERE `Sandi` = '$pass'";
@@ -76,13 +68,8 @@
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Waktu Pengambilan Uang</p>
                                             <div class="form-group mb-3">
-<<<<<<< HEAD
                                             <input type="time" class="form-control"  aria-label="saldo" name="waktu_transaksi">
 
-=======
-                                            <label>Time</label>
-                                            <input type="time" name="time" class="form-control">
->>>>>>> 47349270ecd7e92c1bb86b4970b9ce5434db9691
                                             </div>
                                             <?=button_modal('Ajukan','confirm-pass')?>
                                             </div>
