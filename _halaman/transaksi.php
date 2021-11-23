@@ -1,7 +1,10 @@
 <?php
    $title="Transaksi";
    session_start();
+<<<<<<< HEAD
 
+=======
+>>>>>>> f417435b34d60900c6536a6510770fb7a7f2d3d3
 ?>
 
 <div class="card-deck my-4">
@@ -18,7 +21,7 @@
                       <li></li>
                       <li></li>
                     </ul>
-                    <button type="button" class="btn mb-2 btn-primary btn-lg" data-toggle="modal" data-target="#modaltransaksi">SETOR</button>                    
+                    <button type="button" class="btn mb-2 btn-primary btn-lg" data-toggle="modal" data-target="#modaltransaksi">Setor</button>                    
                   </div> <!-- .card-body -->
                 </div> <!-- .card -->
 <div class="card mb-4">      
@@ -26,15 +29,22 @@
                     <a href="#">
 </a>
                     <p class="text-muted"></p>
-                    <span class="h1 mb-0">Pencairan Uang</span>
+                    <span class="h1 mb-0">Penarikan Uang</span>
                     <p class="text-muted"></p>
                     <ul class="list-unstyled">
-                      <li>Uang yang telah terkumpul dari tabungan, dapat dicairkan melalui kantor. Nominal untuk pencairan uang sesuai dengan keinginan pelanggan.</li>
+                      <li>Uang yang telah terkumpul dari tabungan, dapat dicairkan melalui kantor. Nominal untuk penarikan uang sesuai dengan keinginan pelanggan.</li>
                       <li</li>
                       <li></li>
                       <li></li>
                     </ul>                     
+<<<<<<< HEAD
                     <button type="button" class="btn mb-2 btn-primary btn-lg" ><a href="index.php?halaman=pencairanuang">TARIK</button>
+=======
+              <a class="nav-link" href="<?=url('penarikanuang')?>">
+                <span class="btn mb-2 btn-primary btn-lg ">Tarik</span><span class="sr-only">(current)</span>
+              </a>
+             
+>>>>>>> f417435b34d60900c6536a6510770fb7a7f2d3d3
                     </div>
                </div>
              </div>

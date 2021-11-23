@@ -1,6 +1,9 @@
 <?php
 @session_start();
 
+$data = mysqli_query($conn, 'SELECT SUM(status) AS value_sum FROM notifikasi'); 
+$row = mysqli_fetch_assoc($data); 
+$notif = $row['value_sum'];
 ?>
     <nav class="topnav navbar navbar-light">
         <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
@@ -21,7 +24,8 @@
           <li class="nav-item nav-notif">
             <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
               <span class="fe fe-bell fe-16"></span>
-              <span class="dot dot-md bg-success"></span>
+              <?php 
+              if($notif != 0){ echo'<span class="dot dot-md bg-success"></span>'; } ?>
             </a>
           </li>
           <li class="nav-item dropdown">

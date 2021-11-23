@@ -32,6 +32,7 @@
    while($row = mysqli_fetch_assoc($Tampil)){
     $data[] = $row;
    }
+
 ?>
 
               <div class="row">
@@ -145,8 +146,13 @@
                   <div class="card shadow">
                     <div class="card-header align-items-center">
                       <strong class="card-title">Daftar Harga Beli</strong>
+                      <a class="float-right small text-muted" href="<?=url('pengaturan_harga')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">
+                      <?php 
+                         $data5="SELECT * FROM harga";
+                         $row5 = mysqli_query($conn, $data5);
+                      ?>
                     <div class="row mt-2">
                       <div class="col-6 text-center mb-3 border-right">
                         <p class="text-muted mb-1">PETE</p>

@@ -33,6 +33,14 @@ function content_open($judul=''){
         <p class="card-title"><strong>'.$judul.'</strong></p>';
 }
 
+function content_open_full($judul=''){
+  return '
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-body">
+        <p class="card-title"><strong>'.$judul.'</strong></p>';
+}
+
 function content_close(){
   return '
       </div>
@@ -62,6 +70,25 @@ function modal($id='', $m_judul='', $isi=''){
         <div class="modal-footer">
           <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Pesan</button>
         </div>
+        </br>
+      </div>
+    </div>
+  </div>';
+}
+
+function modal_tanpa_button($id='', $m_judul='', $isi=''){
+  return'
+  <!-- Modal -->
+  <div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="defaultModalLabel">'.$m_judul.'</h5>
+        </div>
+        <div class="modal-body">
+          '.$isi.'
+        </div>
+        <br>
         </br>
       </div>
     </div>
