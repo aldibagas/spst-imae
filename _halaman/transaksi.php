@@ -1,10 +1,6 @@
 <?php
    $title="Transaksi";
    session_start();
-<<<<<<< HEAD
-
-=======
->>>>>>> f417435b34d60900c6536a6510770fb7a7f2d3d3
 ?>
 
 <div class="card-deck my-4">
@@ -37,14 +33,10 @@
                       <li></li>
                       <li></li>
                     </ul>                     
-<<<<<<< HEAD
-                    <button type="button" class="btn mb-2 btn-primary btn-lg" ><a href="index.php?halaman=pencairanuang">TARIK</button>
-=======
               <a class="nav-link" href="<?=url('penarikanuang')?>">
                 <span class="btn mb-2 btn-primary btn-lg ">Tarik</span><span class="sr-only">(current)</span>
               </a>
              
->>>>>>> f417435b34d60900c6536a6510770fb7a7f2d3d3
                     </div>
                </div>
              </div>
