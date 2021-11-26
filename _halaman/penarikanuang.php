@@ -9,7 +9,7 @@
 
    include '_helpers/connect.php';
    $title="Penarikan Uang";
-   $ambil = mysqli_query($conn, "SELECT saldo)  FROM tabungan WHERE idp1=$id");
+   $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1=$id");
    $row = mysqli_fetch_assoc($ambil);
    if($row['saldo']<=0){
     $saldo = 0;
