@@ -15,7 +15,8 @@ session_start();
 
 		if($row > 0){
 		$_SESSION['nama'] = $row['Nama'];
-		$userid = $row['id'];
+		$userid = $row['idp'];
+		$_SESSION['id'] = $userid;
 		$_SESSION['kelas'] = $row['Kelas'];
 		if ($row['Kelas']=="pengguna")	{
 			header('Location:index.php?halaman=beranda');

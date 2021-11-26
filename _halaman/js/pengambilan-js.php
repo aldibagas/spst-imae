@@ -5,7 +5,7 @@
      $latitude = $_POST ['latNow'];
      $longitude = $_POST ['lngNow'];
 
-     $query = "INSERT INTO jual (latNow,lngNow) VALUES ('$latitude','$longitude') ";
+     $query = "INSERT INTO navigasi (latNow,lngNow) VALUES ('$latitude','$longitude') ";
      $query_run = mysqli_query($conn,$query); 
    
    if($query_run)
@@ -34,7 +34,7 @@
    <script type="text/javascript">
       let infoWindow;
 
-   	var map = L.map('mapid').setView([-7.292904, 112.809361], 10); //setview([latitute,longitude], zoom)
+   	var map = L.map('mapid').setView([-7.281406058681646, 112.79428186818083], 10); //setview([latitute,longitude], zoom)
 
    	var LayerKita=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -54,7 +54,7 @@
    map.on('click', onMapClick);
 
 	function onLocationFound(e) {
-		var radius = e.accuracy / 10;
+		var radius = e.accuracy / 20;
 
 		L.marker(e.latlng).addTo(map)
 			.setContent("You clicked the map at " + e.latlng.toString()).openPopup();
@@ -86,6 +86,7 @@
 
 	function showPosition(position) {
 		console.log('Posisi Sekarang',position.coords.latitude,position.coords.longitude)
+    (position.coords.latitude,position.coords.longitude.toFixed(20));
     
     document.getElementById("insertLat").value = position.coords.latitude;
     document.getElementById("insertLong").value = position.coords.longitude;

@@ -16,7 +16,9 @@
                       <li></li>
                       <li></li>
                     </ul>
-                    <button type="button" class="btn mb-2 btn-primary btn-lg" data-toggle="modal" data-target="#modaltransaksi">Setor</button>                    
+                    <a class="nav-link" href="<?=url('setor')?>">
+                <span class="btn mb-2 btn-primary btn-lg ">Setor</span><span class="sr-only">(current)</span>
+              </a>              
                   </div> <!-- .card-body -->
                 </div> <!-- .card -->
 <div class="card mb-4">      

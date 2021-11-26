@@ -115,6 +115,7 @@
         map.panTo(latLng);
 	})
    </script>
+   
 
 <?php
 
