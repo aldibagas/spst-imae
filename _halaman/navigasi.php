@@ -6,8 +6,8 @@
    $Cari="SELECT * FROM navigasi where idt = 1";
    $Tampil = mysqli_query($conn, $Cari);
    $row = mysqli_fetch_assoc($Tampil);
-   echo "<div id='lat'>".$row['latitude']."</div>
-         <div id='long'>".$row['longitude']."</div>
+   echo "<div id='lat' style='display:none'>".$row['latitude']."</div>
+         <div id='long' style='display:none'>".$row['longitude']."</div>
    ";
 ?>
 

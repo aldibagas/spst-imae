@@ -42,13 +42,13 @@
 
 	$(function(){
 	 var lat =	document.getElementById("lat").innerHTML;
-	 console.log(lat);
+	 var long =	document.getElementById("long").innerHTML;
 	})
 	
 	// rute 
 	var control = L.Routing.control({
 	    waypoints: [
-	        latLng, 
+	        latLng, [lat,long]
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,
