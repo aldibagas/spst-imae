@@ -19,9 +19,9 @@
 
 	// ambil titik
 	getLocation();
-	// setInterval(() => {
-	// 	getLocation();
-	// }, 1000);
+	setInterval(() => {
+		getLocation();
+	}, 1000);
 
 	function getLocation() {
 	  if (navigator.geolocation) {
@@ -115,8 +115,3 @@
         map.panTo(latLng);
 	})
    </script>
-   
-
-<?php
-
-?>
