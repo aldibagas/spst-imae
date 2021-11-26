@@ -1,9 +1,9 @@
 <?php
 @session_start();
 
-// $data = mysqli_query($conn, 'SELECT SUM(status_tarik) AS value_sum FROM notifikasi'); 
-// $row = mysqli_fetch_assoc($data); 
-// $notif = $row['value_sum'];
+$data = mysqli_query($conn, 'SELECT SUM(status_tarik) AS value_sum FROM notifikasi'); 
+$row = mysqli_fetch_assoc($data); 
+$notif = $row['value_sum'];
 ?>
     <nav class="topnav navbar navbar-light">
         <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
