@@ -40,10 +40,15 @@
         map.panTo(latLng);
 	}
 
+	$(function(){
+	 var lat =	document.getElementById("lat").innerHTML;
+	 console.log(lat);
+	})
+	
 	// rute 
 	var control = L.Routing.control({
 	    waypoints: [
-	        latLng,
+	        latLng, 
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,
