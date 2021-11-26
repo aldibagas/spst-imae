@@ -9,11 +9,8 @@
    $ambilId = mysqli_fetch_assoc($idRun);
    $id  = $ambilId['id'];
 
-   include '_helpers/connect.php';
-   $title="Penarikan Uang";
    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
    $row = mysqli_fetch_assoc($ambil);
-   $saldo=0;
    if($row['saldo']<=0){
     $saldo = 0;
    }else{
