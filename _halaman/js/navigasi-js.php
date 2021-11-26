@@ -41,15 +41,16 @@
 	}
 
 	$(function(){
-	 var lat =	document.getElementById("lat").innerHTML;
-	 var long =	document.getElementById("long").innerHTML;
-	 console.log(lat)
+	 let lat =	document.getElementById("lat").innerHTML;
+	 let long =	document.getElementById("long").innerHTML;
+	 let latLng1 = [lat, long];
+	 console.log(latLng1)
 	})
 	
 	// rute 
 	var control = L.Routing.control({
 	    waypoints: [
-	        latLng, [lat,long]
+	        latLng, [lat, long]
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,
