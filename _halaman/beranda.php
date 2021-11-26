@@ -13,7 +13,7 @@
   
    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
    $row = mysqli_fetch_assoc($ambil);
-   $saldo=0;
+   $saldo=$row['saldo'];
    if($row['saldo']<=0){
     $saldo = 0;
    }else{
