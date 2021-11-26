@@ -9,7 +9,7 @@
 
    include '_helpers/connect.php';
    $title="Penarikan Uang";
-   $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
+   $ambil = mysqli_query($conn, "SELECT SUM(saldo) AS value_sum FROM tabungan WHERE idp1=1");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=0;
    if($row['saldo']<=0){
@@ -18,46 +18,29 @@
     $saldo = $row['saldo'];
    }
 
+
    if(isset($_POST['kirim'])){
     
-    $sqlId = "select * from pengguna where Nama = '$nama'";
-    $idRun = mysqli_query($conn, $sqlId);
-    $ambilId = mysqli_fetch_assoc($idRun);
-    $id  = $ambilId['idp'];
-
-     //$idt = $_POST ['idt'];
-     //$idp1 = $_POST ['idp1'];
-     $idp2 = $id;
-     @$aktivitas = $_POST ['aktivitas'];
+     $idt = $_POST ['idt'];
+     $idp1 = $_POST ['idp1'];
+     $idp2 = $_POST ['idp2'];
+     $aktivitas = $_POST ['aktivitas'];
      $waktu_tarik = $_POST ['waktu_tarik'];
      $jumlah_tarik = $_POST['jumlah_tarik'];
-     @$metode_bayar= $_POST['metode_bayar'];
-     @$metode_transaksi= $_POST['metode_transaksi'];
-     @$status= $_POST['status'];
+     $metode_bayar= $_POST['metode_bayar'];
+     $metode_transaksi= $_POST['metode_transaksi'];
+     $status= $_POST['status'];
      $pass = $_POST['pass'];
 
-     //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
-     //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
+     $sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
+     VALUES ('9', '1', '2', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '2','$pass')";
 
-    //kirim notifikasi pada petugas secara acak
-    //pemilihan petugas
-    $sqlRand = "select idp from pengguna where kelas = 'petugas'";
-    $runRand = mysqli_query($conn, $sqlRand);
-    $idPetugasRand = array();
-    while($fchRand = mysqli_fetch_assoc($runRand)){
-        $idPetugasRand[] = $fchRand['idp'];
-    }
-    $rand = array_rand($idPetugasRand);
-    $idPetugas = $idPetugasRand[$rand];
+     $sql2 = "INSERT INTO `notifikasi` (`idt`,`idp2`,`jumlah_tarik`,`status_tarik`)
+     VALUES ('9', '2', '$jumlah_tarik', '0')";
+     $query2 = mysqli_query($conn,$sql1); 
+     $query3 = mysqli_query($conn,$sql2);
 
-    //pengiriman notifikasi
-     $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`,`waktu_tarik`,`jumlah_tarik`,`metode_bayar`, `metode_transaksi`,`status_tarik`)
-     VALUES ('', '$id', '$idPetugas','$waktu_tarik', '$jumlah_tarik', '0', '0', null)";
-
-    //ambil
-    $sqlAmbl = "select * from tabungan where idp1 = '$idp2'";
-    $runAmbil = mysqli_query($conn, $sqlAmbl);
-    $ambilSaldo = mysqli_fetch_assoc($runAmbil);
+     mysqli_commit($conn);
 
     //pengurangan
     $saldoAkhir = $ambilSaldo['saldo'] - $jumlah_tarik;
