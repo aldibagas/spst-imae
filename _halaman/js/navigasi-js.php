@@ -40,12 +40,6 @@
         map.panTo(latLng);
 	}
 
-	$(function(){
-	 let lat =	document.getElementById("lat").innerHTML;
-	 let long =	document.getElementById("long").innerHTML;
-	 let latLng1 = [lat, long];
-	 console.log(latLng1)
-	})
 	
 	// rute 
 	var control = L.Routing.control({
@@ -111,14 +105,10 @@
         });
     }
 
-	$(document).on("click",".keSini",function(){
-		let latLng=[$(this).data('lat'),$(this).data('lng')];
-        control.spliceWaypoints(control.getWaypoints().length - 1, 1, latLng);
-	})
-
-	$(document).on("click",".dariSini",function(){
-		let latLng=[$("[name=latNow]").val(),$("[name=lngNow]").val()];
-        control.spliceWaypoints(0, 1, latLng);
-        map.panTo(latLng);
+	$(function(){
+	 let lat =	parseFloat(document.getElementById("lat").innerHTML);
+	 let long =	parseFloat(document.getElementById("long").innerHTML);
+	 let latLng1 = [lat, long];
+	 control.spliceWaypoints(control.getWaypoints().length - 1, 1, latLng1);
 	})
    </script>
