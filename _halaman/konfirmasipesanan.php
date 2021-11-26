@@ -16,8 +16,26 @@
             return "UPDATE `notifikasi` SET `status_tarik`='$val' WHERE idt = $idn";
         }
 
+        //ambil id pengguna
+        $ambilIdp   = "select * from notifikasi where idt = $idnotif";
+        $runIdp     = mysqli_query($conn, $ambilIdp);
+        $fetchIdp   = mysqli_fetch_assoc($runIdp);
+        $idp        = $fetchIdp['idp2'];
+        $jumlah_tarik= $fetchIdp['jumlah_tarik'];
+
         if($konfirmasi == 'Terima'){
             mysqli_query($conn, updateNotif(1, $idnotif));
+            
+            //ambil tabungan pengguna
+            echo$sqlAmbl = "select * from tabungan where idp1 = '$idp'";
+            $runAmbil = mysqli_query($conn, $sqlAmbl);
+            $ambilSaldo = mysqli_fetch_assoc($runAmbil);
+
+            //pengurangan
+            echo$saldoAkhir = $ambilSaldo['saldo'] - $jumlah_tarik;
+
+            $sqlTabungan = "UPDATE `tabungan` SET `saldo`='$saldoAkhir' WHERE `idp1`='$idp'";
+            mysqli_query($conn, $sqlTabungan);
         }
         if($konfirmasi == 'Tolak'){
             mysqli_query($conn, updateNotif(0, $idnotif));

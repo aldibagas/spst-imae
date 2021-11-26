@@ -2,12 +2,15 @@
    session_start();
    $title="Beranda";
    include '_helpers/connect.php';
+    
+  
+
    $nama = $_SESSION['nama'];
    $sqlId = "select * from pengguna where Nama = '$nama'";
    $idRun = mysqli_query($conn, $sqlId);
    $ambilId = mysqli_fetch_assoc($idRun);
    $id  = $ambilId['idp'];
-
+   
    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=0;
@@ -16,6 +19,7 @@
    }else{
     $saldo = $row['saldo'];
    }
+
 
    if(isset($_POST['kirim'])){
     
@@ -83,14 +87,7 @@
         ';
     }
 }
-   $nama = $_SESSION['nama'];
-   $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
-   $Query = "SELECT * FROM 'pemesanan' WHERE idp=1";
-   $run = mysqli_query($conn, $sql);
-   $row = mysqli_fetch_assoc($run);
-   $email = $row['email'];
-   $telp = $row['Telepon'];
-   $alamat = $row['alamat'];
+
    $Cari="SELECT * FROM pemesanan order by tanggal desc LIMIT 5";
    $Tampil = mysqli_query($conn, $Cari);
    $data = array();
