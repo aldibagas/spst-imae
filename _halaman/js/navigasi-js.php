@@ -43,7 +43,7 @@
 	$(function(){
 	 var lat =	document.getElementById("lat").innerHTML;
 	 var long =	document.getElementById("long").innerHTML;
-	 console.log(lat . Long)
+	 console.log(lat)
 	})
 	
 	// rute 
