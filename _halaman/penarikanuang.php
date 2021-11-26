@@ -5,7 +5,7 @@
    $sqlId = "select * from pengguna where Nama = '$nama'";
    $idRun = mysqli_query($conn, $sqlId);
    $ambilId = mysqli_fetch_assoc($idRun);
-   $id  = $ambilId['id'];
+   $id  = $ambilId['idp'];
 
    include '_helpers/connect.php';
    $title="Penarikan Uang";
