@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <?php
    session_start();
 
@@ -118,4 +116,3 @@
 </div>
 <input type="submit" name="kirim" value="Konfirmasi" button class="btn btn-lg btn-primary btn-lg" type="submit"></button>
 ')?>
->>>>>>> Stashed changes

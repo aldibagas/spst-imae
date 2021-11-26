@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <?php
    session_start();
    $title="Beranda";
@@ -260,4 +258,3 @@ Manfaat menjaga kebersihan lingkungan antara lain:
       
 <?=content_close()?>
 </div>
->>>>>>> Stashed changes
