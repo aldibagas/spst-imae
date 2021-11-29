@@ -33,7 +33,8 @@
                     <th>Tanggal</th>
                     <th>Nama Pemesan</th>
                     <th>Nama Petugas</th>
-                    <th>Biaya</th>
+                    <th>Aktivitas</th>
+                    <th>Data Transaksi</th>
                     <th>Metode Pembayaran</th>
                     <th>Metode Transaksi</th>
                     <th>Status</th>
@@ -42,7 +43,7 @@
                 </thead>
                 <tbody>
                 <?php
-                  $Query = "select * from pemesanan";
+                  $Query = "select * from transaksi";
                   $Run = mysqli_query($conn, $Query);
                   
                   if(mysqli_num_rows($Run)>0){
@@ -51,9 +52,9 @@
                         $ambil_nama = "SELECT Nama FROM pengguna WHERE id = $idp";
                         $run1 = mysqli_query($conn, $ambil_nama);
                         $data1 = mysqli_fetch_assoc($run1);
-                        $nama = $data1['Nama'];
+                        $namapengguna = $data1['Nama'];
 
-                        $data_bayar = $Fetch['metodebayar'];
+                        $data_bayar = $Fetch['metode_bayar'];
                         if($data_bayar == 0 ){
                             $metode_bayar = "Diserahkan";
                         }
@@ -61,7 +62,7 @@
                             $metode_bayar = "Dijemput";
                         }
 
-                        $data_transaksi = $Fetch['metodetransaksi'];
+                        $data_transaksi = $Fetch['metode_transaksi'];
                         if($data_transaksi == 0 ){
                             $metode_transaksi = "Ditabung";
                         }
@@ -84,7 +85,7 @@
                       echo"
                         <tr>
                           <td>".$Fetch['tanggal']."</td>
-                          <td>".$nama."</td>
+                          <td>".$namapengguna."</td>
                           <td></td>
                           <td>".$Fetch['biaya']."</td>
                           <td>".$metode_bayar."</td>
