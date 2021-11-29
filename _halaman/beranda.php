@@ -4,23 +4,6 @@
    include '_helpers/connect.php';
 
    $nama = $_SESSION['nama'];
-   $sqlId = "select * from pengguna where Nama = '$nama'";
-   $idRun = mysqli_query($conn, $sqlId);
-   $ambilId = mysqli_fetch_assoc($idRun);
-   $id  = $ambilId['idp'];
-
-   include '_helpers/connect.php';
-  
-   $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
-   $row = mysqli_fetch_assoc($ambil);
-   $saldo=$row['saldo'];
-   if($row['saldo']<=0){
-    $saldo = 0;
-   }else{
-    $saldo = $row['saldo'];
-   }
-
-   $nama = $_SESSION['nama'];
    $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
    $Query = "SELECT * FROM 'pemesanan' WHERE idp=1";
    $run = mysqli_query($conn, $sql);
@@ -28,7 +11,9 @@
    $email = $row['email'];
    $telp = $row['Telepon'];
    $alamat = $row['alamat'];
- 
+   $masuk = 10000;
+   $keluar = 5000;
+   $saldo = $masuk-$keluar;
    $Cari="SELECT * FROM pemesanan order by tanggal desc LIMIT 5";
    $Tampil = mysqli_query($conn, $Cari);
    $data = array();
@@ -36,6 +21,11 @@
     $data[] = $row;
    }
 ?>    
+<?php
+
+ $sql="SELECT * FROM `harga` WHERE daftarharga=1"
+   
+?>   
 <p class="lead text-muted">Selamat datang di SPST, mari bersama menjaga lingkungan yang bersih! </p>
             <div class="mb-2 align-items-center">
                 <div class="card shadow mb-4">
@@ -77,51 +67,19 @@
                     </div>
                     <div class="card-body">
                     <div class="row mt-2">
-                      <div class="col-6 text-center mb-3 border-right">
-                        <p class="text-muted mb-1">PETE</p>
-                        <h6 class="mb-1">- Rp 300</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center mb-3">
-                        <p class="text-muted mb-1">HDPE</p>
-                        <h6 class="mb-1">Rp 830</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PVC</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">LDPE</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PP</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">PS</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">HVS</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">Karton</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">Kardus</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
+                    <?php
+                      $hbSql = "Select * from harga";
+                      $hbRun = mysqli_query($conn, $hbSql);
+                      while($hbRow = mysqli_fetch_assoc($hbRun)){
+                        echo'
+                        <div class="col-6 text-center mb-3 border-right">
+                          <p class="text-muted mb-1">'.$hbRow['kategori'].'</p>
+                          <h6 class="mb-1">Rp. '.$hbRow['daftarharga'].'</h6>
+                          <p class="text-muted mb-2">/kg</p>
+                        </div>
+                        ';
+                      }
+                      ?>
                     </div>
                   </div> <!-- .card-body -->
                   </div> <!-- / .card -->
