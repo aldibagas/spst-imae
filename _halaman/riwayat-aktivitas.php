@@ -140,7 +140,6 @@
                 </thead>
                 <tbody>
                 <?php
-                    session_start();
                     $title="Riwayat Aktivitas";  
                     include '_helpers/connect.php';
                   

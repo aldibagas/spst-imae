@@ -9,13 +9,15 @@
 
    include '_helpers/connect.php';
    $title="Penarikan Uang";
+   $id;
    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=0;
-   if($row['saldo']>0){
+   if($row['saldo']<=0){
+    $saldo = 0;
+   }else{
     $saldo = $row['saldo'];
    }
-
 
    if(isset($_POST['kirim'])){
     

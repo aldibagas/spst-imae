@@ -2,14 +2,21 @@
    session_start();
    $title="Beranda";
    include '_helpers/connect.php';
-    
-  
+
+   if($_SESSION['nama'] == null){
+		header('Location:index.php?halaman=login');
+	}
 
    $nama = $_SESSION['nama'];
    $sqlId = "select * from pengguna where Nama = '$nama'";
    $idRun = mysqli_query($conn, $sqlId);
    $ambilId = mysqli_fetch_assoc($idRun);
    $id  = $ambilId['idp'];
+   
+
+   $ambil = mysqli_query($conn, "SELECT * FROM transaksi WHERE idp1='$id'");
+   $row = mysqli_fetch_assoc($ambil);
+   @$jumlah_tarik=$row['jumlah_tarik'];
    
    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
    $row = mysqli_fetch_assoc($ambil);
@@ -19,6 +26,8 @@
    }else{
     $saldo = $row['saldo'];
    }
+   
+   
 
    $nama = $_SESSION['nama'];
    $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
@@ -36,7 +45,7 @@
     $data[] = $row;
    }
 ?>    
-<p class="lead text-muted">Selamat datang di SPST, mari bersama menjaga lingkungan yang bersih! </p>
+<p class="lead text-muted">Selamat datang di Sistem Pengelolaan Sampah Terintegrasi, mari bersama menjaga lingkungan yang bersih! </p>
             <div class="mb-2 align-items-center">
                 <div class="card shadow mb-4">
                   <div class="card-body">
@@ -44,26 +53,47 @@
                       <div class="col-12 col-lg-4 text-left pl-4">
                         <span class="fe fe-credit-card text-success fe-12"></span>
                         <p class="mb-1 small text-muted">Saldo</p>
-                        <span class="h2">Rp <?php echo$saldo;?></span>
-                     
+                        <span class="h2">Rp. <?php echo$saldo;?></span>
                      
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
-                        <span class="fe fe-arrow-up text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Pemasukan terakhir</p>
-                        <span class="h3">2000</span><br />
+                        <span class="fe fe-arrow-down text-success fe-12"></span>
+                        <p class="mb-1 small text-muted">Pemasukan Terakhir</p>
+                        <span class="h3">Rp. 5000</span><br />
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
-                        <span class="fe fe-arrow-up text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Pemasukan Bulan ini</p>
-                        <span class="h3">10000
+                        <span class="fe fe-arrow-up text-danger fe-12"></span>
+                        <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
+                        <?php $Query = "SELECT * FROM notifikasi order by idp2=idt desc LIMIT 1";
+                      $Run = mysqli_query($conn, $Query);
+                      if(mysqli_num_rows($Run)>0){
+                    while($Fetch = mysqli_fetch_assoc($Run)){
+                      echo" <span class='h3'>Rp. ".$Fetch['jumlah_tarik']."</span> 
+                      ";
+                    }
+                  } ?>
+                      </div>
+                      
+                      <div class="col-6 col-lg-2 text-center py-4">
+                        <span class="fe fe-arrow-down text-success fe-12"></span>
+                        <p class="mb-1 small text-muted">Total Pemasukan </p>
+                        <span class="h3">Rp. 10000
 
                         </span><br />
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
-                        <span class="fe fe-arrow-down text-danger fe-12"></span>
-                        <p class="mb-1 small text-muted">Pengeluaran Bulan ini</p>
-                        <span class="h3">5000</span><br />
+                        <span class="fe fe-arrow-up text-danger fe-12"></span>
+                        <p class="mb-1 small text-muted">Total Pengeluaran</p>
+                        <?php
+                          $id = $_SESSION['id'];
+                          $sql = "select jumlah_tarik from notifikasi where idp2 = $id";
+                          $run = mysqli_query($conn, $sql);
+                          $total = 0;
+                          while($row = mysqli_fetch_assoc($run)){
+                            $total = $total + $row['jumlah_tarik'];
+                          }
+                        ?>
+                        <span class="h3">Rp. <?php echo $total; ?></span><br />
                       </div>
                     </div>
                   </div> <!-- .card-body -->
@@ -79,7 +109,7 @@
                     <div class="row mt-2">
                       <div class="col-6 text-center mb-3 border-right">
                         <p class="text-muted mb-1">PETE</p>
-                        <h6 class="mb-1">- Rp 300</h6>
+                        <h6 class="mb-1">Rp 300</h6>
                         <p class="text-muted mb-2">/kg</p>
                       </div>
                       <div class="col-6 text-center mb-3">
@@ -194,11 +224,11 @@
       <!-- Wrapper for carousel items -->
       <div class="carousel-inner">
           <div class="carousel-item active">
-              <img src="https://oceana.org/sites/default/files/1069391/shutterstock_1537118990_1_-_2nd_version.jpg" class="d-block w-100" alt="Slide 1">
+              <img src="https://plastic.medion.co.id/wp-content/uploads/2021/04/sampah-plastik15-600x955.jpg" class="d-block w-100" alt="Slide 1">
           </div>
-          <div class="carousel-item">
-              <img src="plastik.jfif" class="d-block w-100" alt="Slide 2">
-          </div>
+            <div class="carousel-item">
+                <img src="https://generasi3r.files.wordpress.com/2015/11/jenis-plastik.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
       </div>
 
       <!-- Carousel controls -->
