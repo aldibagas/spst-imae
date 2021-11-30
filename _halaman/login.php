@@ -41,10 +41,10 @@ session_start();
 		}
 
 		if ($row['Kelas']=="pengguna")	{
-			//header('Location:index.php?halaman=beranda');
+			header('Location:index.php?halaman=beranda');
 		}
 		if ($row['Kelas']=="petugas")	{
-			//header('Location:index.php?halaman=dashboard');
+			header('Location:index.php?halaman=dashboard');
 		}
 		}else{
 			echo'
