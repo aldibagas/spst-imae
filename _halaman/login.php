@@ -72,7 +72,7 @@ session_start();
 		<div class="card" style="margin: 50px">
 		<div class="card-body">
 		
-			<h1 class="text-center">Masuksdfjklkjgfcjhxfgh</h1>	
+			<h1 class="text-center">Masuk</h1>	
 			<form action="" method="post" >
 				<label class="card-title">Nama Pengguna</label><br>
 				<input name="username" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
