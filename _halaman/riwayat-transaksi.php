@@ -1,111 +1,121 @@
 <?php
-   session_start();
-   $title="Riwayat Transaksi";
+$title="Coba";
+include '_helpers/connect.php';
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+if(isset($_POST['edit'])){
+    $data_sampah = $_POST['data_sampah'];
+    $harga_total = $_POST['harga_total'];
+    $jenis = $_POST['jenis'];
+    $status_tarik = $_POST['status_tarik'];
+
+    $sql = "UPDATE `transaksi` SET `harga_total`='$harga_total' WHERE `status_setor` = '$jenis'";
+    mysqli_query($conn, $sql);
+}
+
+$sqlAmbil = "SELECT * FROM `transaksi`";
+$runAmbil = mysqli_query($conn, $sqlAmbil);
+
 ?>
-            <div class="row mb-4 items-align-center">
-                <div class="col-md">
-                  <ul class="nav nav-pills justify-content-start">
-                    <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Semua <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Pending <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Diproses <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Selesai <span class="badge badge-pill bg-white border text-muted ml-2">52</span></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-auto ml-auto text-right">
-                  <span class="small bg-white border py-1 px-2 rounded mr-2 d-none d-lg-inline">
-                    <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>
-                    <span class="text-muted">April 14, 2020 - May 13, 2020</span>
-                  </span>
-                  <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
+<head>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<head>
+ <style>
+ .table1 {
+    font-family: sans-serif;
+    color: #444;
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid #f2f5f7;
+}
+
+.table1 tr th{
+    background: #35A9DB;
+    color: #fff;
+    font-weight: normal;
+}
+
+.table1, th, td {
+    padding: 8px 20px;
+    text-align: left;
+}
+
+.table1 tr:hover {
+    background-color: #f5f5f5;
+}
+
+.table1 tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+ </style>
+</head>
+<?php
+echo'
+<table class="table border table-hover bg-white">
+<thead>
+                    <tr role="row">
+                        <th class="text-center">Data Sampah</th>
+                        <th class="text-center">Harga Total</th>
+						<th class="text-center">Metode Bayar</th>
+                        <th class="text-center">Metode Transaksi</th>
+                        <th class="text-center">Status Setor</th>
+                        <th class="text-center">Status Tarik</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+';
+
+while($ambil = mysqli_fetch_assoc($runAmbil)){
+    echo'
+    <tr>
+        <td class="text-center">'.$ambil['data_sampah'].'</td>
+        <td class="text-center">'.$ambil['harga_total'].'</td>
+        <td class="text-center">'.$ambil['metode_bayar'].'</td>
+        <td class="text-center">'.$ambil['metode_transaksi'].'</td>
+        <td class="text-center">'.$ambil['status_setor'].'</td>
+        <td class="text-center">'.$ambil['status_tarik'].'</td>
+        <td class="text-center"> 
+            <a href="#edit_'.$ambil['harga_total'].'" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+        </td>
+
+        <div class="modal fade" id="edit_'.$ambil['harga_total'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <center><h4 class="modal-title" id="myModalLabel"></h4></center>
+                    </div>
+                    <div class="modal-body">
+                    <div class="container-fluid">
+                    <form method="POST" action="">
+                        <div class="row form-group">
+                            <div class="col-sm">
+                                <label class="control-label" style="position:relative; top:7px;">Edit Harga '.$ambil['harga_total'].':</label>
+                            </div>
+                            <div class="col-sm">
+                                <input class="form-control" type="number" name="harga">
+                                <input type="hidden" name="jenis" value="'.$ambil['harga_total'].'">
+                            </div>
+                        </div>
+                    </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button type="submit" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Update</a>
+                    </form>
+                    </div>
+
                 </div>
             </div>
-            <table class="table border table-hover bg-white">
-                <thead>
-                  <tr role="row">
-                    <th>Tanggal</th>
-                    <th>Nama Pemesan</th>
-                    <th>Nama Petugas</th>
-                    <th>Aktivitas</th>
-                    <th>Data Transaksi</th>
-                    <th>Metode Pembayaran</th>
-                    <th>Metode Transaksi</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php
-                  $Query = "select * from transaksi";
-                  $Run = mysqli_query($conn, $Query);
-                  
-                  if(mysqli_num_rows($Run)>0){
-                    while($Fetch = mysqli_fetch_assoc($Run)){
-                        $idp = $Fetch['idp'];
-                        $ambil_nama = "SELECT Nama FROM pengguna WHERE id = $idp";
-                        $run1 = mysqli_query($conn, $ambil_nama);
-                        $data1 = mysqli_fetch_assoc($run1);
-                        $namapengguna = $data1['Nama'];
+        </div>
 
-                        $data_bayar = $Fetch['metode_bayar'];
-                        if($data_bayar == 0 ){
-                            $metode_bayar = "Diserahkan";
-                        }
-                        else{
-                            $metode_bayar = "Dijemput";
-                        }
+    </tr>
+    ';
+}
 
-                        $data_transaksi = $Fetch['metode_transaksi'];
-                        if($data_transaksi == 0 ){
-                            $metode_transaksi = "Ditabung";
-                        }
-                        else{
-                            $metode_transaksi = "Tunai";
-                        }
+echo'</table>';
+?>
 
-                        $data_status = $Fetch['status'];
-                        if($data_status == 1){
-                            $status = "pending";
-                        }
-                        else if ($data_status == 2){
-                            $status = "diproses";
-                        }
-
-                        else if ($data_status == 3){
-                            $status = "selesai";
-                        }
-
-                      echo"
-                        <tr>
-                          <td>".$Fetch['tanggal']."</td>
-                          <td>".$namapengguna."</td>
-                          <td></td>
-                          <td>".$Fetch['biaya']."</td>
-                          <td>".$metode_bayar."</td>
-                          <td>".$metode_transaksi."</td>
-                          <td>".$status."</td>
-                          <td>
-                          <div class='dropdown'>
-                            <button class='btn btn-sm dropdown-toggle more-vertical' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                              <span class='text-muted sr-only'>Action</span>
-                            </button>
-                            <div class='dropdown-menu dropdown-menu-right ' name='aksi'>
-                              <a class='dropdown-item' value='1'>Pending</a>
-                              <a class='dropdown-item' value='2'>Terima</a>
-                              <a class='dropdown-item' value='3'>Tolak</a>
-                            </div>
-                          </div>
-                        </td>   
-                      ";
-                    }
-                  }
-                ?>    
-                </tbody>
-              </table>
+<script src="jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
