@@ -20,9 +20,9 @@ session_start();
 		$_SESSION['kelas'] = $row['Kelas'];
 
 		//hitung loginnnnnnnnnnn
-		$cekHari = "SELECT * FROM `datalogin` WHERE tanggal = CURRENT_TIMESTAMP";
+		$cekHari = "SELECT * FROM `datalogin` WHERE tanggal = CURDATE()";
 		$runHari = mysqli_query($conn, $cekHari);
-		if(mysqli_num_rows($runHari)==0){
+		if(mysqli_num_rows($runHari) == null){
 			//hari belum ada
 			$inputSql = "insert into datalogin(visitor, tanggal) value('1',CURRENT_TIMESTAMP)";
 			mysqli_query($conn, $inputSql);
@@ -30,10 +30,10 @@ session_start();
 			//hari sudah ada
 			//ambil data login
 			$ambilSql = "SELECT * FROM `datalogin` WHERE `tanggal` = CURRENT_DATE";
-			$ambilRun = mysqli_query($conn, $ambilRun);
+			$ambilRun = mysqli_query($conn, $ambilSql);
 			$ambilRow = mysqli_fetch_assoc($ambilRun);
 
-			echo $tot = $ambilRow['visitor'] + 1;
+			$tot = $ambilRow['visitor'] + 1;
 
 			//tambah data login
 			$tambahSql = "UPDATE datalogin set visitor = '$tot' where tanggal = CURRENT_DATE";
