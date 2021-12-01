@@ -45,6 +45,7 @@
      //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
 
     //kirim notifikasi pada petugas secara acak
+    
     //pemilihan petugas
     $sqlRand = "select idp from pengguna where kelas = 'petugas'";
     $runRand = mysqli_query($conn, $sqlRand);
