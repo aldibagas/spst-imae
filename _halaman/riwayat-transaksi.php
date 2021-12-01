@@ -1,107 +1,122 @@
 
 <?php
-   session_start();
-   $title="Riwayat Transaksi";
-   if(isset($_POST['edit'])){
-    $jenis = $_POST['jenis'];
-    $harga = $_POST['harga'];
+$title="Coba";
+include '_helpers/connect.php';
+$conn = mysqli_connect($servername, $username, $password, $database);
 
-    $sql = "UPDATE `harga` SET `daftarharga`='$harga' WHERE `kategori` = '$jenis'";
+if(isset($_POST['edit'])){
+    $data_sampah = $_POST['data_sampah'];
+    $harga_total = $_POST['harga_total'];
+    $jenis = $_POST['jenis'];
+    $status_tarik = $_POST['status_tarik'];
+
+    $sql = "UPDATE `transaksi` SET `harga_total`='$harga_total' WHERE `status_setor` = '$jenis'";
     mysqli_query($conn, $sql);
 }
 
-    $sqlAmbil = "SELECT * FROM `transaksi`";
-    $runAmbil = mysqli_query($conn, $sqlAmbil);
+$sqlAmbil = "SELECT * FROM `transaksi`";
+$runAmbil = mysqli_query($conn, $sqlAmbil);
 
 ?>
-            <div class="row mb-4 items-align-center">
-                <div class="col-md">
-                  <ul class="nav nav-pills justify-content-start">
-                    <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Semua <span class="badge badge-pill bg-primary text-white ml-2"></span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Pending <span class="badge badge-pill bg-white border text-muted ml-2"></span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Diproses <span class="badge badge-pill bg-white border text-muted ml-2"></span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Selesai <span class="badge badge-pill bg-white border text-muted ml-2"></span></a>
-                    </li>
-                  </ul>
-                </div>
-                <!--<div class="col-md-auto ml-auto text-right">
-                  <span class="small bg-white border py-1 px-2 rounded mr-2 d-none d-lg-inline">
-                    <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>
-                    <span class="text-muted">April 14, 2020 - May 13, 2020</span>
-                  </span>
-                  <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
-                </div>
-            </div>-->
-            <?php
+<head>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<head>
+ <style>
+ .table1 {
+    font-family: sans-serif;
+    color: #444;
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid #f2f5f7;
+}
 
-              $query = mysqli_query($conn, "SELECT * FROM transaksi");
-              $results = mysqli_fetch_all ($query, MYSQLI_ASSOC);
+.table1 tr th{
+    background: #35A9DB;
+    color: #fff;
+    font-weight: normal;
+}
 
-            ?>
-            <table class="table border table-hover bg-white">
-                <head>
-                  <tr role="row">
-                    <th>Tanggal</th>
-                    <th>Nama Pelanggan</th>
-                    <th>Nama Petugas</th>
-                    <th>Aktivitas</th>
-                    <th>Data Sampah</th>
-                    <th>Harga Total</th>
-                    <th>Metode Bayar</th>
-                    <th>Metode Transaksi</th>
-                    <th>Status </th>
-                    <th>Aksi</th>
-                  </tr>
-                </head>
-                <body>
-                <?php foreach($results as $result): 
-                  
-                ?>
-                  
-                <tr>
-                  
-                    <td><?php echo $result['tanggal']?></td>
-                    <td><?php echo $result['idp1']?></td>
-                    <td><?php echo $result['idp2']?></td>
-                    <td><?php echo $result['aktivitas']?></td>
-                    <td><?php echo $result['data_sampah']?></td>
-                    <td><?php echo $result['harga_total']?></td>
-                    <td><?php echo $result['metode_bayar']?></td>
-                    <td><?php echo $result['metode_transaksi']?></td>
-                    <td><?php echo $result['status_setor']?></td> 
-                    <td>
-                    <div class='d-grid gap-2 d-md-block'>
-                      <a class='btn btn-primary' type='button'>Edit</a>
-                      <a class='btn btn-danger' type='button'>Hapus</a>
-                      <?php
+.table1, th, td {
+    padding: 8px 20px;
+    text-align: left;
+}
 
-                        if(isset($_POST['edit'])){
-                        $data_sampah = $_POST['data_sampah'];
-                        $harga_total = $_POST['harga_total'];
-                        $metode_bayar = $_POST['metode_bayar'];
-                        $metode_transaksi = $_POST['metode_transaksi'];
-                        $status_setor = $_POST['status_setor'];
+.table1 tr:hover {
+    background-color: #f5f5f5;
+}
 
-                        $sql = "UPDATE `transaksi` SET `data_sampah` WHERE `metode_bayar`";
-                        mysqli_query($conn, $sql);
+.table1 tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-                        $sqlAmbil = "SELECT * FROM `transaksi`";
-                        $runAmbil = mysqli_query($conn, $sqlAmbil);
+ </style>
+</head>
+<?php
+echo'
+<table class="table border table-hover bg-white">
+<thead>
+                    <tr role="row">
+                        <th class="text-center">Data Sampah</th>
+                        <th class="text-center">Harga Total</th>
+						<th class="text-center">Metode Bayar</th>
+                        <th class="text-center">Metode Transaksi</th>
+                        <th class="text-center">Status Setor</th>
+                        <th class="text-center">Status Tarik</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+';
 
-                      }
+while($ambil = mysqli_fetch_assoc($runAmbil)){
+    echo'
+    <tr>
+        <td class="text-center">'.$ambil['data_sampah'].'</td>
+        <td class="text-center">'.$ambil['harga_total'].'</td>
+        <td class="text-center">'.$ambil['metode_bayar'].'</td>
+        <td class="text-center">'.$ambil['metode_transaksi'].'</td>
+        <td class="text-center">'.$ambil['status_setor'].'</td>
+        <td class="text-center">'.$ambil['status_tarik'].'</td>
+        <td class="text-center"> 
+            <a href="#edit_'.$ambil['harga_total'].'" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+        </td>
 
-                      ?>
-                      
+        <div class="modal fade" id="edit_'.$ambil['harga_total'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <center><h4 class="modal-title" id="myModalLabel"></h4></center>
                     </div>
-                </td>
-                </tr>
-            <?php endforeach; ?> 
-                </body>
-              </table>
+                    <div class="modal-body">
+                    <div class="container-fluid">
+                    <form method="POST" action="">
+                        <div class="row form-group">
+                            <div class="col-sm">
+                                <label class="control-label" style="position:relative; top:7px;">Edit Harga '.$ambil['harga_total'].':</label>
+                            </div>
+                            <div class="col-sm">
+                                <input class="form-control" type="number" name="harga">
+                                <input type="hidden" name="jenis" value="'.$ambil['harga_total'].'">
+                            </div>
+                        </div>
+                    </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button type="submit" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Update</a>
+                    </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </tr>
+    ';
+}
+
+echo'</table>';
+?>
+
+<script src="jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>

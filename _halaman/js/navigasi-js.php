@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+<link rel="stylesheet" href="<?=assets()?>js/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
 <!-- Make sure you put this AFTER Leaflet's CSS -->
  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
 
-<script src="assets/js/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
- <script src="assets/js/leaflet-panel-layers-master/src/leaflet-panel-layers.js"></script>
- <script src="assets/js/leaflet-search/dist/leaflet-search.src.js"></script>
-   <script src="assets/js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
+<script src="<?=assets()?>js/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+ <script src="<?=assets()?>js/leaflet-panel-layers-master/src/leaflet-panel-layers.js"></script>
+ <script src="<?=assets()?>js/leaflet-search/dist/leaflet-search.src.js"></script>
+   <script src="<?=assets()?>js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
 
    <script type="text/javascript">
    	let latLng=[-3.824181, 114.8191513];
@@ -19,9 +19,9 @@
 
 	// ambil titik
 	getLocation();
-	// setInterval(() => {
-	// 	getLocation();
-	// }, 1000);
+	setInterval(() => {
+		getLocation();
+	}, 1000);
 
 	function getLocation() {
 	  if (navigator.geolocation) {
@@ -40,10 +40,11 @@
         map.panTo(latLng);
 	}
 
+	
 	// rute 
 	var control = L.Routing.control({
 	    waypoints: [
-	        latLng,
+	        latLng, [lat, long]
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,
@@ -104,19 +105,10 @@
         });
     }
 
-	$(document).on("click",".keSini",function(){
-		let latLng=[$(this).data('lat'),$(this).data('lng')];
-        control.spliceWaypoints(control.getWaypoints().length - 1, 1, latLng);
-	})
-
-	$(document).on("click",".dariSini",function(){
-		let latLng=[$("[name=latNow]").val(),$("[name=lngNow]").val()];
-        control.spliceWaypoints(0, 1, latLng);
-        map.panTo(latLng);
+	$(function(){
+	 let lat =	parseFloat(document.getElementById("lat").innerHTML);
+	 let long =	parseFloat(document.getElementById("long").innerHTML);
+	 let latLng1 = [lat, long];
+	 control.spliceWaypoints(control.getWaypoints().length - 1, 1, latLng1);
 	})
    </script>
-   
-
-<?php
-
-?>
