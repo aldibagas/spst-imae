@@ -27,11 +27,11 @@
     $ala = $_POST ['message']; 
 
     
-    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `jumlah_tarik`, `sandi`, `status_tarik`, `cabang` ) 
-    VALUES ('1', '0', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '$cabang')";
+    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
+    VALUES ('1', '0', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
 
-    $sql2 = "INSERT INTO `notifikasi` (`idp2`, `idpetugas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `waktu_tarik`, `harga_total`, `jumlah_tarik`, `status_tarik`) 
-    VALUES ('4', '1', '$p1 / $p2 / $p3', '$mb1', '$mt1', '0', '$th', '0', '1')";
+    $sql2 = "INSERT INTO `notifikasi` (`idp2`, `idpetugas`, `data_transaksi`, `metode_bayar`, `metode_transaksi`, `waktu_tarik`, `jumlah_tarik`, `status_tarik`) 
+    VALUES ('4', '1', '$p1 / $p2 / $p3', '$mb1', '$mt1', '0', '0', '0')";
 
     $sql3 = "INSERT INTO `navigasi` (`idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
     VALUES ('1', '2', '$latitude', '$longitude','$ala')";
@@ -76,13 +76,8 @@
                                 </optgroup>
                                 <optgroup label="Kertas">
                                   <option value="HVS">HVS</option>
-                                  <option value="KRT">Karton</option>
-                                  <option value="KRD">Kardus</option>
-                                </optgroup>
-                                <optgroup label="Organik">
-                                  <option value="SB">Sampah Basah</option>
-                                  <option value="SK">Sampah Kering</option>
-                                </optgroup>
+                                  <option value="Karton">Karton</option>
+                                  <option value="Kardus">Kardus</option>
                             </select>
     </div>
     <div class="col">
@@ -148,14 +143,13 @@
     </div>
   </div>
  
-
-                            <?php
-                              $hargaQuery = 'select * from harga';
-                              $hargaRun = mysqli_query($conn, $hargaQuery);
-                              while($harga = mysqli_fetch_assoc($hargaRun)){
-                                echo '<div style="display:none" id="kategori-'.$harga['kategori'].'">'.$harga['daftarharga'].'</div>';
-                              }
-                            ?>
+<?php
+    $hargaQuery = 'select * from harga';
+    $hargaRun = mysqli_query($conn, $hargaQuery);
+    while($harga = mysqli_fetch_assoc($hargaRun)){
+   echo '<div style="display:none" id="kategori-'.$harga['kategori'].'">'.$harga['daftarharga'].'</div>';
+ }
+ ?>
                             
 <br>
 <br>
@@ -193,7 +187,7 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-      <h5>LOKASI</h5>
+      <h5>LOKASI CABANG</h5>
     <p>Silahkan untuk memilih Lokasi yang Dikehendaki :</p>
   <select class="form-control" id="lokasi1" name="lokasi1" onchange="lokasi()">
   <option value="" disabled selected hidden>Pilih Disini</option>
@@ -295,8 +289,8 @@
                     </ul>
                     <div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button" id="myBtn1" name="metodeBayar" class="btn btn-primary btn-lg btn-block" data-toggle="modal" value=1 data-target="#myModal" onclick="myFunction1(); zonk()">PILIH</button>
- 
+  <button type="button" id="metodeBayar"  name="metodeBayar" class="btn btn-primary btn-lg btn-block" data-toggle="modal" value=1 data-target="#myModal" onclick="myFunction1(); zonk()">PILIH</button>
+  <input type="hidden" name="metodeBayar" id="inputmetodeBayar">
   <input type="radio" name="metodeBayar" id="metodeBayar0" value="0" style="display: none;">
   <input type="radio" name="metodeBayar" id="metodeBayar1" value="1" style="display: none;">
   
@@ -428,7 +422,7 @@
     <h5> Metode Transaksi&emsp;&emsp;&emsp;: </h5>
     </div>
     <div class="col">
-    <h5><div id = 'bijil'></div><h5>
+    <h5><div id = 'bijil' name="metodeBayar"></div><h5>
     </div>
   </div>
 
