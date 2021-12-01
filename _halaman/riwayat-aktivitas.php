@@ -5,6 +5,18 @@
    if($_SESSION['nama'] == null){
 		header('Location:index.php?halaman=login');
 	}
+
+   if(isset($_POST['edit'])){
+    $jenis = $_POST['jenis'];
+    $harga = $_POST['harga'];
+
+    $sql = "UPDATE `harga` SET `daftarharga`='$harga' WHERE `kategori` = '$jenis'";
+    mysqli_query($conn, $sql);
+}
+
+    $sqlAmbil = "SELECT * FROM `transaksi`";
+    $runAmbil = mysqli_query($conn, $sqlAmbil);
+
 ?>
             <div class="row mb-4 items-align-center">
                 <div class="col-md">
@@ -41,6 +53,7 @@
                 <head>
                   <tr role="row">
                     <th>Tanggal</th>
+                    <th>Nama Pelanggan</th>
                     <th>Nama Petugas</th>
                     <th>Aktivitas</th>
                     <th>Keterangan</th>

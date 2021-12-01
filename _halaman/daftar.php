@@ -17,8 +17,8 @@
    
     
     $sql = "
-    INSERT INTO `pengguna`(`idp`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
-    VALUES (default, '$Kelas', '$user', '$email', '$alamat', '$telp', '$pass')";
+    INSERT INTO `pengguna` (`idp`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
+    VALUES (`$idp`, `$kelas`, `$user`, `$email`, `$alamat`, `$telp`, `$pass`)";
 	
 	if($run = mysqli_query($conn, $sql)){
         header('location:index.php?halaman=login');

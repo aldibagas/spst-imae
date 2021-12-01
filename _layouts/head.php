@@ -35,7 +35,7 @@
         background-color: #ccc;
       }
       .icon-bar {
-        background: url('assets/js/leaflet-panel-layers-master/examples/images/icons/bar.png') center center no-repeat;
+        background: url('<?=assets()?>js/leaflet-panel-layers-master/examples/images/icons/bar.png') center center no-repeat;
     }
     </style>
   </head>

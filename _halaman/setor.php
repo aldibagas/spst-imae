@@ -22,15 +22,16 @@
 
     $latitude = $_POST ['latNow'];
     $longitude = $_POST ['lngNow'];
+    $cabang = $_POST ['lokasi1'];
 
     $ala = $_POST ['message']; 
 
     
-    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `jumlah_tarik`, `sandi`, `status_tarik` ) 
-    VALUES ('1', '0', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0')";
+    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `jumlah_tarik`, `sandi`, `status_tarik`, `cabang` ) 
+    VALUES ('1', '0', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '$cabang')";
 
-    $sql2 = "INSERT INTO `notifikasi` (`idp`, `data_transaksi`, `biaya`, `status`) 
-    VALUES ('1', '$p1 / $p2 / $p3', '$th', '0')";
+    $sql2 = "INSERT INTO `notifikasi` (`idp2`, `idpetugas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `waktu_tarik`, `harga_total`, `jumlah_tarik`, `status_tarik`) 
+    VALUES ('4', '1', '$p1 / $p2 / $p3', '$mb1', '$mt1', '0', '$th', '0', '1')";
 
     $sql3 = "INSERT INTO `navigasi` (`idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
     VALUES ('1', '2', '$latitude', '$longitude','$ala')";
@@ -86,7 +87,7 @@
     </div>
     <div class="col">
     <label>Jumlah (Kilograms)</label>
-                            <input type="text" onchange="hargaBerat(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="jumlah_1" id="jumlah_1">
+     <input type="text" onchange="hargaBerat(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_1" id="jumlah_1" value="0">
     </div>
   </div>
 
@@ -115,7 +116,7 @@
 
     </div>
     <div class="col">
-    <input type="text" onchange="hargaBerat2(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="jumlah_2" id="jumlah_2">
+    <input type="text" onchange="hargaBerat2(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_2" id="jumlah_2" value="0">
     </div>
   </div>
 
@@ -143,7 +144,7 @@
                             </select>
     </div>
     <div class="col">
-    <input type="text" onchange="hargaBerat3(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="jumlah_3" id="jumlah_3">
+    <input type="text" onchange="hargaBerat3(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_3" id="jumlah_3" value="0">
     </div>
   </div>
  
@@ -194,7 +195,7 @@
       <div class="card-body">
       <h5>LOKASI</h5>
     <p>Silahkan untuk memilih Lokasi yang Dikehendaki :</p>
-  <select class="form-control" id="lokasi" name="lokasi1" onchange="lokasi()">
+  <select class="form-control" id="lokasi1" name="lokasi1" onchange="lokasi()">
   <option value="" disabled selected hidden>Pilih Disini</option>
   <optgroup label="">
     <br>
@@ -264,6 +265,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">KEMBALI</button>
         <button type="button" onclick="showInput();" class="btn btn-primary">SIMPAN</button>
+        
+        
       </div>
     </div>
   </div>
@@ -325,7 +328,7 @@
   <br>
 
 <!-- Button trigger modal -->
-<button type="button" onclick="total(); total1();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" onclick="total1()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   SETOR
 </button>
 
@@ -345,47 +348,47 @@
                       <br>
                       <div class="row">
     <div class="col">
-    <output type="text" id="harga" name="harga" class="form-control" >
+    <h5><div id="harga" name="harga">Jenis Sampah 1</div><h5>
     </div>
-    <h1>x</h1>
+    <h5>x</h5>
     <div class="col">
-    <output type="text" id="berat1" name="berat1" class="form-control">
+    <h5><div id="berat1" name="berat1">0</div><h5>
     </div>
-    <h3> = </h3>
-    <h4> &nbsp Rp.</h4>
+    <h5> = </h5>
+    <h5> &nbsp Rp.</h5>
     <div class="col">
-    <input type="text" class="form-control" aria-label="berat sampah" id="biaya_1" name="biaya_1" >
+    <h5><div id="biaya_1">0</div><h5>
     </div>
   </div>
 
 
   <div class="row">
     <div class="col">
-    <output type="text" id="harga1" name="harga1" class="form-control" >
+    <h5><div id="harga1" name="harga1">Jenis Sampah 2</div><h5>
     </div>
-    <h1>x</h1>
+    <h5>x</h5>
     <div class="col">
-    <output type="text" id="berat2" name="berat2" class="form-control" >
+    <h5><div id="berat2" name="berat2">0</div><h5>
     </div>
-    <h3> = </h3>
+    <h5> = </h5>
     <h4>&nbsp Rp. </h4>
     <div class="col">
-    <input type="text" class="form-control"  aria-label="berat sampah" id="biaya_2" name="biaya_2" >
+    <h5><div id="biaya_2" name="biaya_2">0</div><h5>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-    <output type="text" id="harga2" name="harga2" class="form-control" >
+    <h5><div id="harga2" name="harga2">Jenis Sampah 3</div><h5>
     </div>
-    <h1>x</h1>
+    <h5>x</h5>
     <div class="col">
-    <output type="text" id="berat3" name="berat3" class="form-control" >
+    <h5><div id="berat3" name="berat3">0</div><h5>
     </div>
-    <h3> = </h3>
-    <h4> &nbsp Rp.</h4>
+    <h5> = </h5>
+    <h5> &nbsp Rp.</h5>
     <div class="col">
-    <input type="text" class="form-control"  aria-label="berat sampah" id="biaya_3" name="biaya_3" >
+    <h5><div id="biaya_3" name="biaya_3">0</div><h5>
     </div>
   </div>
 
@@ -400,12 +403,11 @@
     </div>
   
     <div class="col">
-
     </div>
- 
-    <h4> &nbsp Rp.</h4>
+    <h5> &nbsp Rp.</h5>
     <div class="col">
-    <input type="text" id="totalHarga" name="totalHarga" class="form-control"  value="0">
+    <h5><div id="totalHarga">0</div><h5>
+      <input type="hidden" name="totalHarga" id="inputtotalharga">
     </div>
   </div>
 
@@ -432,7 +434,20 @@
 
   <br>
 
-   <div class="row">
+  <div class="row">
+    <div class="col">
+    <h5>Alamat Saya &emsp;&emsp;&emsp;&emsp;&emsp;: </h5>
+    </div>
+    <div class="col">
+    <span id='display'></span>
+    </div>
+    </div>
+
+    <input type="hidden" name="latNow" id="latNow">
+    <input type="hidden" name="lngNow" id="lngNow">
+    <br>
+    
+    <div class="row">
     <div class="col">
     <h5>Lokasi saya &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;: </h5>
     </div>
@@ -441,19 +456,16 @@
     </div>
     </div>
 
-    <input type="hidden" name="latNow" id="latNow">
-    <input type="hidden" name="lngNow" id="lngNow">
     <br>
-
+    
     <div class="row">
     <div class="col">
-    <h5>Alamat Saya &emsp;&emsp;&emsp;&emsp;&emsp;: </h5>
+    <h5>Lokasi Cabang &emsp;&emsp;&emsp;&emsp;: </h5>
     </div>
     <div class="col">
-    <span id='display'></span>
+    <p id="tampilbank"></p>
     </div>
     </div>
-    
 
 <script>
 var x = document.getElementById("demo");
@@ -494,11 +506,10 @@ function zonk() {
         <input type="submit" class="btn btn-secondary" name="insert" value="KIRIM">
       </div>
 
-
       
  </form>
 
-<script>
+ <script>
 function proses1()
 {
   var harga = document.getElementById("pilih").value;
@@ -507,14 +518,14 @@ function proses1()
 }
 function hargaBerat(val){
   let harga = document.getElementById("pilih").value;
-  document.getElementById("berat1").value = val;
+  document.getElementById("berat1").innerHTML = val;
   let e = document.getElementById("kategori-"+harga).innerHTML;
   console.log(typeof parseInt(val));
   console.log(typeof parseInt(e));
   let a = parseInt(val);
   let b = parseInt(e)
   let total = a * b;
-  document.getElementById('biaya_1').value = total;
+  document.getElementById('biaya_1').innerHTML = total;
 }
 
 
@@ -526,14 +537,14 @@ function proses2()
 }
 function hargaBerat2(val){
   let harga1 = document.getElementById("pilih1").value;
-  document.getElementById("berat2").value = val;
+  document.getElementById("berat2").innerHTML = val;
   let e = document.getElementById("kategori-"+harga1).innerHTML;
   console.log(typeof parseInt(val));
   console.log(typeof parseInt(e));
   let a = parseInt(val);
   let b = parseInt(e)
   let total = a * b;
-  document.getElementById('biaya_2').value = total;
+  document.getElementById('biaya_2').innerHTML = total;
 }
 
 function proses3()
@@ -544,14 +555,14 @@ function proses3()
 }
 function hargaBerat3(val){
   let harga2 = document.getElementById("pilih2").value;
-  document.getElementById("berat3").value = val;
+  document.getElementById("berat3").innerHTML = val;
   let e = document.getElementById("kategori-"+harga2).innerHTML;
   console.log(typeof parseInt(val));
   console.log(typeof parseInt(e));
   let a = parseInt(val);
   let b = parseInt(e)
   let total = a * b;
-  document.getElementById('biaya_3').value = total;
+  document.getElementById('biaya_3').innerHTML = total;
 }
 
 function proses4()
@@ -569,23 +580,25 @@ function hargaBerat4(val){
   let a = parseInt(val);
   let b = parseInt(e)
   let total = a * b;
-  document.getElementById('biaya_4').value = total;
+  document.getElementById('biaya_4').innerHTML = total;
 }
 
 
-function total(){
-  let j1 = document.getElementById("biaya_1").value;
-  let j2 = document.getElementById("biaya_2").value;
-  let j3 = document.getElementById("biaya_3").value;
-
-  j1 = parseInt(j1);
-  j2 = parseInt(j2);
-  j3 = parseInt(j3);
+function total1(){
+  let j1 = parseInt(document.getElementById("biaya_1").innerHTML);
+  let j2 = parseInt(document.getElementById("biaya_2").innerHTML);
+  let j3 = parseInt(document.getElementById("biaya_3").innerHTML);
 
   let x = j1 + j2 + j3;
+
   console.log(x);
-  document.getElementById("totalHarga").value = x;
+  console.log(j1);
+  console.log(j2);
+  console.log(j3);
+  document.getElementById("totalHarga").innerHTML = x;
+  document.getElementById('inputtotalharga').value = x;
 }
+
 
 
 function metran()
@@ -600,9 +613,29 @@ function metran()
   }
   document.getElementById("tampilPembayaran").innerHTML = x;
 }
-</script>
 
-<script>
+function lokasi()
+{
+  var loka = document.getElementById("lokasi1").value;
+  let x='';
+  harga=parseInt(loka);
+  if(loka==0)
+  {
+    x = 'BANK1';
+  }
+  if(loka==1)
+  {
+    x = 'BANK2';
+  }if(loka==2)
+  {
+    x = 'BANK3';
+  }if(loka==3)
+  {
+    x = 'BANK4';
+  }
+  document.getElementById("tampilbank").innerHTML = x;
+}
+
 function myFunction() {
   var aksi = document.getElementById("myBtn").value;
   let x =` `;
@@ -612,7 +645,6 @@ function myFunction() {
   }else{
     x ='DIJEMPUT'
   }
-  document.getElementById("metodeBayar0").checked = true;
   document.getElementById("bijil").innerHTML = x; 
 }
 
@@ -630,21 +662,4 @@ function myFunction1() {
 }
 </script>
 
-<script>
-function startCalc()
-{
-interval = setInterval("calc()",1);
-}
 
-function calc()
-{
-one = document.rega.harga.value;
-two = document.rega.jumlah.value;
-three = document.rega.diskon.value;
-document.rega.total.value = (one * 1) + (two * 1) + (three * 1);
-}
-
-function stopCalc()
-{
-clearInterval(interval);}
-</script>

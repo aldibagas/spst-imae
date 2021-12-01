@@ -64,9 +64,9 @@ while($ambil = mysqli_fetch_assoc($runAmbil)){
     echo'
     <tr>
         <td class="text-center">'.$ambil['kategori'].'</td>
-        <td class="text-center">'.$ambil['daftarharga'].'</td>
+        <td class="text-center">Rp '. $ambil['daftarharga'].'</td>
         <td class="text-center">
-            <a href="#edit_'.$ambil['kategori'].'" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <a href="#edit_'.$ambil['kategori'].'" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Ubah</a>
         </td>
 
         <div class="modal fade" id="edit_'.$ambil['kategori'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -91,8 +91,8 @@ while($ambil = mysqli_fetch_assoc($runAmbil)){
                     </div> 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                        <button type="submit" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Update</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Batal</button>
+                        <button type="submit" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Ubah</a>
                     </form>
                     </div>
 
