@@ -40,7 +40,6 @@
      @$metode_transaksi= $_POST['metode_transaksi'];
      @$status= $_POST['status'];
      $pass = $_POST['pass'];
-     $bank = $_POST['bank'];
 
      //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
      //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
