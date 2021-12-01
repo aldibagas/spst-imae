@@ -155,28 +155,7 @@
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
       </div>
-      <div class ="row">
-            <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header align-items-center">
-                      <strong class="card-title">Jasa Angkut Sampah</strong>
-                    </div>
-                    <div class="card-body">
-                    <div class="row mt-2">
-                      <div class="col-6 text-center mb-3 border-right">
-                        <p class="text-muted mb-1">Sampah Basah</p>
-                        <h6 class="mb-1">Rp 2000</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center mb-3">
-                        <p class="text-muted mb-1">Sampah Kering</p>
-                        <h6 class="mb-1">Rp 1000</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      </div>
-                  </div> <!-- .card-body -->
-                  </div> <!-- / .card -->
-                </div> <!-- / .col-md-3 -->
+      
 <div class="row">
 <?=content_open('Jenis-Jenis Plastik')?>
       <p class="card-text">Informasi seputar jenis-jenis plastik dan bagaimana penggunaanya dalam lingkungan sehari-hari</p>
