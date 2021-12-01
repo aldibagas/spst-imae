@@ -1,12 +1,8 @@
 
 <?php
 $title="Riwayat Transaksi";
-$servername = "localhost";
-$database = "spst"; 
-$username = "root";
-$password = "";
+include '_helpers/connect.php';
 
-$conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) { //cek koneksi
     die("Tidak bisa terkoneksi ke database");
 }
