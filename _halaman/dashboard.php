@@ -1,5 +1,6 @@
 <?php
    $title="Dashboard";
+   $fileJS='dashboard-js';
 
    $data = mysqli_query($conn, 'SELECT SUM(saldo) AS value_sum FROM tabungan'); 
    $row = mysqli_fetch_assoc($data); 
@@ -134,11 +135,25 @@
                 </div>
               </div>
               <!-- charts-->
+              <?php 
+              //index.php
+              $connect = mysqli_connect("localhost", "root", "", "spst");
+              $query = "SELECT * FROM grafik";
+              $result = mysqli_query($connect, $query);
+              $chart_data = '';
+              while($row = mysqli_fetch_array($result))
+              {
+              $chart_data .= "{ tanggal:'".$row["tanggal"]."', uang:".$row["uang"].", duwit:".$row["duwit"]." }, ";
+              }
+              $chart_data = substr($chart_data, 0, -2);
+              ?>
               <div class="row my-4">
                 <div class="col-md-12">
+                <div class="card shadow">
                   <div class="chart-box">
-                    <div id="columnChart"></div>
+                    <div id="chart"></div>
                   </div>
+                </div>
                 </div> <!-- .col -->
               </div> <!-- end section -->
               <div class ="row">
