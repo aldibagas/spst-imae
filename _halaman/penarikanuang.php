@@ -1,6 +1,10 @@
 <?php
    session_start();
 
+   if($_SESSION['nama'] == null){
+    header('Location:index.php?halaman=login');
+}
+
    $nama = $_SESSION['nama'];
    $sqlId = "select * from pengguna where Nama = '$nama'";
    $idRun = mysqli_query($conn, $sqlId);
@@ -36,6 +40,7 @@
      @$metode_transaksi= $_POST['metode_transaksi'];
      @$status= $_POST['status'];
      $pass = $_POST['pass'];
+     $bank = $_POST['bank'];
 
      //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
      //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
@@ -52,8 +57,8 @@
     $idPetugas = $idPetugasRand[$rand];
 
     //pengiriman notifikasi
-     $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`,`waktu_tarik`,`jumlah_tarik`,`metode_bayar`, `metode_transaksi`,`status_tarik`)
-     VALUES ('', '$id', '$idPetugas','$waktu_tarik', '$jumlah_tarik', '0', '0', null)";
+     $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`, `aktivitas`, `waktu_tarik`,`jumlah_tarik`, `bank`, `metode_bayar`, `metode_transaksi`,`status_tarik`)
+     VALUES ('$id', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '$bank', '0', '0', null)";
 
      //$query2 = mysqli_query($conn,$sql1); 
 
@@ -99,6 +104,26 @@
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Jumlah Saldo Yang ditarik</p>
                                             <input type="text" class="form-control" aria-label="saldo" name="jumlah_tarik">
+
+                                            <div>
+                                            <form action="" method="POST">
+                                            <div class="row">
+                                                <div class="col">
+                                                <p class="mb-1 small text-muted">Tempat Penarikan Uang</p>
+                                                <select class="form-control" input type="submit" name="bank">
+  <option value="" disabled selected hidden>Pilih Disini</option>
+  <optgroup label="">
+    <br>
+    <option value=0> BANK 1 </option>
+    <option value=1> BANK 2 </option>
+    <option value=2> BANK 3 </option>
+    <option value=3> BANK 4 </option>
+  </select>
+  </select>
+                                                        </select>
+                                                        </div>
+                                                        </div>
+                                                        </div>
 
                                             </div>
                                             <div class="form-group">

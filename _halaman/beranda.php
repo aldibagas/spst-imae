@@ -3,7 +3,7 @@
    $title="Beranda";
    include '_helpers/connect.php';
 
-   if($_SESSION['nama'] == null){
+   if($_SESSION['id'] == null){
 		header('Location:index.php?halaman=login');
 	}
 
@@ -31,14 +31,14 @@
 
    $nama = $_SESSION['nama'];
    $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
-   $Query = "SELECT * FROM 'pemesanan' WHERE idp=1";
+   $Query = "SELECT * FROM 'transaksi' WHERE idp1=1";
    $run = mysqli_query($conn, $sql);
    $row = mysqli_fetch_assoc($run);
    $email = $row['email'];
    $telp = $row['Telepon'];
    $alamat = $row['alamat'];
  
-   $Cari="SELECT * FROM pemesanan order by tanggal desc LIMIT 5";
+   $Cari="SELECT * FROM transaksi order by tanggal desc LIMIT 5";
    $Tampil = mysqli_query($conn, $Cari);
    $data = array();
    while($row = mysqli_fetch_assoc($Tampil)){
@@ -53,13 +53,13 @@
                       <div class="col-12 col-lg-4 text-left pl-4">
                         <span class="fe fe-credit-card text-success fe-12"></span>
                         <p class="mb-1 small text-muted">Saldo</p>
-                        <span class="h2">Rp. <?php echo$saldo;?></span>
+                        <span class="h1">Rp <?php echo$saldo;?></span>
                      
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-down text-success fe-12"></span>
                         <p class="mb-1 small text-muted">Pemasukan Terakhir</p>
-                        <span class="h3">Rp. 5000</span><br />
+                        <span class="h3">Rp 5000</span><br />
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
@@ -68,7 +68,7 @@
                       $Run = mysqli_query($conn, $Query);
                       if(mysqli_num_rows($Run)>0){
                     while($Fetch = mysqli_fetch_assoc($Run)){
-                      echo" <span class='h3'>Rp. ".$Fetch['jumlah_tarik']."</span> 
+                      echo" <span class='h3'>Rp ".$Fetch['jumlah_tarik']."</span> 
                       ";
                     }
                   } ?>
@@ -76,24 +76,24 @@
                       
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-down text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Total Pemasukan </p>
-                        <span class="h3">Rp. 10000
+                        <p class="mb-1 small text-muted">Pemasukan Bulan Ini </p>
+                        <span class="h3">Rp 10000
 
                         </span><br />
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
-                        <p class="mb-1 small text-muted">Total Pengeluaran</p>
+                        <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
                         <?php
                           $id = $_SESSION['id'];
-                          $sql = "select jumlah_tarik from notifikasi where idp2 = $id";
+                          $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
                           $run = mysqli_query($conn, $sql);
                           $total = 0;
                           while($row = mysqli_fetch_assoc($run)){
                             $total = $total + $row['jumlah_tarik'];
                           }
                         ?>
-                        <span class="h3">Rp. <?php echo $total; ?></span><br />
+                        <span class="h3">Rp <?php echo $total; ?></span><br />
                       </div>
                     </div>
                   </div> <!-- .card-body -->
@@ -103,55 +103,23 @@
             <div class="col-md-6 mb-4">
                   <div class="card shadow">
                     <div class="card-header align-items-center">
-                      <strong class="card-title">Daftar Harga Beli</strong>
+                    <strong class="card-title">Daftar Harga Beli</strong>
                     </div>
                     <div class="card-body">
                     <div class="row mt-2">
-                      <div class="col-6 text-center mb-3 border-right">
-                        <p class="text-muted mb-1">PETE</p>
-                        <h6 class="mb-1">Rp 300</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center mb-3">
-                        <p class="text-muted mb-1">HDPE</p>
-                        <h6 class="mb-1">Rp 830</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PVC</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">LDPE</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PP</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">PS</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">HVS</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">Karton</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">Kardus</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
+                    <?php
+                      $hbSql = "Select * from harga";
+                      $hbRun = mysqli_query($conn, $hbSql);
+                      while($hbRow = mysqli_fetch_assoc($hbRun)){
+                        echo'
+                        <div class="col-6 text-center mb-3 border-right">
+                          <p class="text-muted mb-1">'.$hbRow['kategori'].'</p>
+                          <h6 class="mb-1">Rp '.$hbRow['daftarharga'].'</h6>
+                          <p class="text-muted mb-2">/kg</p>
+                        </div>
+                        ';
+                      }
+                      ?>
                     </div>
                   </div> <!-- .card-body -->
                   </div> <!-- / .card -->
@@ -172,10 +140,11 @@
                             <div class="col-auto">
                               <span class="fe fe-arrow-up text-success fe-24"></span>
                             </div>
+                            
                             <div class="col">
                               <small><str><strong><?php echo $item['tanggal'];?></strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan <?php echo$item['pesanan_1'];?>, <?php echo$item['pesanan_2']?>, <?php echo$item['pesanan_3'];?></div>
-                              <small class="badge badge-light text-muted">kemarin</small>
+                              <div class="my-0 text-muted small">Menyerahkan <?php echo$item['data_sampah'];?></div>
+                              <small class="badge badge-light text-muted">Berhasil</small>
                             </div>
                           </div>
                         </div>

@@ -142,72 +142,34 @@
                 </div> <!-- .col -->
               </div> <!-- end section -->
               <div class ="row">
-                <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-4">
                   <div class="card shadow">
                     <div class="card-header align-items-center">
-                      <strong class="card-title">Daftar Harga Beli</strong>
-                      <a class="float-right small text-muted" href="<?=url('pengaturan_harga')?>">Lihat Semua</a>
+                    <strong class="card-title">Daftar Harga Beli</strong>
                     </div>
                     <div class="card-body">
-                      <?php 
-                         $data5="SELECT * FROM harga";
-                         $row5 = mysqli_query($conn, $data5);
-                      ?>
                     <div class="row mt-2">
-                      <div class="col-6 text-center mb-3 border-right">
-                        <p class="text-muted mb-1">PETE</p>
-                        <h6 class="mb-1">- Rp 300</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center mb-3">
-                        <p class="text-muted mb-1">HDPE</p>
-                        <h6 class="mb-1">Rp 830</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PVC</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">LDPE</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">PP</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">PS</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">HVS</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center">
-                        <p class="text-muted mb-1">Karton</p>
-                        <h6 class="mb-1">Rp 430</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      <div class="col-6 text-center border-right">
-                        <p class="text-muted mb-1">Kardus</p>
-                        <h6 class="mb-1">Rp 200</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
+                    <?php
+                      $hbSql = "Select * from harga";
+                      $hbRun = mysqli_query($conn, $hbSql);
+                      while($hbRow = mysqli_fetch_assoc($hbRun)){
+                        echo'
+                        <div class="col-6 text-center mb-3 border-right">
+                          <p class="text-muted mb-1">'.$hbRow['kategori'].'</p>
+                          <h6 class="mb-1">Rp. '.$hbRow['daftarharga'].'</h6>
+                          <p class="text-muted mb-2">/kg</p>
+                        </div>
+                        ';
+                      }
+                      ?>
                     </div>
                   </div> <!-- .card-body -->
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
-               <!-- Recent Activity -->
                <div class="col-md-6 mb-4">
                   <div class="card shadow">
                     <div class="card-header">
-                      <strong class="card-title float-left">Catatan Aktivitas</strong>
+                      <strong class="card-title float-left">Catatan Transaksi</strong>
                       <a class="float-right small text-muted" href="<?=url('riwayat-transaksi')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">

@@ -1,29 +1,32 @@
 <?php
  $title="Registrasi";
  $Template=false;
+ session_start();
+ include '_helpers/connect.php';
  
-    $servername = "localhost";
-    $database = "spst"; 
-    $username = "root";
-    $password = "";
-    $conn = mysqli_connect($servername, $username, $password, $database);
+    
 
  if(isset($_POST['kirim'])){
     $user = $_POST['username'];
+    $Kelas = $_POST['Kelas'];
     $telp = $_POST['telp'];
+    $alamat = $_POST['alamat'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $confirpass = $_POST['confirpass'];
+   
     
     $sql = "
-    INSERT INTO `pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`, 'email') 
-    VALUES (default,'testing','$user','$telp','$pass', '$email')";
+    INSERT INTO `pengguna`(`idp`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
+    VALUES (default, '$Kelas', '$user', '$email', '$alamat', '$telp', '$pass')";
 	
 	if($run = mysqli_query($conn, $sql)){
         header('location:index.php?halaman=login');
         echo 'Berhasil Daftar';
     }else{
-        echo 'Gagal Daftar';
+        echo '
+        <div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Gagal</div>"
+    ';
     }
  }
 
@@ -42,7 +45,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <body>
       
-<div class="d-flex justify-content-center">
+ <div class="d-flex justify-content-center">
  <div class="card" style="margin: 50px">
  <div class="card-body">
  
@@ -52,6 +55,15 @@
    <input name ="username" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Email</label><br>
    <input name ="email" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
+   <label class="card-title">Pelanggan/petugas</label><br>
+                            
+                            <select class="form-control border-0 rounded-pill select2" style="background-color:#d1d1d1" id="simple-select2" name ="Kelas">
+                                <optgroup label="Pilih">
+                                  <option value="Pelanggan">Pelanggan</option>
+                                  <option value="Petugas">Petugas</option>
+                                </optgroup>
+                            </select>
+</br>
    <label class="card-title">Nomor Ponsel</label><br>
    <input name = "telp" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Alamat</label><br>
