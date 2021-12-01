@@ -64,7 +64,7 @@ while($ambil = mysqli_fetch_assoc($runAmbil)){
     echo'
     <tr>
         <td class="text-center">'.$ambil['kategori'].'</td>
-        <td class="text-center">Rp. '. $ambil['daftarharga'].'</td>
+        <td class="text-center">Rp '. $ambil['daftarharga'].'</td>
         <td class="text-center">
             <a href="#edit_'.$ambil['kategori'].'" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Ubah</a>
         </td>
