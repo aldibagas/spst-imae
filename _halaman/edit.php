@@ -2,12 +2,7 @@
 
 $title="Edit Data";
 $id = $_GET['id'];
-$servername = "localhost";
-$database = "spst"; 
-$username = "root";
-$password = "";
 
-$conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) { //cek koneksi
     die("Tidak bisa terkoneksi ke database");
 }

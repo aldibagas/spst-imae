@@ -1,11 +1,6 @@
 <?php
 $title="Update data";
-$servername = "localhost";
-$database = "spst"; 
-$username = "root";
-$password = "";
 
-$conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) { 
 die("Tidak bisa terkoneksi ke database");
 }

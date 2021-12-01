@@ -1,7 +1,13 @@
 
 <?php
+session_start();
 $title="Riwayat Transaksi";
-include '_helpers/connect.php';
+$nama = $_SESSION['nama'];
+$sqlId = "select * from pengguna where Nama = '$nama'";
+$idRun = mysqli_query($conn, $sqlId);
+$ambilId = mysqli_fetch_assoc($idRun);
+$id  = $ambilId['idp'];
+
 
 if (!$conn) { //cek koneksi
     die("Tidak bisa terkoneksi ke database");
@@ -34,7 +40,7 @@ if (!$conn) { //cek koneksi
             </div>
             <?php
 
-              $query = mysqli_query($conn, "SELECT * FROM transaksi");
+              $query = mysqli_query($conn, "SELECT * FROM transaksi WHERE idp2=$id");
               $results = mysqli_fetch_all ($query, MYSQLI_ASSOC);
 
             ?>
@@ -54,14 +60,26 @@ if (!$conn) { //cek koneksi
                   </tr>
                 </head>
                 <tbody>
-                <?php foreach($results as $result): ?>
+                <?php foreach($results as $result): 
+                  $aktivitas = '';
+                  if($result['aktivitas'] == 1){
+                    $aktivitas = 'Setor';
+                  }else{
+                    $aktivitas = 'Tarik';
+                  }
+                  $idpelanggan = $result['idp1'];
+                  $nmpelangganSql = "select * from pengguna where idp = $idpelanggan";
+                  $nmpesRunpelanggan = mysqli_query($conn, $nmpelangganSql);
+                  $nmpelanggan = mysqli_fetch_assoc($nmpesRunpelanggan);
+                  $jeneng = $nmpelanggan['Nama'];
+                  ?>
                   
                 <tr>
                   
                     <td><?php echo $result['tanggal']?></td>
-                    <td><?php echo $result['idp1']?></td>
-                    <td><?php echo $result['idp2']?></td>
-                    <td><?php echo $result['aktivitas']?></td>
+                    <td><?php echo $jeneng?></td>
+                    <td><?php echo $nama?></td>
+                    <td><?php echo $aktivitas?></td>
                     <td><?php echo $result['data_sampah']?></td>
                     <td><?php echo $result['harga_total']?></td>
                     <td><?php echo $result['metode_bayar']?></td>
