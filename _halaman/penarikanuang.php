@@ -10,6 +10,8 @@
    $idRun = mysqli_query($conn, $sqlId);
    $ambilId = mysqli_fetch_assoc($idRun);
    $id  = $ambilId['idp'];
+
+   include '_helpers/connect.php';
    $title="Penarikan Uang";
    $id;
    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
