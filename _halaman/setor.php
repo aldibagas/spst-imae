@@ -506,11 +506,10 @@ function zonk() {
         <input type="submit" class="btn btn-secondary" name="insert" value="KIRIM">
       </div>
 
-
       
  </form>
 
-<script>
+ <script>
 function proses1()
 {
   var harga = document.getElementById("pilih").value;
@@ -636,9 +635,7 @@ function lokasi()
   }
   document.getElementById("tampilbank").innerHTML = x;
 }
-</script>
 
-<script>
 function myFunction() {
   var aksi = document.getElementById("myBtn").value;
   let x =` `;
@@ -648,7 +645,6 @@ function myFunction() {
   }else{
     x ='DIJEMPUT'
   }
-  document.getElementById("metodeBayar0").checked = true;
   document.getElementById("bijil").innerHTML = x; 
 }
 
