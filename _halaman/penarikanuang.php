@@ -56,8 +56,8 @@
     $idPetugas = $idPetugasRand[$rand];
 
     //pengiriman notifikasi
-     $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`, `aktivitas`, `waktu_tarik`,`jumlah_tarik`, `metode_bayar`, `metode_transaksi`,`status_tarik`)
-     VALUES ('$id', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', null)";
+     $sqlnotif = "INSERT INTO `notifikasi` (`idp2`, `idpetugas`, `aktivitas`, `waktu_tarik`,`jumlah_tarik`, `metode_bayar`, `metode_transaksi`,`status_tarik`)
+     VALUES ('$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', null)";
 
      //$query2 = mysqli_query($conn,$sql1); 
 
@@ -103,9 +103,7 @@
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Jumlah Saldo Yang ditarik</p>
                                             <input type="text" class="form-control" aria-label="saldo" name="jumlah_tarik">
-
-                                            <div>
-
+                                            </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Waktu Pengambilan Uang</p>
                                             <div class="form-group mb-3">
