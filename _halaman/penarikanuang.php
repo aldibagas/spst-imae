@@ -1,6 +1,29 @@
 <?php
    session_start();
 
+   if($_SESSION['nama'] == null){
+    header('Location:index.php?halaman=login');
+}
+
+        $cekHari = "SELECT * FROM `datauang` WHERE tanggal = CURDATE()";
+        $runHari = mysqli_query($conn, $cekHari);
+        if(mysqli_num_rows($runHari) == null){
+        //hari belum ada
+        $inputSql = "insert into datauang(uangkeluar, tanggal) value('1',CURRENT_TIMESTAMP)";
+        mysqli_query($conn, $inputSql);
+        }else{
+
+        $ambilSql = "SELECT * FROM `datauang` WHERE `tanggal` = CURRENT_DATE";
+        $ambilRun = mysqli_query($conn, $ambilSql);
+        $ambilRow = mysqli_fetch_assoc($ambilRun);
+
+        $tot = $ambilRow['uangkeluar'] +1;
+
+        //tambah data login
+        $tambahSql = "UPDATE datauang set uangkeluar = '$tot' where tanggal = CURRENT_DATE";
+        mysqli_query($conn, $tambahSql);
+        }
+        
    $nama = $_SESSION['nama'];
    $sqlId = "select * from pengguna where Nama = '$nama'";
    $idRun = mysqli_query($conn, $sqlId);
@@ -9,6 +32,7 @@
 
    include '_helpers/connect.php';
    $title="Penarikan Uang";
+   $id;
    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=0;
@@ -23,7 +47,7 @@
     $sqlId = "select * from pengguna where Nama = '$nama'";
     $idRun = mysqli_query($conn, $sqlId);
     $ambilId = mysqli_fetch_assoc($idRun);
-    $id  = $ambilId['id'];
+    $id  = $ambilId['idp'];
 
      //$idt = $_POST ['idt'];
      //$idp1 = $_POST ['idp1'];
@@ -35,23 +59,27 @@
      @$metode_transaksi= $_POST['metode_transaksi'];
      @$status= $_POST['status'];
      $pass = $_POST['pass'];
+     @$bank = $_POST['bank'];
 
-     $sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
-     VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
+     //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
+     //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
 
-     $sql2 = "INSERT INTO `notifikasi` (`idt`,`idp2`,`waktu_tarik`,`jumlah_tarik`,`metode_bayar`, `metode_transaksi`,`status_tarik`)
-     VALUES ('4', '3','$waktu_tarik', '$jumlah_tarik', '0', '0', '0')";
+    //kirim notifikasi pada petugas secara acak
+    //pemilihan petugas
+    $sqlRand = "select idp from pengguna where kelas = 'petugas'";
+    $runRand = mysqli_query($conn, $sqlRand);
+    $idPetugasRand = array();
+    while($fchRand = mysqli_fetch_assoc($runRand)){
+        $idPetugasRand[] = $fchRand['idp'];
+    }
+    $rand = array_rand($idPetugasRand);
+    $idPetugas = $idPetugasRand[$rand];
 
-    //ambil
-    $sqlAmbl = "select * from tabungan where idp1 = '$idp2'";
-    $runAmbil = mysqli_query($conn, $sqlAmbl);
-    $ambilSaldo = mysqli_fetch_assoc($runAmbil);
-    
-    //pengurangan
-    $saldoAkhir = $ambilSaldo['saldo'] - $jumlah_tarik;
+    //pengiriman notifikasi
+     $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`, `aktivitas`, `waktu_tarik`,`jumlah_tarik`, `bank`, `metode_bayar`, `metode_transaksi`,`status_tarik`)
+     VALUES ('', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '$bank', '0', '0', null)";
 
-     $query2 = mysqli_query($conn,$sql1); 
-     $query3 = mysqli_query($conn,$sql2);
+     //$query2 = mysqli_query($conn,$sql1); 
 
      mysqli_commit($conn);
 
@@ -59,12 +87,11 @@
      $run = mysqli_query($conn, $sql);
      $row = mysqli_fetch_assoc($run);
 
-    //update
-    $sqlTabungan = "UPDATE `tabungan` SET `tanggal`='$waktu_tarik',`saldo`='$saldoAkhir' WHERE `idp1`='$id'";
-    mysqli_query($conn, $sqlTabungan);
-
     if($row > 0){
-        header('location:index.php?halaman=transaksi');
+        //jika password benar
+        //update
+        mysqli_query($conn,$sqlnotif);
+        //header('location:index.php?halaman=transaksi');
     }else{
         echo'
         <div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Password Salah</div>"
@@ -91,11 +118,27 @@
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Saldo yang tersedia</p>
                                             <?php echo '<span class="h2">Rp '.$saldo.'</span>';?>
-                                            
+
                                             </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Jumlah Saldo Yang ditarik</p>
                                             <input type="text" class="form-control" aria-label="saldo" name="jumlah_tarik">
+
+                                            <div>
+                                            <form action="" method="POST">
+                                            <div class="row">
+                                                <div class="col">
+                                                <p class="mb-1 small text-muted">Tempat Penarikan Uang</p>
+                                                <select class="form-control select2" >
+                                                <option value="" disabled selected hidden>Bank</option>
+                                                        <option value=>Bank 1</option>
+                                                        <option value=>Bank 2</option>
+                                                        <option value=>Bank 3</option>
+                                                        <option value=>Bank 4</option>
+                                                        </select>
+                                                        </div>
+                                                        </div>
+                                                        </div>
 
                                             </div>
                                             <div class="form-group">
