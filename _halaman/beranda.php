@@ -45,7 +45,7 @@
     $data[] = $row;
    }
 ?>    
-<p class="lead text-muted">Selamat datang di Sistem Pengelolaan Sampah Terintegrasi, mari bersama menjaga lingkungan yang bersih! </p>
+<p class="lead text-muted">Sistem Pengelolaan Sampah Plastik Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! </p>
             <div class="mb-2 align-items-center">
                 <div class="card shadow mb-4">
                   <div class="card-body">
@@ -155,10 +155,31 @@
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
       </div>
-      
+      <div class ="row">
+            <div class="col-md-6 mb-4">
+                  <div class="card shadow">
+                    <div class="card-header align-items-center">
+                      <strong class="card-title">Jasa Angkut Sampah</strong>
+                    </div>
+                    <div class="card-body">
+                    <div class="row mt-2">
+                      <div class="col-6 text-center mb-3 border-right">
+                        <p class="text-muted mb-1">Sampah Basah</p>
+                        <h6 class="mb-1">Rp 2000</h6>
+                        <p class="text-muted mb-2">/kg</p>
+                      </div>
+                      <div class="col-6 text-center mb-3">
+                        <p class="text-muted mb-1">Sampah Kering</p>
+                        <h6 class="mb-1">Rp 1000</h6>
+                        <p class="text-muted">/kg</p>
+                      </div>
+                      </div>
+                  </div> <!-- .card-body -->
+                  </div> <!-- / .card -->
+                </div> <!-- / .col-md-3 -->
 <div class="row">
 <?=content_open('Jenis-Jenis Plastik')?>
-      <p class="card-text">Informasi seputar jenis-jenis plastik dan bagaimana penggunaanya dalam lingkungan sehari-hari</p>
+      <p class="card-text">Informasi seputar jenis-jenis plastik dan penggunaanya dalam lingkungan sehari-hari</p>
       <?=button_modal('Lihat','konten1')?>
       <?=modal('konten1', 'Jenis-Jenis Plastik' , 'Plastik adalah komponen penting dan menjadi bahan baku dari banyak barang, contohnya seperti botol air, sisir, wadah minuman, peralatan makan, dan masih banyak lagi. Mengetahui perbedaan, jenis plastik, serta kode SPInya dapat membantu Anda dalam proses daur ulang sampah plastik.
       
@@ -190,8 +211,8 @@
 ')?>
 <?=content_close()?>
 
-<?=content_open('Pentingnya lingkungan bersih')?>
-      <p class="card-text">Kenapa kita harus menjaga agar lingkungan tetap bersih</p>
+<?=content_open('Pentingnya menjaga lingkungan')?>
+      <p class="card-text">Manfaat - manfaat yang kita dapat dari menjaga lingkungan sekitar </p> 
       <?=button_modal('Lihat','konten2')?>
       <?=modal('konten2', 'Lingkungan bersih' , 'Kebersihan lingkungan merupakan keadaan bebas dari kotoran, termasuk di dalamnya, debu,
 sampah, dan bau. Di Indonesia, masalah kebersihan lingkungan selalu menjadi perdebatan
@@ -222,15 +243,15 @@ Manfaat menjaga kebersihan lingkungan antara lain:
 ?>
 <?=content_close()?>
 
-<?=content_open('Waspadai Genangan Air')?>
-      <p class="card-text">Informasi seputar bahaya yang ditimbulkan dari genangan air</p>
+<?=content_open('Waspadai banjir')?>
+      <p class="card-text">Informasi seputar bahaya apabila tidak menjaga lingkungan sekitar</p>
       <?=button_modal('Lihat','konten3')?>
-      <?=modal('konten3', 'Lingkungan bersih' , 'Genangan air terdapat di tempat yang kotor. Genangan ini jika dibiarkan ada di sekitar rumah apalagi jika dilalui saat berjalan kaki akan menimbulkan bahaya kesehatan. Genangan air merupakan tempat berkembang biak nyamuk yang nantinya akan menjadi sumber penyakit yang ditularkan oleh nyamuk. 
-      Pastikan segera membersihkan segala benda atau bagian tubuh yang bersentuhan dengan air genangan. Menjaga kaki tetap kering juga penting. Kontak yang terlalu lama dengan genangan air dapat menyebabkan pengembangan parasit kaki, yaitu suatu kondisi yang dapat menyebabkan lepuh dan pembusukan jaringan.
+      <?=modal('konten3', 'Banjir' , 'Banjir adalah peristiwa bencana alam yang terjadi ketika aliran air yang berlebihan merendam daratan. Banjir juga dapat terjadi di sungai, ketika alirannya melebihi kapasitas saluran air, terutama di kelokan sungai. Banjir sering mengakibatkan kerusakan rumah dan pertokoan yang dibangun di sekitar sungai.
+      Meski kerusakan akibat banjir dapat dihindari akan tetapi kejadiannya selalu berulang - ulang, karena masih banyak orang yang membuang sampah sembarangan sehingga aliran air tersumbat dan menyebabkan banjir yang merugikan semua orang.
       <!-- Wrapper for carousel items -->
 <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="https://d1bpj0tv6vfxyp.cloudfront.net/waspada-banjir-ini-bahaya-genangan-air-2.jpg" class="d-block w-100" alt="Slide 1">
+        <img src="banjir.jpg" class="d-block w-100" alt="Slide 1">
         </div>
         </div>')?>
       
