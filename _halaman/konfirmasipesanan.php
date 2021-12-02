@@ -13,11 +13,29 @@
         $konfirmasi = $_POST['submit'];
         
         function updateNotif($val,$idn){
-            return "UPDATE `notifikasi` SET `status_tarik`='$val' WHERE idt = $idn";
+            return "UPDATE notifikasi SET `status_tarik`='$val' WHERE idt = $idn";
         }
+
+        //ambil id pengguna
+        $ambilIdp   = "select * from notifikasi where idt = $idnotif";
+        $runIdp     = mysqli_query($conn, $ambilIdp);
+        $fetchIdp   = mysqli_fetch_assoc($runIdp);
+        $idp        = $fetchIdp['idp2'];
+        $jumlah_tarik= $fetchIdp['jumlah_tarik'];
 
         if($konfirmasi == 'Terima'){
             mysqli_query($conn, updateNotif(1, $idnotif));
+            
+            //ambil tabungan pengguna
+            $sqlAmbl = "select * from tabungan where idp1 = '$idp'";
+            $runAmbil = mysqli_query($conn, $sqlAmbl);
+            $ambilSaldo = mysqli_fetch_assoc($runAmbil);
+
+            //pengurangan
+            $saldoAkhir = $ambilSaldo['saldo'] - $jumlah_tarik;
+
+            $sqlTabungan = "UPDATE tabungan SET `saldo`='$saldoAkhir' WHERE `idp1`='$idp'";
+            mysqli_query($conn, $sqlTabungan);
         }
         if($konfirmasi == 'Tolak'){
             mysqli_query($conn, updateNotif(0, $idnotif));
@@ -36,9 +54,9 @@
                   <p class="text-muted"></p>
                   <ul class="list-unstyled">
                   <div class="col-sm px-0 my-3">
-			            <div class="border border-secondary">
+               <div class="border border-secondary">
                   </div>
-		              </div>
+                </div>
                   
 <?=content_open_full('')?>
                     <?php
@@ -56,20 +74,34 @@
                     while($Fetch = mysqli_fetch_assoc($Run)){
                       $metodeBayar = '';
                       if($Fetch['metode_bayar'] == 0){
-                        $metodeBayar = 'Tunai';
+                        $metodeBayar = 'Penarikan Uang';
                       }else{
-                        $metodeBayar = 'Tabung';
+                        $metodeBayar = 'Penyetoran Sampah';
                       }
-                      echo"
-                        <p align=left><b><mb-1 small text-muted>
-                        Waktu Tarik &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;: ".$Fetch['waktu_tarik']."</mb-1 small text-muted> </br>
-                        <li></li>
-                        <p align=left><b><mb-1 small text-muted>
-                        Metode Bayar &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp&emsp;: ".$metodeBayar."</mb-1 small text-muted> </br>
-                        <li></li>
-                        <p align=left><b><mb-1 small text-muted>
-                        Metode Transaksi &emsp;&emsp;&emsp;&emsp;&emsp;: ".$Fetch['metode_transaksi']."</mb-1 small text-muted></br>
-                        <li></li>
+
+                      $status_tarik = '';
+                      if($Fetch['status_tarik'] == 0){
+                        $status_tarik = 'Batal';
+                      }else{
+                        $status_tarik = 'Terima';
+                      }
+    
+                       //ambil nama pengguna
+                       $idpelanggan  = $Fetch['idp2'];
+                       $sqlANP       = "select * from pengguna where idp = $idpelanggan";
+                       $runANP       = mysqli_query($conn, $sqlANP);
+                       $fchANP       = mysqli_fetch_assoc($runANP);
+                       $namaPelanggan= $fchANP['Nama'];
+ 
+                       echo"
+                         <p align=left><b><mb-1 small text-muted>
+                         Waktu Tarik &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;: ".$Fetch['waktu_tarik']."</mb-1 small text-muted> </br>
+                         <li></li>
+                         <p align=left><b><mb-1 small text-muted>
+                         Nama Pelanggan &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;: ".$namaPelanggan."</mb-1 small text-muted> </br>
+                         <li></li>
+                         <p align=left><b><mb-1 small text-muted>
+                         Aktivitas &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp&emsp;: ".$metodeBayar."</mb-1 small text-muted> </br>
                         <p align=left><b><mb-1 small text-muted>
                         Jumlah Uang Yang Ditarik &emsp;: Rp. <td>".$Fetch['jumlah_tarik']."</mb-1 small text-muted></br> 
                         <li></li>

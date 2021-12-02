@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 //ambil id
 $nama = $_SESSION['nama'];
 $sql = "select * from pengguna where Nama = '$nama'";

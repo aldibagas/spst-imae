@@ -8,12 +8,13 @@
 
  if(isset($_POST['kirim'])){
     $user = $_POST['username'];
-    $kelas = $_POST['kelas']
+    $Kelas = $_POST['Kelas'];
     $telp = $_POST['telp'];
     $alamat = $_POST['alamat'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $confirpass = $_POST['confirpass'];
+   
     
     $sql = "
     INSERT INTO `pengguna` (`idp`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
@@ -56,7 +57,7 @@
    <input name ="email" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Pelanggan/petugas</label><br>
                             
-                            <select class="form-control select2" id="simple-select2" name ="kelas">
+                            <select class="form-control border-0 rounded-pill select2" style="background-color:#d1d1d1" id="simple-select2" name ="Kelas">
                                 <optgroup label="Pilih">
                                   <option value="Pelanggan">Pelanggan</option>
                                   <option value="Petugas">Petugas</option>
