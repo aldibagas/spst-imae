@@ -35,7 +35,31 @@ $numNotif = mysqli_num_rows($runcek);
                         <span class="fe fe-box fe-24"></span>
                       </div>
                       <div class="col">
-                        <small><strong>jumlah uang yang di ambil : '.$fch['jumlah_tarik'].'</strong></small>
+                        <small><strong>Pengajuan Pencairan Uang Sebesar Rp '.$fch['jumlah_tarik'].'</strong></small>
+                        <div class="my-0 text-muted small">id penarik: '.$fch['idp2'].'</div>
+                        <small class="badge badge-pill badge-light text-muted">1m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  </a>
+                  ';
+                }
+              }?>
+
+            <div class="modal-body">
+            <div class="list-group list-group-flush my-n3">
+              <?php
+              if(mysqli_num_rows($runcek)>0){
+                while($fch = mysqli_fetch_assoc($runcek)){
+                  echo'
+                  <a href = "?halaman=konfirmasipesanan&notif='.$fch['idt'].'">
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-download fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Pengajuan Penyetoran Sampah '.$fch['data_sampah'].'</strong></small>
                         <div class="my-0 text-muted small">id penarik: '.$fch['idp2'].'</div>
                         <small class="badge badge-pill badge-light text-muted">1m ago</small>
                       </div>

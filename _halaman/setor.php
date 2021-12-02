@@ -30,8 +30,9 @@
     $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
     VALUES ('1', '0', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
 
-    $sql2 = "INSERT INTO `notifikasi` (`idp2`, `idpetugas`, `data_transaksi`, `metode_bayar`, `metode_transaksi`, `waktu_tarik`, `jumlah_tarik`, `status_tarik`) 
-    VALUES ('4', '1', '$p1 / $p2 / $p3', '$mb1', '$mt1', '0', '0', '0')";
+    $sql2 = "INSERT INTO `notifikasi` (`idt`, `idp2`, `idpetugas`, `aktivitas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `harga_total`, `jumlah_tarik`, `bank`, `tanggal`, `status_tarik`, `status_setor`) 
+    VALUES ('0', '0', '0', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '1', '1', '1')";
+
 
     $sql3 = "INSERT INTO `navigasi` (`idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
     VALUES ('1', '2', '$latitude', '$longitude','$ala')";
@@ -655,5 +656,3 @@ function myFunction1() {
   document.getElementById("bijil").innerHTML = x; 
 }
 </script>
-
-
