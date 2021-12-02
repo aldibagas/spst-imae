@@ -141,20 +141,14 @@
                 </div> <!-- .col -->
               </div> <!-- end section -->
               <div class ="row">
-                <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-4">
                   <div class="card shadow">
                     <div class="card-header align-items-center">
-                      <strong class="card-title">Daftar Harga Beli</strong>
-                      <a class="float-right small text-muted" href="<?=url('pengaturan_harga')?>">Lihat Semua</a>
+                    <strong class="card-title">Daftar Harga Beli</strong>
                     </div>
                     <div class="card-body">
-                      <?php 
-                         $data5="SELECT * FROM harga";
-                         $row5 = mysqli_query($conn, $data5);
-                      ?>
                     <div class="row mt-2">
-                      
-                      <?php
+                    <?php
                       $hbSql = "Select * from harga";
                       $hbRun = mysqli_query($conn, $hbSql);
                       while($hbRow = mysqli_fetch_assoc($hbRun)){
@@ -167,16 +161,14 @@
                         ';
                       }
                       ?>
-                      
                     </div>
                   </div> <!-- .card-body -->
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
-               <!-- Recent Activity -->
                <div class="col-md-6 mb-4">
                   <div class="card shadow">
                     <div class="card-header">
-                      <strong class="card-title float-left">Catatan Aktivitas</strong>
+                      <strong class="card-title float-left">Catatan Transaksi</strong>
                       <a class="float-right small text-muted" href="<?=url('riwayat-transaksi')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">

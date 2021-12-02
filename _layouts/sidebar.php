@@ -71,12 +71,6 @@
               </a>
             </li>
             <li class="nav-item w-100">
-              <a href="<?=url('konfirmasipesanan')?>" class="nav-link">
-                <i class="fe fe-book fe-16"></i>
-                <span class="ml-3 item-text">Konfirmasi Pesanan</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
               <a href="<?=url('riwayat-transaksi')?>" class="nav-link">
                 <i class="fe fe-clock fe-16"></i>
                 <span class="ml-3 item-text">Riwayat Transaksi</span>
@@ -84,7 +78,7 @@
             </li>
             <li class="nav-item w-100">
               <a href="<?=url('pengaturan_harga')?>" class="nav-link">
-                <i class="fe fe-edit fe-16"></i>
+                <i class="fe fe-settings fe-16"></i>
                 <span class="ml-3 item-text">Pengaturan Harga</span>
               </a>
             </li>

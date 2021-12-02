@@ -18,28 +18,6 @@ session_start();
 		$userid = $row['idp'];
 		$_SESSION['id'] = $userid;
 		$_SESSION['kelas'] = $row['Kelas'];
-
-		//hitung loginnnnnnnnnnn
-		$cekHari = "SELECT * FROM `datalogin` WHERE tanggal = CURDATE()";
-		$runHari = mysqli_query($conn, $cekHari);
-		if(mysqli_num_rows($runHari) == null){
-			//hari belum ada
-			$inputSql = "insert into datalogin(visitor, tanggal) value('1',CURRENT_TIMESTAMP)";
-			mysqli_query($conn, $inputSql);
-		}else{
-			//hari sudah ada
-			//ambil data login
-			$ambilSql = "SELECT * FROM `datalogin` WHERE `tanggal` = CURRENT_DATE";
-			$ambilRun = mysqli_query($conn, $ambilSql);
-			$ambilRow = mysqli_fetch_assoc($ambilRun);
-
-			$tot = $ambilRow['visitor'] + 1;
-
-			//tambah data login
-			$tambahSql = "UPDATE datalogin set visitor = '$tot' where tanggal = CURRENT_DATE";
-			mysqli_query($conn, $tambahSql);
-		}
-
 		if ($row['Kelas']=="pengguna")	{
 			header('Location:index.php?halaman=beranda');
 		}

@@ -1,7 +1,7 @@
 <?php
 @session_start();
 
-$data = mysqli_query($conn, 'SELECT SUM(status_tarik) AS value_sum FROM notifikasi'); 
+$data = mysqli_query($conn, 'SELECT SUM(status_tarik) and  AS value_sum FROM notifikasi'); 
 $row = mysqli_fetch_assoc($data); 
 $notif = $row['value_sum'];
 ?>
