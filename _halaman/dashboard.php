@@ -117,37 +117,21 @@
                   </div>
                 </div>
               </div> <!-- end section -->
-              <div class="row align-items-center my-2">
-                <div class="col-auto ml-auto">
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <label for="reportrange" class="sr-only">Date Ranges</label>
-                      <div id="reportrange" class="px-2 py-2 text-muted">
-                        <i class="fe fe-calendar fe-16 mx-2"></i>
-                        <span class="small"></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <button type="button" class="btn btn-sm"><span class="fe fe-refresh-ccw fe-12 text-muted"></span></button>
-                      <button type="button" class="btn btn-sm"><span class="fe fe-filter fe-12 text-muted"></span></button>
-                    </div>
-                  </form>
-                </div>
-              </div>
+              
               <!-- charts-->
               <?php 
               //index.php
               $connect = mysqli_connect("localhost", "root", "", "spst");
-              $query = "SELECT * FROM grafik";
+              $query = "SELECT * FROM datauang";
               $result = mysqli_query($connect, $query);
               $chart_data = '';
               while($row = mysqli_fetch_array($result))
               {
-              $chart_data .= "{ tanggal:'".$row["tanggal"]."', uang:".$row["uang"].", duwit:".$row["duwit"]." }, ";
+              $chart_data .= "{ tanggal:'".$row["tanggal"]."', uangmasuk:".$row["uangmasuk"].", uangkeluar:".$row["uangkeluar"]." }, ";
               }
               $chart_data = substr($chart_data, 0, -2);
               ?>
-              <div class="row my-4">
+              <div class="row my-5">
                 <div class="col-md-12">
                 <div class="card shadow">
                   <div class="chart-box">

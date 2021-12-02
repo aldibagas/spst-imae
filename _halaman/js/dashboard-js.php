@@ -8,8 +8,8 @@
     element : 'chart',
     data:[<?php echo $chart_data; ?>],
     xkey:'tanggal',
-    ykeys:['uang','duwit'],
-    labels:['uang','duwit'],
+    ykeys:['uangmasuk','uangkeluar'],
+    labels:['uangmasuk','uangkeluar'],
     hideHover:'auto',
 
     });
