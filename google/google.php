@@ -18,12 +18,29 @@ if ($gclient->getAccessToken()) {
 	// Get user profile data from google
 	$gpuserprofile = $google_oauthv2->userinfo->get();
 
+	// buat kata sandi acak untuk pengguna
+	function random_str(
+		int $length = 64,
+		string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	): string {
+		if ($length < 1) {
+			throw new \RangeException("Length must be a positive integer");
+		}
+		$pieces = [];
+		$max = mb_strlen($keyspace, '8bit') - 1;
+		for ($i = 0; $i < $length; ++$i) {
+			$pieces []= $keyspace[random_int(0, $max)];
+		}
+		return implode('', $pieces);
+	}
+
 	$nama = $gpuserprofile['given_name']." ".$gpuserprofile['family_name']; // Ambil nama dari Akun Google
 	$email = $gpuserprofile['email']; // Ambil email Akun Google nya
+	$pass = random_str(8);
 
 	// Buat query untuk mengecek apakah data user dengan email tersebut sudah ada atau belum
 	// Jika ada, ambil id, username, dan nama dari user tersebut
-	$sql = mysqli_query($conn, "SELECT id, username, nama FROM user WHERE email='".$email."'");
+	$sql = mysqli_query($conn, "SELECT * FROM pengguna WHERE email = '".$email."'");
 	$user = mysqli_fetch_array($sql); // Ambil datanya dari hasil query tadi
 
 	if(empty($user)){ // Jika User dengan email tersebut belum ada
@@ -32,21 +49,23 @@ if ($gclient->getAccessToken()) {
 		$username = $ex[0]; // Ambil kata pertama
 
 		// Lakukan insert data user baru tanpa password
-		mysqli_query($conn, "INSERT INTO user(username, nama, email) VALUES('".$username."', '".$nama."', '".$email."')");
+		$insNew = "INSERT INTO `pengguna`(`afiliasi`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) VALUES ('0','pengguna','$nama','$email','-','-','$pass')";
+		mysqli_query($conn, $insNew);
 
-		$id = mysqli_insert_id($conn); // Ambil id user yang baru saja di insert
 	}else{
-		$id = $user['id']; // Ambil id pada tabel user
-		$username = $user['username']; // Ambil username pada tabel user
-		$nama = $user['nama']; // Ambil username pada tabel user
+		$_SESSION['nama'] = $user['Nama'];
+		$userid = $user['idp'];
+		$_SESSION['id'] = $userid;
+		$_SESSION['kelas'] = $user['Kelas'];
 	}
 
-	$_SESSION['id'] = $id;
-	$_SESSION['username'] = $username;
-	$_SESSION['nama'] = $nama;
-    $_SESSION['email'] = $email;
+	$_SESSION['nama'] = $user['Nama'];
+	$userid = $user['idp'];
+	$_SESSION['id'] = $userid;
+	$_SESSION['kelas'] = $user['Kelas'];
 
-    header("location: welcome.php");
+    header("location:../index.php?halaman=beranda");
+	//header("location: welcome.php");
 } else {
 	$authUrl = $gclient->createAuthUrl();
 	header("location: ".$authUrl);
