@@ -20,9 +20,9 @@
    $persen_proses = round(($n / $jumlah)*100,1);
 
    $sekarang = 0;
-   $data4 = mysqli_query($conn, "SELECT SUM(berat) AS berat_avg FROM pemesanan WHERE date(tanggal) = CURDATE()"); 
+   $data4 = mysqli_query($conn, "SELECT SUM(berat) AS berat_avg FROM datauang WHERE date(tanggal) = CURDATE()"); 
    $row4 = mysqli_fetch_assoc($data4); 
-   $berat_avg = $row4['berat_avg'];
+   $berat_avg = $row4['b'];
    if($berat_avg <= 1){
      $berat_avg = 0;
    }
