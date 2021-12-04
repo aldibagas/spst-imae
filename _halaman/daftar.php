@@ -8,17 +8,18 @@
 
  if(isset($_POST['kirim'])){
     $user = $_POST['username'];
-    $Kelas = $_POST['Kelas'];
+    $kelas = $_POST['kelas'];
     $telp = $_POST['telp'];
     $alamat = $_POST['alamat'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
+    $afiliasi = $_POST['afiliasi'];
     $confirpass = $_POST['confirpass'];
    
     
-    $sql = "
-    INSERT INTO `pengguna` (`idp`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
-    VALUES (`$idp`, `$kelas`, `$user`, `$email`, `$alamat`, `$telp`, `$pass`)";
+    echo$sql = "
+    INSERT INTO `pengguna` (`afiliasi`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
+    VALUES ('$afiliasi', '$kelas', '$user', '$email', '$alamat', '$telp', '$pass')";
 	
 	if($run = mysqli_query($conn, $sql)){
         header('location:index.php?halaman=login');
@@ -57,10 +58,41 @@
    <input name ="email" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Mitra</label><br>
                             
-                            <select class="form-control border-0 rounded-pill select2" style="background-color:#d1d1d1" id="simple-select2" name ="Kelas">
+                            <select class="form-control border-0 rounded-pill select2" id="affiliasi" onchange="aff()" style="background-color:#d1d1d1" id="simple-select2" name ="kelas"placeholder ="kelas">
                                 <optgroup label="Pilih">
+                                 <option value="" disabled selected hidden>Pilih Disini</option>
                                   <option value="Pelanggan">Pelanggan</option>
                                   <option value="Petugas">Petugas</option>
+                                </optgroup>
+                            </select>
+<script>
+     function aff(){
+        let e = document.getElementById('affiliasi').value;
+        if(e == 'Pelanggan'){
+            document.getElementById("bank").disabled = true;
+        }else{
+            document.getElementById("bank").disabled = false;
+        }
+     }
+</script>
+</br>
+
+<?php
+         $kelas ="Pengguna";
+
+         if ($kelas == "pengguna") {
+                echo "SHARE ILMU itu sangat bermanfaat";
+          }
+?>
+
+   <label class="card-title">Afiliasi</label><br>
+                            
+                            <select class="form-control border-0 rounded-pill select2" id="bank" style="background-color:#d1d1d1" id="simple-select2" name ="afiliasi">
+                                <optgroup label="Pilih">
+                                <option value="" disabled selected hidden>Pilih Disini</option>
+                                  <option value="1">BANK 1</option>
+                                  <option value="2">BANK 2</option>
+                                  <option value="3">BANK 3</option>
                                 </optgroup>
                             </select>
 </br>
@@ -82,5 +114,7 @@
   
  </div>
  </div>
+
+
 </body>
 </html>
