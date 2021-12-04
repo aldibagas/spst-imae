@@ -66,10 +66,10 @@
     VALUES ('', '$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '1', '0', null)";
 
     $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
-    VALUES ('1', '0', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
+    VALUES ('$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
 
     $sql3 = "INSERT INTO `navigasi` (`idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
-    VALUES ('1', '2', '$latitude', '$longitude','$ala')";
+    VALUES ('$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
 
     $query2  = mysqli_query($conn,$sql1);
 
@@ -658,17 +658,17 @@ function lokasi()
   var loka = document.getElementById("lokasi1").value;
   let x='';
   harga=parseInt(loka);
-  if(loka==0)
+  if(loka==1)
   {
     x = 'BANK1';
   }
-  if(loka==1)
+  if(loka==2)
   {
     x = 'BANK2';
-  }if(loka==2)
+  }if(loka==3)
   {
     x = 'BANK3';
-  }if(loka==3)
+  }if(loka==4)
   {
     x = 'BANK4';
   }
