@@ -71,6 +71,7 @@
     $sql3 = "INSERT INTO `navigasi` (`idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
     VALUES ('$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
 
+
     $query2  = mysqli_query($conn,$sql1);
 
     @$query5 = "SELECT * FROM transaksi ORDER BY idt";

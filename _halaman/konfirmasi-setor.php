@@ -82,6 +82,7 @@
                       }else{
                         $metodeBayar = 'Penyetoran Sampah';
                       }
+                      
 
                       $status_setor = '';
                       if($Fetch['status_setor'] == 0){
