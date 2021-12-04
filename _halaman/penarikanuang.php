@@ -45,6 +45,8 @@
 
      //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
      //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
+    $x = $saldo - $jumlah_tarik;
+    if($x > 0){
 
     //kirim notifikasi pada petugas secara acak
     //pemilihan petugas
@@ -79,6 +81,9 @@
         <div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Password Salah</div>"
         ';
     }
+}else{
+    echo "<script> alert('transaksi gagal')</script>";
+}
 }
 
 ?>
