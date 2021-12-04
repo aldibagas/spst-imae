@@ -62,8 +62,8 @@
     $idPetugas = $idPetugasRand[$rand];
 
     //Pengiriman Notifikasi
-    $sql2 = "INSERT INTO `notifikasi` (`idt`, `idp2`, `idpetugas`, `aktivitas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `harga_total`, `jumlah_tarik`, `bank`, `tanggal`, `status_tarik`, `status_setor`) 
-    VALUES ('', '$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '1', '0', null)";
+    $sql2 = "INSERT INTO `notifikasi` (`idt`, `idp2`, `idpetugas`, `aktivitas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `harga_total`, `jumlah_tarik`, `bank`, `status_tarik`, `status_setor`) 
+    VALUES ('', '$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '0', null)";
 
     $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
     VALUES ('$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";

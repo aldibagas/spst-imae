@@ -80,7 +80,7 @@
                       if($Fetch['metode_bayar'] == 0){
                         $metodeBayar = 'Penyetoran Sampah';
                       }else{
-                        $metodeBayar = 'Penarikan Uang';
+                        $metodeBayar = 'Penyetoran Sampah';
                       }
 
                       $status_setor = '';
