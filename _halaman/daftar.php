@@ -55,7 +55,7 @@
    <input name ="username" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
    <label class="card-title">Email</label><br>
    <input name ="email" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
-   <label class="card-title">Pelanggan/petugas</label><br>
+   <label class="card-title">Mitra</label><br>
                             
                             <select class="form-control border-0 rounded-pill select2" style="background-color:#d1d1d1" id="simple-select2" name ="Kelas">
                                 <optgroup label="Pilih">

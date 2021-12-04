@@ -12,5 +12,6 @@
     labels:['uangmasuk','uangkeluar'],
     hideHover:'auto',
 
+    
     });
 </script>

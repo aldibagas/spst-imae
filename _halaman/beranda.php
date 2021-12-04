@@ -251,7 +251,7 @@ Manfaat menjaga kebersihan lingkungan antara lain:
       <!-- Wrapper for carousel items -->
 <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="banjir.jpg" class="d-block w-100" alt="Slide 1">
+        <img src="banjir.jpeg" class="d-block w-100" alt="Slide 1">
         </div>
         </div>')?>
       

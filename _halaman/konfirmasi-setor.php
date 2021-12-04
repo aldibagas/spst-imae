@@ -70,7 +70,6 @@
                         $notifId = $_GET['notif'];
                     }
                     
-                    
                   $Query = "SELECT * FROM notifikasi where idt = $notifId and status_setor is null and idpetugas = $userid ORDER BY idt DESC LIMIT 1";
                   $Run = mysqli_query($conn, $Query);
          
@@ -100,7 +99,7 @@
  
                        echo"
                          <p align=left><b><mb-1 small text-muted>
-                         Waktu Penyetoran &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;: ".$Fetch['tanggal']."</mb-1 small text-muted> </br>
+                         Waktu Penyetoran &emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;: ".$Fetch['tanggal']."</mb-1 small text-muted> </br>
                          <li></li>
                          <p align=left><b><mb-1 small text-muted>
                          Nama Pelanggan &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;: ".$namaPelanggan."</mb-1 small text-muted> </br>
@@ -108,8 +107,7 @@
                          <p align=left><b><mb-1 small text-muted>
                          Aktivitas &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp&emsp;: ".$metodeBayar."</mb-1 small text-muted> </br>
                         <p align=left><b><mb-1 small text-muted>
-                        Total Harga Sampah &emsp;: Rp. <td>".$Fetch['harga_total']."</mb-1 small text-muted></br> 
-                        <li></li>
+                        Total Harga Sampah &emsp;&emsp;&emsp;&emsp;: Rp. <td>".$Fetch['harga_total']."</mb-1 small text-muted></br> 
                         <p align=left><b><mb-1 small text-muted>
                         Status &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; : ".$Fetch['status_setor']."</mb-1 small text-muted></br>
                         <li></li>

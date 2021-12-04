@@ -71,6 +71,9 @@
     VALUES ('1', '2', '$latitude', '$longitude','$ala')";
 
     $query2  = mysqli_query($conn,$sql1);
+
+    @$query5 = "SELECT * FROM transaksi ORDER BY idt";
+
     $query3  = mysqli_query($conn,$sql2);
     $query4  = mysqli_query($conn,$sql3);
   
