@@ -34,7 +34,7 @@
     $data[] = $row;
    }
 
-   
+
 ?>
 
               <div class="row">
@@ -122,7 +122,7 @@
               <!-- charts-->
               <?php 
               //index.php
-              $connect = mysqli_connect("localhost", "root", "", "spst");
+              
               $query = "SELECT * FROM datauang";
               $result = mysqli_query($connect, $query);
               $chart_data = '';
