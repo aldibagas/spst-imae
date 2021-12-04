@@ -20,12 +20,12 @@
 		$cRow = mysqli_fetch_assoc($cRun);
 		$idp = $cRow['idp'];
 		$tgl = date('Y-m-d');
-		$tabungan = "INSERT INTO `tabungan`(`tanggal`, `idp1`, `saldo`)
+		echo$tabungan = "INSERT INTO `tabungan`(`tanggal`, `idp1`, `saldo`)
 				VALUES ('$tgl','$idp','0')";
 		mysqli_query($conn, $tabungan);
 		
 		
-        header('location:index.php?halaman=login');
+        //header('location:index.php?halaman=login');
         echo 'Berhasil Daftar';
     }else{
         echo 'Gagal Daftar';
