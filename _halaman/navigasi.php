@@ -10,7 +10,6 @@
          <div id='long' style='visibility:hidden'>".$row['longitude']."</div>
    ";
 ?>
-
 <div class="mb-2 align-items-center">
     <div class="card shadow mb-4">
         <div class="card-body">

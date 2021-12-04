@@ -16,7 +16,6 @@
 	});
 	
 	map.addLayer(Layer);
-
 	// ambil titik
 	getLocation();
 	setInterval(() => {
