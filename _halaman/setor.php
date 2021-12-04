@@ -83,23 +83,48 @@
  }
 ?>
 
+<form name="rega" action="" method="POST">
+  
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="slide2.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="slide1.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
 <div class="card">
   <div class="card-body">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <div class="row d-flex justify-content-center">
-		<div class="col-sm px-0 my-3">
-			<div class="border border-secondary">
-      </div>
-	  </div>
-      <center> <h2>DATA SAMPAH</h2> </center>
-    <div class="col-sm px-0 my-3">
-			<div class="border border-secondary">
+    <div class="row d-flex justify-content-center">
+		  <div class="col-sm px-0 my-3">
+		  	<div class="border border-secondary">
+          </div>
+	         </div>
+               <center> <h2>DATA SAMPAH</h2> </center>
+          <div class="col-sm px-0 my-3">
+		  	<div class="border border-secondary">
       </div>
 		</div>
 	</div>
-  
   <div>
-<form name="rega"action="" method="POST">
+
 <div class="row">
     <div class="col">
     <label for="simple-select2">Sampah</label>
@@ -121,7 +146,7 @@
     </div>
     <div class="col">
     <label>Jumlah (Kilograms)</label>
-     <input type="text" onchange="hargaBerat(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_1" id="jumlah_1" value="0">
+     <input type="text" onchange="hargaBerat(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_1" id="jumlah_1">
     </div>
   </div>
 
@@ -150,8 +175,8 @@
 
     </div>
     <div class="col">
-    <input type="text" onchange="hargaBerat2(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_2" id="jumlah_2" value="0">
-    </div>
+    <input type="text" onchange="hargaBerat2(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_2" id="jumlah_2"> 
+  </div>
   </div>
 
   <div class="row">
@@ -178,7 +203,7 @@
                             </select>
     </div>
     <div class="col">
-    <input type="text" onchange="hargaBerat3(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_3" id="jumlah_3" value="0">
+    <input type="text" onchange="hargaBerat3(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_3" id="jumlah_3">
     </div>
   </div>
  
@@ -212,7 +237,7 @@
     <div class="card">
       <div class="card-body">
       <h5>PEMBAYARAN</h5>
-    <p>Silahkan untuk memilih metode transaksi dibawah ini :</p>
+    <p>Silahkan memilih metode transaksi  :</p>
   <select class="form-control" id="metbay1" name="metbay1" onchange="metran()">
   <option value="" disabled selected hidden>Pilih Disini</option>
   <optgroup label="METODE TRANSAKSI">
@@ -227,10 +252,10 @@
     <div class="card">
       <div class="card-body">
       <h5>LOKASI CABANG</h5>
-    <p>Silahkan untuk memilih Lokasi yang Dikehendaki :</p>
+    <p>Silahkan memilih Lokasi :</p>
   <select class="form-control" id="lokasi1" name="lokasi1" onchange="lokasi()">
   <option value="" disabled selected hidden>Pilih Disini</option>
-  <optgroup label="">
+  <optgroup label="PILIH">
     <br>
     <?php
     //ambil data bank dari database
@@ -278,7 +303,7 @@
                     <p class="text-muted"></p>
                     <span class="h1 mb-0">DIJEMPUT</span>
                     <p class="text-muted"></p>
-                      <li>PILIH DISINI JIKA ANDA HENDAK MEMILIH METODE PEMBAYARAN DENGAN CARA DIJEMPUT</li>
+                      <li>Petugas akan menjemput ke rumah anda</li>
                     </ul>
 
 </a>                    
@@ -331,7 +356,7 @@
                     <p class="text-muted"></p>
                     <span class="h1 mb-0">DISERAHKAN </span>
                     <p class="text-muted"></p>
-                      <li>PILIH DISINI JIKA ANDA HENDAK MEMILIH METODE PEMBAYARAN DENGAN CARA DISERAHKAN</li>
+                      <li>Antarkan sampah anda ke bank yang sudah dipilih</li>
                     </ul>
                     <div class="container">
   <!-- Trigger the modal with a button -->
@@ -384,11 +409,11 @@
       </div>
       <div class="modal-body">
       <p class="text-muted"></p>
-                      <h2>Data Transaksi</h2>
+                      <h3>Data Transaksi</h3>
                       <br>
                       <div class="row">
     <div class="col">
-    <h5><div id="harga" name="harga">Jenis Sampah 1</div><h5>
+    <h5><div id="harga" name="harga"></div><h5>
     </div>
     <h5>x</h5>
     <div class="col">
@@ -404,14 +429,14 @@
 
   <div class="row">
     <div class="col">
-    <h5><div id="harga1" name="harga1">Jenis Sampah 2</div><h5>
+    <h5><div id="harga1" name="harga1"></div><h5>
     </div>
     <h5>x</h5>
     <div class="col">
     <h5><div id="berat2" name="berat2">0</div><h5>
     </div>
     <h5> = </h5>
-    <h4>&nbsp Rp. </h4>
+    <h5>&nbsp Rp. </h5>
     <div class="col">
     <h5><div id="biaya_2" name="biaya_2">0</div><h5>
     </div>
@@ -419,7 +444,7 @@
 
   <div class="row">
     <div class="col">
-    <h5><div id="harga2" name="harga2">Jenis Sampah 3</div><h5>
+    <h5><div id="harga2" name="harga2"></div><h5>
     </div>
     <h5>x</h5>
     <div class="col">
@@ -435,16 +460,15 @@
 <div class="col-sm px-0 my-3">
 			<div class="border border-secondary">
       </div>
-		</div>
+</div>
 
     <div class="row">
     <div class="col">
     <h1 class="modal-title" id="exampleModalLabel"><h3>Total</h3></h1>
     </div>
-  
     <div class="col">
     </div>
-    <h5> &nbsp Rp.</h5>
+    <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rp.</h5>
     <div class="col">
     <h5><div id="totalHarga">0</div><h5>
       <input type="hidden" name="totalHarga" id="inputtotalharga">

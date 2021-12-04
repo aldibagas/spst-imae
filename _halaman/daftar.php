@@ -17,7 +17,7 @@
     $confirpass = $_POST['confirpass'];
    
     
-    echo$sql = "
+    $sql = "
     INSERT INTO `pengguna` (`afiliasi`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
     VALUES ('$afiliasi', '$kelas', '$user', '$email', '$alamat', '$telp', '$pass')";
 	
@@ -31,6 +31,7 @@
     }
  }
 
+ 
 ?>
 <html>
 <head>
@@ -114,6 +115,7 @@
   
  </div>
  </div>
+
 
 </body>
 </html>
