@@ -15,6 +15,16 @@
     VALUES (default,'testing','$user','$telp','$pass','$email')";
 	
 	if($run = mysqli_query($conn, $sql)){
+		$cari = "select * from pengguna where `Nama` = '$user' and `Kata Sandi` = '$pass'";
+		$cRun = mysqli_query($conn, $cari);
+		$cRow = mysqli_fetch_assoc($cRun);
+		$idp = $cRow['idp'];
+		$tgl = date('Y-m-d');
+		$tabungan = "INSERT INTO `tabungan`(`tanggal`, `idp1`, `saldo`)
+				VALUES ('$tgl','$idp','0')";
+		mysqli_query($conn, $tabungan);
+		
+		
         header('location:index.php?halaman=login');
         echo 'Berhasil Daftar';
     }else{
