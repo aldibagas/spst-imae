@@ -13,31 +13,16 @@
     $alamat = $_POST['alamat'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
-	if(isset($_POST['afiliasi'])){
-		@$afiliasi = $_POST['afiliasi'];
-	}
+    $afiliasi = $_POST['afiliasi'];
     $confirpass = $_POST['confirpass'];
    
-	if(@$afiliasi == null){
-		$afiliasi = '0';
-	}
     
-    $sql = "
+    echo$sql = "
     INSERT INTO `pengguna` (`afiliasi`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
     VALUES ('$afiliasi', '$kelas', '$user', '$email', '$alamat', '$telp', '$pass')";
 	
 	if($run = mysqli_query($conn, $sql)){
-		
-		$cari = "select * from pengguna where `Nama` = '$user' and `Sandi` = '$pass'";
-		$cRun = mysqli_query($conn, $cari);
-		$cRow = mysqli_fetch_assoc($cRun);
-		$idp = $cRow['idp'];
-		$tgl = date('Y-m-d');
-		$tabungan = "INSERT INTO `tabungan`(`tanggal`, `idp1`, `saldo`)
-				VALUES ('$tgl','$idp','0')";
-		mysqli_query($conn, $tabungan);
-		
-        5header('location:index.php?halaman=login');
+        header('location:index.php?halaman=login');
         echo 'Berhasil Daftar';
     }else{
         echo '
@@ -76,14 +61,14 @@
                             <select class="form-control border-0 rounded-pill select2" id="affiliasi" onchange="aff()" style="background-color:#d1d1d1" id="simple-select2" name ="kelas"placeholder ="kelas">
                                 <optgroup label="Pilih">
                                  <option value="" disabled selected hidden>Pilih Disini</option>
-                                  <option value="pengguna">Pelanggan</option>
-                                  <option value="petugas">Petugas</option>
+                                  <option value="Pelanggan">Pelanggan</option>
+                                  <option value="Petugas">Petugas</option>
                                 </optgroup>
                             </select>
 <script>
      function aff(){
         let e = document.getElementById('affiliasi').value;
-        if(e == 'pengguna'){
+        if(e == 'Pelanggan'){
             document.getElementById("bank").disabled = true;
         }else{
             document.getElementById("bank").disabled = false;
@@ -129,7 +114,6 @@
   
  </div>
  </div>
-
 
 </body>
 </html>
