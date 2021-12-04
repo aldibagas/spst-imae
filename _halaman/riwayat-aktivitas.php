@@ -53,7 +53,6 @@
                 <head>
                   <tr role="row">
                     <th>Tanggal</th>
-                    <th>Nama Pelanggan</th>
                     <th>Nama Petugas</th>
                     <th>Aktivitas</th>
                     <th>Keterangan</th>
