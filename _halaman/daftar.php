@@ -37,7 +37,7 @@
 				VALUES ('$tgl','$idp','0')";
 		mysqli_query($conn, $tabungan);
 		
-        header('location:index.php?halaman=login');
+        5header('location:index.php?halaman=login');
         echo 'Berhasil Daftar';
     }else{
         echo '
