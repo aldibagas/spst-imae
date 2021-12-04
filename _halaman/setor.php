@@ -1,4 +1,5 @@
 <?php
+
    session_start();
    include '_helpers/connect.php';
    $title="SETOR";
