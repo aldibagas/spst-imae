@@ -1,10 +1,34 @@
 <?php
+
    session_start();
    include '_helpers/connect.php';
    $title="SETOR";
+   if($_SESSION['nama'] == null){
+    header('Location:index.php?halaman=login');
+}
+   $nama = $_SESSION['nama'];
+   $sqlId = "select * from pengguna where Nama = '$nama'";
+   $idRun = mysqli_query($conn, $sqlId);
+   $ambilId = mysqli_fetch_assoc($idRun);
+   $id  = $ambilId['idp'];
    
    if(isset($_POST['insert'])) 
    {
+    $sqlId = "select * from pengguna where Nama = '$nama'";
+    $idRun = mysqli_query($conn, $sqlId);
+    $ambilId = mysqli_fetch_assoc($idRun);
+    $id  = $ambilId['idp'];
+
+    $idp2 = $id;
+    @$aktivitas = $_POST ['aktivitas'];
+    @$metode_bayar= $_POST['metode_bayar'];
+    @$metode_transaksi= $_POST['metode_transaksi'];
+    @$status= $_POST['status'];
+    @$bank = $_POST['bank'];
+
+    //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
+    //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
+
     $p1 = $_POST ['pesanan_1'];
     $p2 = $_POST ['pesanan_2'];
     $p3 = $_POST ['pesanan_3'];
@@ -26,17 +50,32 @@
 
     $ala = $_POST ['message']; 
 
-    
-    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
-    VALUES ('1', '0', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
+    //kirim notifikasi pada petugas secara acak
+    //pemilihan petugas
+    $sqlRand = "select idp from pengguna where kelas = 'petugas' and afiliasi = '$cabang'";
+    $runRand = mysqli_query($conn, $sqlRand);
+    $idPetugasRand = array();
+    while($fchRand = mysqli_fetch_assoc($runRand)){
+        $idPetugasRand[] = $fchRand['idp'];
+    }
+    $rand = array_rand($idPetugasRand);
+    $idPetugas = $idPetugasRand[$rand];
 
-    $sql2 = "INSERT INTO `notifikasi` (`idp2`, `idpetugas`, `data_transaksi`, `metode_bayar`, `metode_transaksi`, `waktu_tarik`, `jumlah_tarik`, `status_tarik`) 
-    VALUES ('4', '1', '$p1 / $p2 / $p3', '$mb1', '$mt1', '0', '0', '0')";
+    //Pengiriman Notifikasi
+    $sql2 = "INSERT INTO `notifikasi` (`idt`, `idp2`, `idpetugas`, `aktivitas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `harga_total`, `jumlah_tarik`, `bank`, `status_tarik`, `status_setor`) 
+    VALUES ('', '$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '0', null)";
+
+    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
+    VALUES ('$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
 
     $sql3 = "INSERT INTO `navigasi` (`idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
-    VALUES ('1', '2', '$latitude', '$longitude','$ala')";
+    VALUES ('$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
+
 
     $query2  = mysqli_query($conn,$sql1);
+
+    @$query5 = "SELECT * FROM transaksi ORDER BY idt";
+
     $query3  = mysqli_query($conn,$sql2);
     $query4  = mysqli_query($conn,$sql3);
   
@@ -193,12 +232,19 @@
   <option value="" disabled selected hidden>Pilih Disini</option>
   <optgroup label="">
     <br>
-    <option value=0> BANK 1 </option>
-    <option value=1> BANK 2 </option>
-    <option value=2> BANK 3 </option>
-    <option value=3> BANK 4 </option>
+    <?php
+    //ambil data bank dari database
+    $sqlbank = "select * from cabang_bank";
+    $runbank = mysqli_query($conn, $sqlbank);
+    $val = 1;
+    while($listbank = mysqli_fetch_assoc($runbank)){
+     echo'<option value="'.$val.'"> '.$listbank['nama_cabang'].' </option>';
+     $val++;
+    }
+    ?>
+
   </select>
-  
+
       </div>
     </div>
   </div>
@@ -613,17 +659,17 @@ function lokasi()
   var loka = document.getElementById("lokasi1").value;
   let x='';
   harga=parseInt(loka);
-  if(loka==0)
+  if(loka==1)
   {
     x = 'BANK1';
   }
-  if(loka==1)
+  if(loka==2)
   {
     x = 'BANK2';
-  }if(loka==2)
+  }if(loka==3)
   {
     x = 'BANK3';
-  }if(loka==3)
+  }if(loka==4)
   {
     x = 'BANK4';
   }
@@ -655,5 +701,3 @@ function myFunction1() {
   document.getElementById("bijil").innerHTML = x; 
 }
 </script>
-
-

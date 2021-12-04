@@ -5,25 +5,7 @@
     header('Location:index.php?halaman=login');
 }
 
-        $cekHari = "SELECT * FROM `datauang` WHERE tanggal = CURDATE()";
-        $runHari = mysqli_query($conn, $cekHari);
-        if(mysqli_num_rows($runHari) == null){
-        //hari belum ada
-        $inputSql = "insert into datauang(uangkeluar, tanggal) value('1',CURRENT_TIMESTAMP)";
-        mysqli_query($conn, $inputSql);
-        }else{
 
-        $ambilSql = "SELECT * FROM `datauang` WHERE `tanggal` = CURRENT_DATE";
-        $ambilRun = mysqli_query($conn, $ambilSql);
-        $ambilRow = mysqli_fetch_assoc($ambilRun);
-
-        $tot = $ambilRow['uangkeluar'] +1;
-
-        //tambah data login
-        $tambahSql = "UPDATE datauang set uangkeluar = '$tot' where tanggal = CURRENT_DATE";
-        mysqli_query($conn, $tambahSql);
-        }
-        
    $nama = $_SESSION['nama'];
    $sqlId = "select * from pengguna where Nama = '$nama'";
    $idRun = mysqli_query($conn, $sqlId);
@@ -63,6 +45,8 @@
 
      //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
      //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
+    $x = $saldo - $jumlah_tarik;
+    if($x > 0){
 
     //kirim notifikasi pada petugas secara acak
     //pemilihan petugas
@@ -97,6 +81,31 @@
         <div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Password Salah</div>"
         ';
     }
+}else{
+    echo "<script> alert('transaksi gagal')</script>";
+}
+}
+
+?>
+<?php
+
+$cekHari = "SELECT * FROM `datauang` WHERE tanggal = CURDATE()";
+$runHari = mysqli_query($conn, $cekHari);
+if(mysqli_num_rows($runHari) == null){
+    //hari belum ada
+    $inputSql = "insert into datauang(uangkeluar, tanggal) value('1',CURRENT_TIMESTAMP)";
+    mysqli_query($conn, $inputSql);
+}else{
+
+    $ambilSql = "SELECT * FROM `datauang` WHERE `tanggal` = CURRENT_DATE";
+    $ambilRun = mysqli_query($conn, $ambilSql);
+    $ambilRow = mysqli_fetch_assoc($ambilRun);
+
+    $tot = $ambilRow['uangkeluar'] +1;
+
+    //tambah data login
+    $tambahSql = "UPDATE datauang set uangkeluar = '$tot' where tanggal = CURRENT_DATE";
+    mysqli_query($conn, $tambahSql);
 }
 
 ?>

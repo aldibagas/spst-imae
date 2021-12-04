@@ -1,7 +1,7 @@
 <?php
 @session_start();
 
-$data = mysqli_query($conn, 'SELECT SUM(status_tarik) and  AS value_sum FROM notifikasi'); 
+$data = mysqli_query($conn, 'SELECT SUM(status_tarik) AS value_sum FROM notifikasi'); 
 $row = mysqli_fetch_assoc($data); 
 $notif = $row['value_sum'];
 ?>
@@ -20,7 +20,7 @@ $notif = $row['value_sum'];
               <span class="fe fe-message-square">
               </span>
             </a>
-            
+
           </li>
           <li class="nav-item nav-notif">
             <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">

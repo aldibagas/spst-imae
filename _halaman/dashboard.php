@@ -34,6 +34,7 @@
     $data[] = $row;
    }
 
+   
 ?>
 
               <div class="row">

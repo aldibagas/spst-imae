@@ -13,6 +13,7 @@ $runcek = mysqli_query($conn, $sqlcek);
 $numNotif = mysqli_num_rows($runcek);
 ?>
 
+
 <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -24,6 +25,7 @@ $numNotif = mysqli_num_rows($runcek);
           </div>
           <div class="modal-body">
             <div class="list-group list-group-flush my-n3">
+              <div class="list-group list-group-flush my-n3">Tarik Uang</div>
               <?php
               if(mysqli_num_rows($runcek)>0){
                 while($fch = mysqli_fetch_assoc($runcek)){
@@ -35,7 +37,58 @@ $numNotif = mysqli_num_rows($runcek);
                         <span class="fe fe-box fe-24"></span>
                       </div>
                       <div class="col">
-                        <small><strong>jumlah uang yang di ambil : '.$fch['jumlah_tarik'].'</strong></small>
+                        <small><strong>Pengajuan Penarikan Uang Sebesar Rp '.$fch['jumlah_tarik'].'</strong></small>
+                        <div class="my-0 text-muted small">id penarik: '.$fch['idp2'].'</div>
+                        <small class="badge badge-pill badge-light text-muted">1m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  </a>
+                  ';
+                }
+              }
+              ?>
+              <div class="list-group list-group-flush my-n3">Setor Sampah</div>
+              <?php
+              //notifikasi untuk setor sampah
+              $sqlsetorsampah = "select * from notifikasi where idpetugas = $id and status_setor is null order by idt desc";
+              $runsetorsampah = mysqli_query($conn, $sqlsetorsampah);
+              if(mysqli_num_rows($runsetorsampah)>0){
+                while($fch = mysqli_fetch_assoc($runsetorsampah)){
+                  echo'
+                    <a href = "?halaman=konfirmasi-setor&notif='.$fch['idt'].'">
+                    <div class="list-group-item bg-transparent">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <span class="fe fe-box fe-24"></span>
+                        </div>
+                        <div class="col">
+                          <small><strong>Penyetoran Sampah Berjenis: '.$fch['data_sampah'].'</strong></small>
+                          <div class="my-0 text-muted small">id penarik: '.$fch['idp2'].'</div>
+                          <small class="badge badge-pill badge-light text-muted">1m ago</small>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  ';
+                }
+              }
+              ?>
+
+            <div class="modal-body">
+            <div class="list-group list-group-flush my-n3">
+              <?php
+              if(mysqli_num_rows($runcek)>0){
+                while($fch = mysqli_fetch_assoc($runcek)){
+                  echo'
+                  <a href = "?halaman=konfirmasipesanan&notif='.$fch['idt'].'">
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-download fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Pengajuan Penyetoran Sampah '.$fch['data_sampah'].'</strong></small>
                         <div class="my-0 text-muted small">id penarik: '.$fch['idp2'].'</div>
                         <small class="badge badge-pill badge-light text-muted">1m ago</small>
                       </div>
@@ -53,17 +106,28 @@ $numNotif = mysqli_num_rows($runcek);
                 ?>
 
               <div class="list-group-item bg-transparent">
-                      <div class="row align-items-center">
-                        <div class="col-auto">
-                          <span class="fe fe-inbox fe-24"></span>
-                        </div>
-                    <div class="col">
-                          <small><strong>Petugas menyetujui pencairan uang</strong></small>
-                          <div class="my-0 text-muted small">Petugas</div>
-                          <small class="badge badge-pill badge-light text-muted">2m ago</small>
-                        </div>
+                <?php
+                //notifikasi untuk penerimaan sampah
+                $sqlterima = "select * from notifikasi where idp2 = '$id' and status_setor = '1' order by idt desc";
+                $runterima = mysqli_query($conn, $sqlterima);
+                if(mysqli_num_rows($runterima)>0){
+                  while($fch = mysqli_fetch_assoc($runterima)){
+                    echo'
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-inbox fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Petugas menyetujui pencairan uang sebesar : '.$fch['harga_total'].'</strong></small>
+                        <div class="my-0 text-muted small">Petugas</div>
+                        <small class="badge badge-pill badge-light text-muted">2m ago</small>
                       </div>
                     </div>
+                    ';
+                  }
+                }
+                ?>
+
                     <?php } else { ?>
               <div class="list-group-item bg-transparent">
                       <div class="row align-items-center">
@@ -147,3 +211,5 @@ $numNotif = mysqli_num_rows($runcek);
       </div>
     </div>
   </main> <!-- main -->
+
+  

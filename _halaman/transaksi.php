@@ -11,7 +11,7 @@
                     <span class="h1 mb-0">Setor Sampah</span>
                     <p class="text-muted"></p>
                     <ul class="list-unstyled">
-                      <li>Setor sampah adalah program yang menawarkan setiap orang untuk berpartisipasi aktif mengelola sampahnya secara bertanggung jawab.</li>
+                      <li>Sampah yang telah dikumpulkan dapat dijemput atau diantarkan ke petugas, kemudian akan menjadi saldo pada tabungan setiap pelanggan.</li>
                       <li></li>
                       <li></li>
                       <li></li>
