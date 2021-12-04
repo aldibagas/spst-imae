@@ -122,7 +122,7 @@
               <!-- charts-->
               <?php 
               //index.php
-              $connect = mysqli_connect("localhost", "cypr9718", "pq6SPaHWYiKe38", "cypr9718_spst");
+              $connect = mysqli_connect("localhost", "root", "", "spst");
               $query = "SELECT * FROM datauang";
               $result = mysqli_query($connect, $query);
               $chart_data = '';

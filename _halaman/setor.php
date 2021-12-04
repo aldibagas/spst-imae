@@ -604,7 +604,6 @@ function hargaBerat3(val){
   document.getElementById('biaya_3').innerHTML = total;
 }
 
-
 function proses4()
 {
   var harga3 = document.getElementById("pilih3").value;

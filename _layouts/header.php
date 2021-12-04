@@ -20,8 +20,7 @@ $notif = $row['value_sum'];
               <span class="fe fe-message-square">
               </span>
             </a>
-            
-            
+
           </li>
           <li class="nav-item nav-notif">
             <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
