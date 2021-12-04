@@ -5,7 +5,7 @@ include_once 'lib/google-client/Google_Client.php';
 include_once 'lib/google-client/contrib/Google_Oauth2Service.php';
 $client_id = '631941004935-kk618004t04de88evvqfo6jaeijth6vk.apps.googleusercontent.com'; // Google client ID
 $client_secret = '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'; // Google Client Secret
-$redirect_url = 'http://localhost/login_php/google.php'; // Callback URL
+$redirect_url = 'https://spst.cypiral.org/google/google.php'; // Callback URL
 // Call Google API
 $gclient = new Google_Client();
 $gclient->setApplicationName('Google Login'); // Set dengan Nama Aplikasi Kalian
