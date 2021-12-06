@@ -6,28 +6,28 @@
    $row = mysqli_fetch_assoc($data); 
    $saldo_total = $row['value_sum'];
    
-   $data1 = mysqli_query($conn, 'SELECT SUM(berat) AS berat_total FROM pemesanan'); 
+   $data1 = mysqli_query($conn, 'SELECT SUM(berat) AS berat_total FROM transaksi'); 
    $row1 = mysqli_fetch_assoc($data1); 
    $berat_total = $row1['berat_total'];
 
-   $data2 = mysqli_query($conn, 'SELECT COUNT(status) AS n FROM pemesanan WHERE status=2'); 
+   $data2 = mysqli_query($conn, 'SELECT COUNT(status) AS n FROM transaksi WHERE status=2'); 
    $row2= mysqli_fetch_assoc($data2); 
    $n = $row2['n'];
 
-   $data3 = mysqli_query($conn, 'SELECT COUNT(status) AS jumlah FROM pemesanan'); 
+   $data3 = mysqli_query($conn, 'SELECT COUNT(status) AS jumlah FROM transaksi'); 
    $row3= mysqli_fetch_assoc($data3); 
    $jumlah = $row3['jumlah'];
    $persen_proses = round(($n / $jumlah)*100,1);
 
    $sekarang = 0;
-   $data4 = mysqli_query($conn, "SELECT SUM(berat) AS berat_avg FROM pemesanan WHERE date(tanggal) = CURDATE()"); 
+   $data4 = mysqli_query($conn, "SELECT SUM(berat) AS berat_avg FROM transaksi WHERE date(tanggal) = CURDATE()"); 
    $row4 = mysqli_fetch_assoc($data4); 
    $berat_avg = $row4['berat_avg'];
    if($berat_avg <= 1){
      $berat_avg = 0;
    }
 
-   $Cari="SELECT * FROM pemesanan order by tanggal desc LIMIT 5";
+   $Cari="SELECT * FROM transaksi order by tanggal desc LIMIT 5";
    $Tampil = mysqli_query($conn, $Cari);
    $data = array();
    while($row = mysqli_fetch_assoc($Tampil)){
