@@ -131,6 +131,7 @@
               $chart_data .= "{ tanggal:'".$row["tanggal"]."', uangmasuk:".$row["uangmasuk"].", uangkeluar:".$row["uangkeluar"]." }, ";
               }
               $chart_data = substr($chart_data, 0, -2);
+              
               ?>
               <div class="row my-5">
                 <div class="col-md-12">
