@@ -12,13 +12,7 @@
           <!-- nav bar -->
           <div class="w-100 mb-4 d-flex">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./?halaman=profil">
-              <img src="PESAT.png" id="logo" class="navbar-brand-img brand-sm"  x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
-                <g>
-                  <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                  <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                  <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                </g>
-              </svg>
+              <img src="PESAT.png" id="logo" class="navbar-brand-img brand-sm"  x="0px" y="0px" viewBox="0 0 300 300" xml:space="preserve">
             </a>
           </div>
       <?php

@@ -46,45 +46,51 @@
      //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
      //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
     $x = $saldo - $jumlah_tarik;
-    if($x > 0){
+        if(($jumlah_tarik % 1000) == 0){
+            if($x > 0){
 
-    //kirim notifikasi pada petugas secara acak
-    //pemilihan petugas
-    $sqlRand = "select idp from pengguna where kelas = 'petugas'";
-    $runRand = mysqli_query($conn, $sqlRand);
-    $idPetugasRand = array();
-    while($fchRand = mysqli_fetch_assoc($runRand)){
-        $idPetugasRand[] = $fchRand['idp'];
+                //kirim notifikasi pada petugas secara acak
+                //pemilihan petugas
+                $sqlRand = "select idp from pengguna where kelas = 'petugas'";
+                $runRand = mysqli_query($conn, $sqlRand);
+                $idPetugasRand = array();
+                while($fchRand = mysqli_fetch_assoc($runRand)){
+                    $idPetugasRand[] = $fchRand['idp'];
+                }
+                $rand = array_rand($idPetugasRand);
+                $idPetugas = $idPetugasRand[$rand];
+            
+                //pengiriman notifikasi
+                 $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`, `aktivitas`, `waktu_tarik`,`jumlah_tarik`, `bank`, `metode_bayar`, `metode_transaksi`,`status_tarik`)
+                 VALUES ('', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '$bank', '0', '0', null)";
+            
+                 //$query2 = mysqli_query($conn,$sql1); 
+            
+                 mysqli_commit($conn);
+            
+                 $sql = "SELECT * FROM `pengguna` WHERE `Sandi` = '$pass'";
+                 $run = mysqli_query($conn, $sql);
+                 $row = mysqli_fetch_assoc($run);
+            
+                    if($row > 0){
+                        //jika password benar
+                        //update
+                        mysqli_query($conn,$sqlnotif);
+                        echo "<script> alert('Transaksi Berhasil!')</script>";
+                        //header('location:index.php?halaman=transaksi');
+                    }else{
+                        echo'
+                        <div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Password Salah</div>"
+                        ';
+                    }
+                }else{
+                    echo "<script> alert('transaksi gagal')</script>";
+                }
+            
+        }else{
+            echo "<script> alert('bukan kelipatan 1000')</script>";
+        }
     }
-    $rand = array_rand($idPetugasRand);
-    $idPetugas = $idPetugasRand[$rand];
-
-    //pengiriman notifikasi
-     $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`, `aktivitas`, `waktu_tarik`,`jumlah_tarik`, `bank`, `metode_bayar`, `metode_transaksi`,`status_tarik`)
-     VALUES ('', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '$bank', '0', '0', null)";
-
-     //$query2 = mysqli_query($conn,$sql1); 
-
-     mysqli_commit($conn);
-
-     $sql = "SELECT * FROM `pengguna` WHERE `Sandi` = '$pass'";
-     $run = mysqli_query($conn, $sql);
-     $row = mysqli_fetch_assoc($run);
-
-    if($row > 0){
-        //jika password benar
-        //update
-        mysqli_query($conn,$sqlnotif);
-        //header('location:index.php?halaman=transaksi');
-    }else{
-        echo'
-        <div style="width:100%;color:white;background-color:red;text-align:center;padding:5px;font-weight:bold;">Password Salah</div>"
-        ';
-    }
-}else{
-    echo "<script> alert('transaksi gagal')</script>";
-}
-}
 
 ?>
 <?php
@@ -109,6 +115,8 @@ if(mysqli_num_rows($runHari) == null){
 }
 
 ?>
+
+
 <?=content_open_full('')?>
                                             <form role="form" method="POST">  
                                             <div class="form-group">
@@ -131,7 +139,8 @@ if(mysqli_num_rows($runHari) == null){
                                             </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Jumlah Saldo Yang ditarik</p>
-                                            <input type="text" class="form-control" aria-label="saldo" name="jumlah_tarik">
+
+                                            <input type="number" class="form-control" aria-label="saldo" name="jumlah_tarik" required min="0" >
 
                                             <div>
                                             <form action="" method="POST">
