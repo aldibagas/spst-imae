@@ -61,25 +61,31 @@
     $rand = array_rand($idPetugasRand);
     $idPetugas = $idPetugasRand[$rand];
 
-    //Pengiriman Notifikasi
-    $sql2 = "INSERT INTO `notifikasi` (`idt`, `idp2`, `idpetugas`, `aktivitas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `harga_total`, `jumlah_tarik`, `bank`, `status_tarik`, `status_setor`) 
-    VALUES ('', '$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '0', null)";
-
     $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
     VALUES ('$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
 
-    $sql3 = "INSERT INTO `navigasi` (`idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
-    VALUES ('$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
-
-
     $query2  = mysqli_query($conn,$sql1);
 
-    @$query5 = "SELECT * FROM transaksi ORDER BY idt";
+    //ambil id transaksi
+    $sqlAmbilIdt = "select * from transaksi where idp1 = $idp2 and idp2 = $idPetugas order by idt desc";
+    $runAmbilIdt = mysqli_query($conn, $sqlAmbilIdt);
+    if($rowAmbilIdt = mysqli_fetch_assoc($runAmbilIdt)){
 
-    $query3  = mysqli_query($conn,$sql2);
-    $query4  = mysqli_query($conn,$sql3);
-  
-    mysqli_commit($conn);
+      $idt = $rowAmbilIdt['idt'];
+      //Pengiriman Notifikasi
+      $sql2 = "INSERT INTO `notifikasi` (`idt`, `idp2`, `idpetugas`, `aktivitas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `harga_total`, `jumlah_tarik`, `bank`, `status_tarik`, `status_setor`) 
+      VALUES ('$idt', '$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '0', null)";
+
+      $sql3 = "INSERT INTO `navigasi` (`idt`, `idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
+      VALUES ('$idt', '$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
+
+      @$query5 = "SELECT * FROM transaksi ORDER BY idt";
+
+      $query3  = mysqli_query($conn,$sql2);
+      $query4  = mysqli_query($conn,$sql3);
+    
+      mysqli_commit($conn);
+    }
  }
 ?>
 

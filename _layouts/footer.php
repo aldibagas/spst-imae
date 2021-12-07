@@ -15,7 +15,7 @@ $numNotif = mysqli_num_rows($runcek);
 
 
 <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-dialog modal-sm" style="height:auto!important;" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="defaultModalLabel">Notifikasi <?php echo $numNotif; ?></h5>
@@ -25,7 +25,7 @@ $numNotif = mysqli_num_rows($runcek);
           </div>
           <div class="modal-body">
             <div class="list-group list-group-flush my-n3">
-              <div class="list-group list-group-flush my-n3">Tarik Uang</div>
+              <div class="list-group list-group-flush my-n3">Penarikan Uang</div>
               <?php
               if(mysqli_num_rows($runcek)>0){
                 while($fch = mysqli_fetch_assoc($runcek)){
@@ -129,20 +129,7 @@ $numNotif = mysqli_num_rows($runcek);
                 ?>
 
                     <?php } else { ?>
-              <div class="list-group-item bg-transparent">
-                      <div class="row align-items-center">
-                        <div class="col-auto">
-                          <span class="fe fe-download fe-24"></span>
-                        </div>
-                        <div class="col">
-                          <small><strong>Pesanan masuk</strong></small>
-                          <a class="nav-link" href="<?=url('konfirmasipesanan')?>">
-                          <div class="my-0 text-muted small">Pengguna 1</div>
-                          <small class="badge badge-pill badge-light text-muted">2m ago</small>
-                          <div class="row"> 
-                            <div class="col">
-                             </div>
-                          </div>
+              
                           
                         </div>
                         </a>
@@ -155,7 +142,7 @@ $numNotif = mysqli_num_rows($runcek);
       </div>
     </div>
     <div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog" style="height:auto!important;" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="defaultModalLabel">Shortcuts</h5>
@@ -211,5 +198,3 @@ $numNotif = mysqli_num_rows($runcek);
       </div>
     </div>
   </main> <!-- main -->
-
-  
