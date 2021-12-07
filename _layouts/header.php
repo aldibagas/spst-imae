@@ -36,7 +36,7 @@ $notif = $row['value_sum'];
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Profil</a>
+              <a class="dropdown-item" href="index.php?halaman=profil">Profil</a>
               <a class="dropdown-item" href="<?=url('logout')?>">Keluar</a>
             </div>
           </li>

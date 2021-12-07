@@ -4,6 +4,11 @@
    $Template=true;
 
    $Cari="SELECT * FROM navigasi where idt = 9";
+   if(isset($_GET['idt'])){
+        $nav = $_GET['idt'];
+        $Cari="SELECT * FROM navigasi where idt = $nav";
+    }
+
    $Tampil = mysqli_query($conn, $Cari);
    $row = mysqli_fetch_assoc($Tampil);
    echo "<div id='lat' style='visibility:hidden'>".$row['latitude']."</div>

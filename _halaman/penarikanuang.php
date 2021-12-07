@@ -139,8 +139,7 @@ if(mysqli_num_rows($runHari) == null){
                                             </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Jumlah Saldo Yang ditarik</p>
-
-                                            <input type="number" class="form-control" aria-label="saldo" name="jumlah_tarik" required min="0" >
+                                            <input type="number"placeholder = "kelipatan Rp 1000" class="form-control" aria-label="saldo" name="jumlah_tarik" required min="0" >
 
                                             <div>
                                             <form action="" method="POST">

@@ -8,6 +8,8 @@
     $row = mysqli_fetch_assoc($ambil);
     $saldo = $row['value_sum'];
 
+    $nav = "SELECT idt and alamat FROM navigasi INNER JOIN ON longitude latitude";
+
     if(isset($_POST['submit'])){
         $idnotif = $_POST['idNotif'];
         $konfirmasi = $_POST['submit'];
@@ -41,6 +43,11 @@
 
             $sqlTabungan = "UPDATE tabungan SET `saldo`='$saldoAkhir' WHERE `idp1`='$idp'";
             mysqli_query($conn, $sqlTabungan);
+
+            //tentukan apakah ambil tunai atau ambil sampah
+             if($ambilUangSampah['metode_transaksi'] == 0){
+              header('location: ?halaman=navigasi&idt='.$idnotif);
+             }
         }
         if($konfirmasi == 'Tolak'){
             mysqli_query($conn, updateNotif(0, $idnotif));
@@ -70,7 +77,12 @@
                         $notifId = $_GET['notif'];
                     }
                     
-                  $Query = "SELECT * FROM notifikasi where idt = $notifId and status_setor is null and idpetugas = $userid ORDER BY idt DESC LIMIT 1";
+                  //ambil data notifikasi
+                  $Query = "
+                  SELECT notifikasi.*, navigasi.latitude, navigasi.longitude, navigasi.alamat 
+                  from notifikasi 
+                  join navigasi on notifikasi.idt = navigasi.idt 
+                  where notifikasi.idt = $notifId AND notifikasi.status_setor is null AND notifikasi.idpetugas = $userid";
                   $Run = mysqli_query($conn, $Query);
          
                   
@@ -78,11 +90,20 @@
                     while($Fetch = mysqli_fetch_assoc($Run)){
                       $metodeBayar = '';
                       if($Fetch['metode_bayar'] == 0){
-                        $metodeBayar = 'Penyetoran Sampah';
+                        $metodeBayar = 'Tunai';
                       }else{
-                        $metodeBayar = 'Penyetoran Sampah';
+                        $metodeBayar = 'Saldo';
                       }
-                      
+
+                      $metodetransaksi = '';
+                      $alamatPengambilan = '';
+                          if($Fetch['metode_transaksi'] == 0){
+                            $metodetransaksi = 'Dijemput';
+                            $alamatPengambilan = $Fetch['alamat'].'</br>'.$Fetch['latitude'].'</br>'.$Fetch['longitude'];
+                          }else{
+                            $metodetransaksi = 'Diserahkan';
+                            $alamatPengambilan = 'Diserahkan';
+                          }
 
                       $status_setor = '';
                       if($Fetch['status_setor'] == 0){
@@ -100,17 +121,20 @@
  
                        echo"
                          <p align=left><b><mb-1 small text-muted>
-                         Waktu Penyetoran &emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;: ".$Fetch['tanggal']."</mb-1 small text-muted> </br>
+                         Waktu Penyetoran &emsp;&ensp;&ensp;&nbsp;&nbsp;: ".$Fetch['tanggal']."</mb-1 small text-muted> </br>
                          <li></li>
                          <p align=left><b><mb-1 small text-muted>
-                         Nama Pelanggan &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;: ".$namaPelanggan."</mb-1 small text-muted> </br>
-                         <li></li>
+                         Nama Pelanggan &emsp;&ensp;&emsp;&nbsp;&nbsp;: ".$namaPelanggan."</mb-1 small text-muted> </br>
                          <p align=left><b><mb-1 small text-muted>
-                         Aktivitas &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp&emsp;: ".$metodeBayar."</mb-1 small text-muted> </br>
+                         Keterangan &emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;: ".$Fetch['data_sampah']."</mb-1 small text-muted> </br>
+                         <p align=left><b><mb-1 small text-muted>
+                         Metode Pembayaran &ensp;&nbsp;&nbsp;&nbsp;&nbsp;: ".$metodeBayar."</mb-1 small text-muted> </br>
                         <p align=left><b><mb-1 small text-muted>
-                        Total Harga Sampah &emsp;&emsp;&emsp;&emsp;: Rp. <td>".$Fetch['harga_total']."</mb-1 small text-muted></br> 
+                        Metode Transaksi &ensp;&ensp;&nbsp;&nbsp;&emsp;&nbsp;: ".$metodetransaksi."</mb-1 small text-muted> </br>
                         <p align=left><b><mb-1 small text-muted>
-                        Status &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; : ".$Fetch['status_setor']."</mb-1 small text-muted></br>
+                        Total Harga Sampah &emsp;&ensp;: Rp. <td>".$Fetch['harga_total']."</mb-1 small text-muted></br> 
+                        <p align=left><b><mb-1 small text-muted>
+                        Alamat &ensp;&ensp;&nbsp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&nbsp;: ".$alamatPengambilan."</mb-1 small text-muted> </br>
                         <li></li>
                       ";
                     }

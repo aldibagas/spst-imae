@@ -62,13 +62,13 @@
 			console.log(i+", "+n);
 			var pos=i+1;
 			if(pos==1){
-				urlIcon='<?=assets('img/trukhijaurev.jpg')?>';
+				urlIcon='<?=assets('icons/house.png')?>';
 			}
 			else if(pos==n){
-				urlIcon='<?=assets('img/avatar1.jpg')?>';
+				urlIcon='<?=assets('icons/marker.png')?>';
 			}
 			else{
-				urlIcon='<?=assets('img/trukhijau.png')?>';
+				urlIcon='<?=assets('icons/marker.png')?>';
 			}
 
             const marker = L.marker(waypoint.latLng, {

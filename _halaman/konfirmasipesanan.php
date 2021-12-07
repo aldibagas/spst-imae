@@ -74,9 +74,9 @@
                     while($Fetch = mysqli_fetch_assoc($Run)){
                       $metodeBayar = '';
                       if($Fetch['metode_bayar'] == 0){
-                        $metodeBayar = 'Penarikan Uang';
+                        $metodeBayar = 'Tunai';
                       }else{
-                        $metodeBayar = 'Penyetoran Sampah';
+                        $metodeBayar = 'Saldo';
                       }
 
                       $status_tarik = '';
@@ -94,19 +94,19 @@
                        $namaPelanggan= $fchANP['Nama'];
  
                        echo"
-                         <p align=left><b><mb-1 small text-muted>
-                         Waktu Tarik &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;: ".$Fetch['waktu_tarik']."</mb-1 small text-muted> </br>
+                       <p align=left><b><mb-1 small text-muted>
+                         Tanggal &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp;&nbsp;: ".$Fetch['tanggal']."</mb-1 small text-muted> </br>
                          <li></li>
                          <p align=left><b><mb-1 small text-muted>
                          Nama Pelanggan &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;: ".$namaPelanggan."</mb-1 small text-muted> </br>
                          <li></li>
                          <p align=left><b><mb-1 small text-muted>
-                         Aktivitas &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp&emsp;: ".$metodeBayar."</mb-1 small text-muted> </br>
+                         Metode Pembayaran &emsp;&emsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;&nbsp: ".$metodeBayar."</mb-1 small text-muted> </br>
                         <p align=left><b><mb-1 small text-muted>
                         Jumlah Uang Yang Ditarik &emsp;: Rp. <td>".$Fetch['jumlah_tarik']."</mb-1 small text-muted></br> 
                         <li></li>
                         <p align=left><b><mb-1 small text-muted>
-                        Status &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; : ".$Fetch['status_tarik']."</mb-1 small text-muted></br>
+                         Waktu Tarik &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;: ".$Fetch['waktu_tarik']."</mb-1 small text-muted> </br>
                         <li></li>
                       ";
                     }
