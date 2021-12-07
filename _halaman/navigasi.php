@@ -3,7 +3,7 @@
    $fileJS='navigasi-js';
    $Template=true;
 
-   $Cari="SELECT * FROM navigasi where idt = 7";
+   $Cari="SELECT * FROM navigasi where idt = 18";
    $Tampil = mysqli_query($conn, $Cari);
    $row = mysqli_fetch_assoc($Tampil);
    echo "<div id='lat' style='visibility:hidden'>".$row['latitude']."</div>
