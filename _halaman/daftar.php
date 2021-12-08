@@ -31,7 +31,7 @@
     }
  }
 
- 
+
 ?>
 <html>
 <head>
@@ -62,8 +62,8 @@
                             <select class="form-control border-0 rounded-pill select2" id="affiliasi" onchange="aff()" style="background-color:#d1d1d1" id="simple-select2" name ="kelas"placeholder ="kelas">
                                 <optgroup label="Pilih">
                                  <option value="" disabled selected hidden>Pilih Disini</option>
-                                  <option value="Pelanggan">Pelanggan</option>
-                                  <option value="Petugas">Petugas</option>
+                                  <option value="pengguna">Pelanggan</option>
+                                  <option value="petugas">Petugas</option>
                                 </optgroup>
                             </select>
 <script>
