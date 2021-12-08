@@ -27,8 +27,6 @@
     $saldo = $row['saldo'];
    }
    
-   
-
    $nama = $_SESSION['nama'];
    $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
    $Query = "SELECT * FROM 'transaksi' WHERE idp1=1";
@@ -58,12 +56,22 @@
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-down text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Pemasukan Terakhir</p>
-                        <span class="h3">Rp 5000</span><br />
+                        <p class="mb-1 small text-muted">Pemasukan Bulan Ini</p>
+                        <?php
+                          $id = $_SESSION['id'];
+                          $sql = "select * from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
+                          $run = mysqli_query($conn, $sql);
+                          $total = 0;
+                          while($row = mysqli_fetch_assoc($run)){
+                            $total = $total + $row['harga_total'];
+                          }
+                        ?>
+                        <span class="h3">Rp <?php echo $total; ?></span><br />
+                        
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
-                        <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
+                        <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
                         <?php $Query = "SELECT * FROM notifikasi order by idp2=idt desc LIMIT 1";
                       $Run = mysqli_query($conn, $Query);
                       if(mysqli_num_rows($Run)>0){
@@ -76,14 +84,21 @@
                       
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-down text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Pemasukan Bulan Ini </p>
-                        <span class="h3">Rp 10000
-
-                        </span><br />
+                        <p class="mb-1 small text-muted">Pemasukan Terakhir </p>
+                        <?php
+                        $Query = "SELECT * FROM notifikasi order by idp2='$id' desc LIMIT 1";
+                        $Run1 = mysqli_query($conn, $Query);
+                        if(mysqli_num_rows($Run1)>0){
+                        while($Fetch = mysqli_fetch_assoc($Run1)){
+                        echo" <span class='h3'>Rp ".$Fetch['harga_total']."</span> 
+                      ";
+                    }
+                  } ?>
+                        
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
-                        <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
+                        <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
                         <?php
                           $id = $_SESSION['id'];
                           $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
@@ -144,6 +159,7 @@
                             <div class="col">
                               <small><str><strong><?php echo $item['tanggal'];?></strong></small>
                               <div class="my-0 text-muted small">Menyerahkan <?php echo$item['data_sampah'];?></div>
+                             
                               <small class="badge badge-light text-muted">Berhasil</small>
                             </div>
                           </div>
@@ -155,28 +171,7 @@
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
       </div>
-      <div class ="row">
-            <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header align-items-center">
-                      <strong class="card-title">Jasa Angkut Sampah</strong>
-                    </div>
-                    <div class="card-body">
-                    <div class="row mt-2">
-                      <div class="col-6 text-center mb-3 border-right">
-                        <p class="text-muted mb-1">Sampah Basah</p>
-                        <h6 class="mb-1">Rp 2000</h6>
-                        <p class="text-muted mb-2">/kg</p>
-                      </div>
-                      <div class="col-6 text-center mb-3">
-                        <p class="text-muted mb-1">Sampah Kering</p>
-                        <h6 class="mb-1">Rp 1000</h6>
-                        <p class="text-muted">/kg</p>
-                      </div>
-                      </div>
-                  </div> <!-- .card-body -->
-                  </div> <!-- / .card -->
-                </div> <!-- / .col-md-3 -->
+     
 <div class="row">
 <?=content_open('Jenis-Jenis Plastik')?>
       <p class="card-text">Informasi seputar jenis-jenis plastik dan penggunaanya dalam lingkungan sehari-hari</p>

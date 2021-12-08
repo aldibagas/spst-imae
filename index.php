@@ -5,7 +5,7 @@
     $halaman=$_GET['halaman'];
   }
   else{
-    $halaman='login';
+    $halaman='landing';
   }
   ob_start();
   $file='_halaman/'.$halaman.'.php';
