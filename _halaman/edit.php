@@ -1,17 +1,23 @@
 <?php
 
 $title="Edit Data";
-$id = $_GET['id'];
+$idt = $_GET['id'];
+$servername = "localhost";
+$database = "spst"; 
+$username = "root";
+$password = "";
 
+
+$conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) { //cek koneksi
     die("Tidak bisa terkoneksi ke database");
 }
 
-$query = mysqli_query($conn, "SELECT * FROM transaksi WHERE id='$id' ");
-$result = mysqli_fetch_all($query, MYSQLI_ASSOC);
+$query = mysqli_query($conn, "SELECT * FROM transaksi WHERE idt='$idt' ");
+$result = mysqli_fetch_assoc($query);
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 
 <head>
@@ -31,6 +37,28 @@ $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
     </style>
 </head>
 
+<?php
+
+    $aktivitas = '';
+        if($result['aktivitas'] == 1){
+        $aktivitas = 'Setor';
+        }else{
+        $aktivitas = 'Tarik';
+        }
+    $idtransaksi =$result['idt'];
+    $idpelanggan = $result['idp1'];
+    $nmpelangganSql = "select * from pengguna where idp = $idpelanggan";
+    $nmpesRunpelanggan = mysqli_query($conn, $nmpelangganSql);
+    $nmpelanggan = mysqli_fetch_assoc($nmpesRunpelanggan);
+    $jeneng = $nmpelanggan['Nama'];
+
+    $idpetugas=$result['idp2'];
+    $nmpetugasSql = "select * from pengguna where idp = $idpetugas";
+    $nmpesRunpetugas = mysqli_query($conn, $nmpetugasSql);
+    $nmpetugas = mysqli_fetch_assoc($nmpesRunpetugas);
+    $jeneng2 = $nmpetugas['Nama'];
+
+?>
 <body>
     <div class="mx-auto">
         <!-- untuk memasukkan data -->
@@ -40,67 +68,68 @@ $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
             </div>
             <div class="card-body">
                 <form action="update.php" method="POST">
-
-                <input type="hidden" name="id" value="<?php echo $result[0] ['id']?>">
+                <input type="hidden" value="<?php echo $idpelanggan; ?>" name="idPelanggan">
+                <input type="hidden" value="<?php echo $idpetugas; ?>" name="idpetugas">
+                <input type="hidden" name="idt" value="<?php echo $result['idt']?>">
                     <div class="mb-3 row">
                         <label for="tanggal" class="col-sm-2 col-form-label">ID Transaksi</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="$id" name="id" value="<?php echo $result[0] ['id'] ?>" disabled >
+                            <input type="text" class="form-control" id="$idt" name="idt" value="<?php echo $result['idt'] ?>" disabled >
                     </div>
 
                     </div><div class="mb-3 row">
                         <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?php echo $result[0] ['tanggal'] ?>">
+                            <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?php echo $result['tanggal'] ?>" disabled>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="idp1" class="col-sm-2 col-form-label">Nama Pelanggan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="idp1" name="idp1" value="<?php echo $result[0] ['idp1'] ?>">
+                            <input type="text" class="form-control" id="idp1" name="idp1" value="<?php echo $jeneng?>" disabled>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="idp2" class="col-sm-2 col-form-label">Nama Petugas</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="idp2" name="idp2" value="<?php echo $result[0] ['idp2'] ?>">
+                            <input type="text" class="form-control" id="idp2" name="idp2" value="<?php echo $jeneng2?>" disabled>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="aktivitas" class="col-sm-2 col-form-label">Aktivitas</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="aktivitas" name="aktivitas" value="<?php echo $result[0] ['aktivitas'] ?>">
+                            <input type="text" class="form-control" id="aktivitas" name="aktivitas" value="<?php echo $aktivitas?>">
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="data_sampah" class="col-sm-2 col-form-label">Data Sampah</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="data_sampah" name="data_sampah" value="<?php echo $result[0] ['data_sampah'] ?>">
+                            <input type="text" class="form-control" id="data_sampah" name="data_sampah" value="<?php echo $result['data_sampah'] ?>" >
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="harga_total" class="col-sm-2 col-form-label">Harga Total</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="harga_total" name="harga_total" value="<?php echo $result[0] ['harga_total'] ?>">
+                            <input type="text" class="form-control" id="harga_total" name="harga_total" value="<?php echo $result['harga_total'] ?>" disabled>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="metode_bayar" class="col-sm-2 col-form-label">Metode Bayar</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="metode_bayar" name="metode_bayar" value="<?php echo $result[0] ['metode_bayar'] ?>">
+                            <input type="text" class="form-control" id="metode_bayar" name="metode_bayar" value="<?php echo $result['metode_bayar'] ?>">
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="metode_transaksi" class="col-sm-2 col-form-label">Metode Transaksi</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="metode_transaksi" name="metode_transaksi" value="<?php echo $result[0] ['metode_transaksi'] ?>">
+                            <input type="text" class="form-control" id="metode_transaksi" name="metode_transaksi" value="<?php echo $result['metode_transaksi'] ?>">
                         </div>
                     </div>
                     
@@ -109,9 +138,9 @@ $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
                         <div class="col-sm-10">
                             <select class="form-control" name="status_setor" id="status_setor">
                                 <option value="">- Pilih Status - </option>
-                                <option value="0" <?php echo ($result[0] ['status_setor'] == '0') ? 'selected' :'';?>>Pending</option>  
-                                <option value="1" <?php echo ($result[0] ['status_setor'] == '1') ? 'selected' :'';?>>Terima</option>
-                                <option value="2" <?php echo ($result[0] ['status_setor'] == '2') ? 'selected' :'';?>>Tolak</option>
+                                <option value="0" <?php echo ($result ['status_setor'] == '0') ? 'selected' :'';?>>Pending</option>  
+                                <option value="1" <?php echo ($result ['status_setor'] == '1') ? 'selected' :'';?>>Terima</option>
+                                <option value="2" <?php echo ($result ['status_setor'] == '2') ? 'selected' :'';?>>Tolak</option>
                             </select>
                         </div>
                     </div>

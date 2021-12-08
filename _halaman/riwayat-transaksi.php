@@ -40,7 +40,7 @@ if (!$conn) { //cek koneksi
             </div>
             <?php
 
-              $query = mysqli_query($conn, "SELECT * FROM transaksi WHERE idp2=$id");
+              $query = mysqli_query($conn, "SELECT * FROM transaksi");
               $results = mysqli_fetch_all ($query, MYSQLI_ASSOC);
 
             ?>
@@ -60,6 +60,7 @@ if (!$conn) { //cek koneksi
                   </tr>
                 </head>
                 <tbody>
+                
                 <?php foreach($results as $result): 
                   $aktivitas = '';
                   if($result['aktivitas'] == 1){
@@ -67,18 +68,26 @@ if (!$conn) { //cek koneksi
                   }else{
                     $aktivitas = 'Tarik';
                   }
-                  $idpelanggan = $result['idp1'];
-                  $nmpelangganSql = "select * from pengguna where idp = $idpelanggan";
-                  $nmpesRunpelanggan = mysqli_query($conn, $nmpelangganSql);
-                  $nmpelanggan = mysqli_fetch_assoc($nmpesRunpelanggan);
-                  $jeneng = $nmpelanggan['Nama'];
+                  
+                    $idtransaksi =$result['idt'];
+                    $idpelanggan = $result['idp1'];
+                    $nmpelangganSql = "select * from pengguna where idp = $idpelanggan";
+                    $nmpesRunpelanggan = mysqli_query($conn, $nmpelangganSql);
+                    $nmpelanggan = mysqli_fetch_assoc($nmpesRunpelanggan);
+                    $jeneng = $nmpelanggan['Nama'];
+
+                    $idpetugas=$result['idp2'];
+                    $nmpetugasSql = "select * from pengguna where idp = $idpetugas";
+                    $nmpesRunpetugas = mysqli_query($conn, $nmpetugasSql);
+                    $nmpetugas = mysqli_fetch_assoc($nmpesRunpetugas);
+                    $jeneng2 = $nmpetugas['Nama'];
                   ?>
                   
                 <tr>
                   
                     <td><?php echo $result['tanggal']?></td>
                     <td><?php echo $jeneng?></td>
-                    <td><?php echo $nama?></td>
+                    <td><?php echo $jeneng2?></td>
                     <td><?php echo $aktivitas?></td>
                     <td><?php echo $result['data_sampah']?></td>
                     <td><?php echo $result['harga_total']?></td>
@@ -87,11 +96,12 @@ if (!$conn) { //cek koneksi
                     <td><?php echo $result['status_setor']?></td> 
                     <td>
                     <div class='d-grid gap-2 d-md-block'>
-                      <a class='btn btn-primary' type='button' href="_halaman/edit.php?id=<?php echo $result['id']?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <a class='btn btn-primary' type='button' href="_halaman/edit.php?id=<?php echo $result['idt']?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                       </svg></a>
-                      <a class='btn btn-danger' type='button' href="_halaman/delete.php?id=<?php echo $result['id']?>" onclick="return confirm('Yakin mau delete data?')" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+
+                      <a class='btn btn-danger' type='button' href="_halaman/delete.php?id=<?php echo $result['idt']?>" onclick="return confirm('Yakin mau delete data?')" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/> 
                         </svg></a>
