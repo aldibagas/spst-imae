@@ -17,7 +17,22 @@ include '_helpers/connect.php';
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <body>
-      
+
+<p class="text-center small">Masukkan Email</p>
+                  </div>
+
+                  <form class="row g-3 needs-validation" method="POST" action="reset-password.php">
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">Email</label>
+                      <div class="input-group has-validation">
+                        <input type="email" name="email" class="form-control" id="yourUsername" required>
+                        <div class="invalid-feedback">Please enter your Email</div>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit" name="login">Kirim Password Reset Ke Email</button>
+                    </div>
 <div class="d-flex justify-content-center">
 	<div class="card" style="margin: 50px; width: 500px;">
 		<div class="card-body">

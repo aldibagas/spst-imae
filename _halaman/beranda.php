@@ -88,6 +88,7 @@
 	border-radius: 20px 20px 20px 20px;
     }
 	</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <center> <h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3></center><br>
 <div class="row">
   <div class="col-sm-4">
@@ -199,7 +200,7 @@
             <div class="col-md-6 mb-4">
                   <div class="card" id="card4" name="card4">
                     <div class="card-body">
-                    <h5><center>Daftar Harga Beli<center><h5>
+                    <h5><center>Daftar Harga Jual<center><h5>
                     </div>
                     <div class="card-body">
                     <div class="row mt-2">
