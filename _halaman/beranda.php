@@ -1,6 +1,6 @@
 <?php
    session_start();
-   $title="Beranda";
+   $title=" ";
    include '_helpers/connect.php';
 
    if($_SESSION['id'] == null){
@@ -18,7 +18,7 @@
    $row = mysqli_fetch_assoc($ambil);
    @$jumlah_tarik=$row['jumlah_tarik'];
    
-   $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
+   $ambil = mysqli_query($conn, "SELECT * FROM notifikasi order by idp2 = '$id' desc LIMIT 1");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=$row['saldo'];
    if($row['saldo']<=0){
@@ -43,21 +43,74 @@
     $data[] = $row;
    }
 ?>    
-<p class="lead text-muted">Sistem Pengelolaan Sampah Plastik Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! </p>
-            <div class="mb-2 align-items-center">
-                <div class="card shadow mb-4">
-                  <div class="card-body">
-                    <div class="row mt-1 align-items-center">
-                      <div class="col-12 col-lg-4 text-left pl-4">
-                        <span class="fe fe-credit-card text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Saldo</p>
-                        <span class="h1">Rp <?php echo$saldo;?></span>
-                     
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-                        <span class="fe fe-arrow-down text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Pemasukan Bulan Ini</p>
-                        <?php
+
+           
+<style>
+		.login
+    {
+			background-color: #ffffff;
+			color: black;
+		}
+ 
+        .card1 
+        {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: grey;
+        }
+
+  
+  
+    #card1 
+    {
+    box-shadow: 5px 3px 3px grey;
+    }
+    #card2 
+    {
+    box-shadow: 5px 3px 3px grey;
+    }
+    #card3 
+    {
+    box-shadow: 5px 3px 3px grey;
+    }
+
+    #card4 
+    {
+    box-shadow: 5px 3px 3px 3px grey;
+    }
+    #card5 
+    {
+    box-shadow: 5px 3px 3px 3px grey;
+    }
+  
+    .card
+    {
+	border-radius: 20px 20px 20px 20px;
+    }
+	</style>
+<center> <h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3></center><br>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card" name="card1" id="card1">
+      <div class="card-body" style="height: 150px">
+      <center><span class="fe fe-credit-card text-success fe35"></span></center>
+      <center><h5>Saldo Yang tersedia<h5></center>
+      <br>
+      <center><span class="h1">Rp <?php echo$saldo;?></span></center>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="col-sm-4">
+    <div class="card" name="card2" id="card2">
+      <div class="card-body" style="height: 150px">
+      <center><span class="fe fe-arrow-down text-success fe-25"></span></center>
+      <center><h5>Pemasukan<h5></center>
+      <div class="row">
+    <div class="col">
+    <center><p class="mb-1 small text-muted"> Pemasukan Terakhir</p></center>
+    <center> <?php
                           $id = $_SESSION['id'];
                           $sql = "select * from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
                           $run = mysqli_query($conn, $sql);
@@ -66,40 +119,46 @@
                             $total = $total + $row['harga_total'];
                           }
                         ?>
-                        <span class="h3">Rp <?php echo $total; ?></span><br />
-                        
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-                        <span class="fe fe-arrow-up text-danger fe-12"></span>
-                        <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
-                        <?php $Query = "SELECT * FROM notifikasi order by idp2=idt desc LIMIT 1";
-                      $Run = mysqli_query($conn, $Query);
-                      if(mysqli_num_rows($Run)>0){
-                    while($Fetch = mysqli_fetch_assoc($Run)){
-                      echo" <span class='h3'>Rp ".$Fetch['jumlah_tarik']."</span> 
-                      ";
-                    }
-                  } ?>
-                      </div>
-                      
-                      <div class="col-6 col-lg-2 text-center py-4">
-                        <span class="fe fe-arrow-down text-success fe-12"></span>
-                        <p class="mb-1 small text-muted">Pemasukan Terakhir </p>
-                        <?php
-                        $Query = "SELECT * FROM notifikasi order by idp2='$id' desc LIMIT 1";
+                        <span class="h3">Rp <?php echo $total; ?></span></center>
+    </div>
+    <div class="col">
+    <center><p class="mb-1 small text-muted"> Pemasukan Bulan Ini</p></center>
+    <center><span class="h3"><?php
+                        $Query = "SELECT * FROM notifikasi order by idp2 = '$id' desc LIMIT 1";
                         $Run1 = mysqli_query($conn, $Query);
                         if(mysqli_num_rows($Run1)>0){
                         while($Fetch = mysqli_fetch_assoc($Run1)){
                         echo" <span class='h3'>Rp ".$Fetch['harga_total']."</span> 
                       ";
                     }
-                  } ?>
-                        
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-                        <span class="fe fe-arrow-up text-danger fe-12"></span>
-                        <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
-                        <?php
+                  } ?></span></center>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card" name="card3" id="card3">
+      <div class="card-body" style="height: 150px">
+      <center><span class="fe fe-arrow-up text-danger fe-25"></span></center>
+      <center><h5>Pengeluaran<h5><center>
+      <div class="row">
+    <div class="col">
+    <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
+    <?php
+    $id = $_SESSION['id'];
+    $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
+    $run = mysqli_query($conn, $sql);
+    $total = 0;
+    while($row = mysqli_fetch_assoc($run)){
+    $total = $total + $row['jumlah_tarik'];
+    }
+    ?>
+    <span class="h3">Rp <?php echo $total; ?></span>
+    </div>
+    <div class="col">
+    <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
+    <?php
                           $id = $_SESSION['id'];
                           $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
                           $run = mysqli_query($conn, $sql);
@@ -108,17 +167,39 @@
                             $total = $total + $row['jumlah_tarik'];
                           }
                         ?>
-                        <span class="h3">Rp <?php echo $total; ?></span><br />
+                        <span class="h3">Rp <?php echo $total; ?></span>
+    </div>
+  </div>
+
+
+
+
+<div class="mb-2 align-items-center">
+              
+                      </div>
+                      <div class="col-6 col-lg-2 text-center py-4">
+                   
+                      </div>
+                      
+                      <div class="col-6 col-lg-2 text-center py-4">
+
+                      </div>
+                      <div class="col-6 col-lg-2 text-center py-4">
+      
                       </div>
                     </div>
                   </div> <!-- .card-body -->
                 </div> <!-- .card -->
             </div>
+
+            <br>
+            <br>
+
       <div class ="row">
             <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header align-items-center">
-                    <strong class="card-title">Daftar Harga Beli</strong>
+                  <div class="card" id="card4" name="card4">
+                    <div class="card-body">
+                    <h5><center>Daftar Harga Beli<center><h5>
                     </div>
                     <div class="card-body">
                     <div class="row mt-2">
@@ -142,9 +223,9 @@
 
                <!-- Recent Activity -->
                <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header">
-                      <strong class="card-title float-left">Catatan Aktivitas</strong>
+                  <div class="card" id="card5" name="card5">
+                    <div class="card-body">
+                    <h5><center>Catatan Transaksi<center><h5>
                       <a class="float-right small text-muted" href="<?=url('riwayat-aktivitas')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">
@@ -171,84 +252,4 @@
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
       </div>
-     
-<div class="row">
-<?=content_open('Jenis-Jenis Plastik')?>
-      <p class="card-text">Informasi seputar jenis-jenis plastik dan penggunaanya dalam lingkungan sehari-hari</p>
-      <?=button_modal('Lihat','konten1')?>
-      <?=modal('konten1', 'Jenis-Jenis Plastik' , 'Plastik adalah komponen penting dan menjadi bahan baku dari banyak barang, contohnya seperti botol air, sisir, wadah minuman, peralatan makan, dan masih banyak lagi. Mengetahui perbedaan, jenis plastik, serta kode SPInya dapat membantu Anda dalam proses daur ulang sampah plastik.
-      
-      <div id="slideGambar" class="carousel slide" data-bs-ride="carousel">
-      <!-- Carousel indicators -->
-      <ol class="carousel-indicators">
-          <li data-bs-target="#slideGambar" data-bs-slide-to="0" class="active"></li>
-          <li data-bs-target="#slideGambar" data-bs-slide-to="1"></li>
-      </ol>
-      
-      <!-- Wrapper for carousel items -->
-      <div class="carousel-inner">
-          <div class="carousel-item active">
-              <img src="https://plastic.medion.co.id/wp-content/uploads/2021/04/sampah-plastik15-600x955.jpg" class="d-block w-100" alt="Slide 1">
-          </div>
-            <div class="carousel-item">
-                <img src="https://generasi3r.files.wordpress.com/2015/11/jenis-plastik.jpg" class="d-block w-100" alt="Slide 2">
-            </div>
-      </div>
-
-      <!-- Carousel controls -->
-      <a class="carousel-control-prev" href="#slideGambar" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#slideGambar" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-      </a>
-  </div>
-')?>
-<?=content_close()?>
-
-<?=content_open('Pentingnya menjaga lingkungan')?>
-      <p class="card-text">Manfaat - manfaat yang kita dapat dari menjaga lingkungan sekitar </p> 
-      <?=button_modal('Lihat','konten2')?>
-      <?=modal('konten2', 'Lingkungan bersih' , 'Kebersihan lingkungan merupakan keadaan bebas dari kotoran, termasuk di dalamnya, debu,
-sampah, dan bau. Di Indonesia, masalah kebersihan lingkungan selalu menjadi perdebatan
-dan masalah yang berkembang. Kasus-kasus yang menyangkut masalah kebersihan
-lingkungan setiap hari dan setiap tahun terus meningkat.
-Oleh karena itu menjaga kebersihan lingkungan sangatlah berguna untuk kita semua karena
-dapat menciptakan kehidupan yang aman, bersih, sejuk, dan sehat.
-</br>
-Manfaat menjaga kebersihan lingkungan antara lain:
-</br>
-1. Terhindar dari penyakit yang disebabkan lingkungan yang tidak sehat.
-</br>
-2. Lingkungan menjadi lebih sejuk.
-</br>
-3. Bebas dari polusi udara.
-</br>
-4. Air menjadi lebih bersih dan aman untuk di minum.
-</br>
-5. Lebih tenang dalam menjalankan aktivitas sehari hari.</br>
-</br>
-<!-- Wrapper for carousel items -->
-<div class="carousel-inner">
-    <div class="carousel-item active">
-        <img src="https://1.bp.blogspot.com/-i0Q26eai6ZM/XV9k0Har_gI/AAAAAAAAWcU/-F9QuzqylAUa2WUA66NyzDR2_OA8g9GeQCLcBGAs/s1600/kerja%2Bbakti%2B%25281%2529.jpg" class="d-block w-100" alt="Slide 1">
-        </div>
-        </div>
-')
-?>
-<?=content_close()?>
-
-<?=content_open('Waspadai banjir')?>
-      <p class="card-text">Informasi seputar bahaya apabila tidak menjaga lingkungan sekitar</p>
-      <?=button_modal('Lihat','konten3')?>
-      <?=modal('konten3', 'Banjir' , 'Banjir adalah peristiwa bencana alam yang terjadi ketika aliran air yang berlebihan merendam daratan. Banjir juga dapat terjadi di sungai, ketika alirannya melebihi kapasitas saluran air, terutama di kelokan sungai. Banjir sering mengakibatkan kerusakan rumah dan pertokoan yang dibangun di sekitar sungai.
-      Meski kerusakan akibat banjir dapat dihindari akan tetapi kejadiannya selalu berulang - ulang, karena masih banyak orang yang membuang sampah sembarangan sehingga aliran air tersumbat dan menyebabkan banjir yang merugikan semua orang.
-      <!-- Wrapper for carousel items -->
-<div class="carousel-inner">
-    <div class="carousel-item active">
-        <img src="banjir.jpeg" class="d-block w-100" alt="Slide 1">
-        </div>
-        </div>')?>
-      
-<?=content_close()?>
-</div>
+  
