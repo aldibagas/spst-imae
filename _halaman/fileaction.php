@@ -7,7 +7,7 @@
     require 'vendor/PHPMailer-master/src/PHPMailer.php';
     require 'vendor/PHPMailer-master/src/SMTP.php';    
     
-    include('component/connectdb.inc.php'); 
+    include('_helpers/connect.php'); 
     if(isset($_POST['email'])){
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
         $newPass = substr(str_shuffle($permitted_chars), 0, 10);
@@ -21,12 +21,12 @@
         $mail->SMTPSecure = "tls";
         $mail->Port       = 587;
         $mail->Host       = "mail.cypiral.org";
-        $mail->Username   = "emailmu";
-        $mail->Password   = "pass email";
+        $mail->Username   = "pesat@cypiral.org";
+        $mail->Password   = "Pesat123";
         
         $mail->IsHTML(true);
         $mail->AddAddress($_POST['email'], $_POST['email']);
-        $mail->SetFrom("emailmu", "---");
+        $mail->SetFrom("pesat@cypiral.org", "---");
         // $mail->AddReplyTo("reply-to-email@domain", "reply-to-name");
         // $mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
         $mail->Subject = "Reset Password";
@@ -37,8 +37,8 @@
           echo "Error while sending Email.<pre>";
           var_dump($mail);
         } else {
-            mysqli_query($conn,"update user set password = '$newPass' where email = '$_POST[email]'");
-            header("location:forgot-password.php?send=true");
+            mysqli_query($conn,"update pengguna set Sandi = '$newPass' where email = '$_POST[email]'");
+            header("location:fileaction.php?send=true");
         }
     }
 ?>
