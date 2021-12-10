@@ -3,8 +3,8 @@
 $title="Edit Data";
 $idt = $_GET['id'];
 $servername = "localhost";
-$database = "spst"; 
-$username = "root";
+$database = "cypr9718_spst"; 
+$username = "pq6SPaHWYiKe38";
 $password = "";
 
 
@@ -87,7 +87,7 @@ $result = mysqli_fetch_assoc($query);
                     <div class="mb-3 row">
                         <label for="idp1" class="col-sm-2 col-form-label">Nama Pelanggan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="idp1" name="idp1" value="<?php echo $jeneng?>" disabled>
+                            <input type="text" class="form-control" id="idp1" name="idp1" value="<?php echo $jeneng?>" >
                         </div>
                     </div>
 

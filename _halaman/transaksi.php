@@ -1,153 +1,142 @@
 <?php
    $title="Transaksi";
-   session_start();
 ?>
-<div class="card-deck my-4">
-                <div class="card mb-4 shadow">
-                  <div class="card-body text-center my-4">
-                    <a href="#"> 
-                    </a>
-                    <p class="text-muted"></p>
-                    <span class="h1 mb-0">Setor Sampah</span>
-                    <p class="text-muted"></p>
-                    <ul class="list-unstyled">
-                      <li>Sampah yang telah dikumpulkan dapat dijemput atau diantarkan ke petugas, kemudian akan menjadi saldo pada tabungan setiap pelanggan.</li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                    </ul>
-                    <a class="nav-link" href="<?=url('setor')?>">
-                <span class="btn mb-2 btn-primary btn-lg ">Setor</span><span class="sr-only">(current)</span>
-              </a>              
-                  </div> <!-- .card-body -->
-                </div> <!-- .card -->
-<div class="card mb-4">      
-                  <div class="card-body text-center my-4">
-                    <a href="#">
-</a>
-                    <p class="text-muted"></p>
-                    <span class="h1 mb-0">Penarikan Uang</span>
-                    <p class="text-muted"></p>
-                    <ul class="list-unstyled">
-                      <li>Uang yang telah terkumpul dari tabungan, dapat dicairkan melalui kantor. Nominal untuk penarikan uang sesuai dengan keinginan pelanggan.</li>
-                      <li</li>
-                      <li></li>
-                      <li></li>
-                    </ul>                     
-              <a class="nav-link" href="<?=url('penarikanuang')?>">
-                <span class="btn mb-2 btn-primary btn-lg ">Tarik</span><span class="sr-only">(current)</span>
-              </a>
-             
-                    </div>
-               </div>
-             </div>
-             </div>
-                      </form>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+
+body .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 100px 0;
+}
+
+body .container .card {
+  position: relative;
+  min-width: 400px;
+  height: 440px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin: 30px;
+  transition: 0.5s;
+}
+
+body .container .card:nth-child(1) .box .content a {
+  background: #2196f3;
+}
+
+body .container .card:nth-child(2) .box .content a {
+  background: #2196f3;
+}
+
+
+body .container .card .box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #2a2b2f;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+body .container .card .box:hover {
+  transform: translateY(-50px);
+}
+
+body .container .card .box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+body .container .card .box .content {
+  padding: 20px;
+  text-align: center;
+}
+
+body .container .card .box .content h2 {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  font-size: 8rem;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+body .container .card .box .content h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  z-index: 1;
+  transition: 0.5s;
+  margin-bottom: 15px;
+}
+
+body .container .card .box .content p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  transition: 0.5s;
+}
+
+body .container .card .box .content a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 150px;
+  background: blue;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  margin-top: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+
+</style>
+<div class="container">
+  <div class="card">
+    <div class="box">
+      <div class="content">
+    
+        <h3>SETOR SAMPAH</h3>
+        <p>Sampah yang telah dikumpulkan dapat dijemput atau diantarkan ke petugas, kemudian akan menjadi saldo pada tabungan setiap pelanggan</p>
+        <a href="<?=url('setor')?>">Pilih</a>
+      </div>
     </div>
+  </div>
+
+  <div class="card">
+    <div class="box">
+      <div class="content">
+    
+        <h3>PENARIKAN UANG</h3>
+        <p>Uang yang telah terkumpul dari tabungan, dapat dicairkan melalui kantor. Nominal untuk penarikan uang sesuai dengan keinginan pelanggan</p>
+        <a href="<?=url('penarikanuang')?>">Pilih</a>
+      </div>
+    </div>
+  </div>
+
 </div>
-            <!-- Modal -->
-            <div class="modal fade" id="modaltransaksi" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="defaultModalLabel">Data Pesanan</h5>
-                    </div>
-                    <div class="modal-body">
-                      <form action="" method="POST">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                            <label for="simple-select2">Sampah</label>
-                            <select class="form-control select2" id="simple-select2" name ="pesanan_1">
-                                <optgroup label="Plastik">
-                                  <option value="PET">PET</option>
-                                  <option value="HDPE">HDPE</option>
-                                  <option value="PVC">PVC</option>
-                                  <option value="LDPE">LDPE</option>
-                                  <option value="PP">PP</option>
-                                  <option value="PS">PS</option>
-                                </optgroup>
-                                <optgroup label="Kertas">
-                                  <option value="HVS">HVS</option>
-                                  <option value="KRT">Karton</option>
-                                  <option value="KRD">Kardus</option>
-                                </optgroup>
-                                <optgroup label="Organik">
-                                  <option value="SB">Sampah Basah</option>
-                                  <option value="SK">Sampah Kering</option>
-                                </optgroup>
-                            </select>
-                            </div> <!-- form-group -->
-                            <div class="form-group col-md-6">
-                            <label>Jumlah (Kilograms)</label>
-                            <input type="text" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="jumlah_1">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                            <select class="form-control select2" id="simple-select2" name="pesanan_2">
-                                <optgroup label="Plastik">
-                                  <option value="PET">PET</option>
-                                  <option value="HDPE">HDPE</option>
-                                  <option value="PVC">PVC</option>
-                                  <option value="LDPE">LDPE</option>
-                                  <option value="PP">PP</option>
-                                  <option value="PS">PS</option>
-                                </optgroup>
-                                <optgroup label="Kertas">
-                                  <option value="HVS">HVS</option>
-                                  <option value="KRT">Karton</option>
-                                  <option value="KRD">Kardus</option>
-                                </optgroup>
-                                <optgroup label="Organik">
-                                  <option value="SB">Sampah Basah</option>
-                                  <option value="SK">Sampah Kering</option>
-                                </optgroup>
-                            </select>
-                            </div> <!-- form-group -->
-                            <div class="form-group col-md-6">
-                            <input type="text" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="jumlah_2">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                            <select class="form-control select2" id="simple-select2" name="pesanan_3">
-                                <optgroup label="Plastik">
-                                  <option value="PET">PET</option>
-                                  <option value="HDPE">HDPE</option>
-                                  <option value="PVC">PVC</option>
-                                  <option value="LDPE">LDPE</option>
-                                  <option value="PP">PP</option>
-                                  <option value="PS">PS</option>
-                                </optgroup>
-                                <optgroup label="Kertas">
-                                  <option value="HVS">HVS</option>
-                                  <option value="KRT">Karton</option>
-                                  <option value="KRD">Kardus</option>
-                                </optgroup>
-                                <optgroup label="Organik">
-                                  <option value="SB">Sampah Basah</option>
-                                  <option value="SK">Sampah Kering</option>
-                                </optgroup>
-                            </select>
-                            </div> <!-- form-group -->
-                            <div class="form-group col-md-6">
-                            <input type="text" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="jumlah_3">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="hidden" name="lat" id="insertLat" value="">
-                            <input type="hidden" name="long" id="insertLong" value="">
-                            <input type="submit" class="btn mb-2 btn-primary" name="insert" value="pesan">
-                        </div>
-                      </form>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>

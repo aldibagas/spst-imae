@@ -4,9 +4,9 @@ $title="Delete Data";
 
 $idt = $_GET['id'];
 $servername = "localhost";
-$database = "spst"; 
-$username = "root";
-$password = "";
+$database = "cypr9718_spst"; 
+$username = "cypr9718";
+$password = "pq6SPaHWYiKe38";
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) { //cek koneksi
