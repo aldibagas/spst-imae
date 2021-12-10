@@ -110,7 +110,7 @@ body .container .card .box .content a {
   text-decoration: none;
   color: white;
   margin-top: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  
   transition: 0.5s;
 }
 

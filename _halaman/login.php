@@ -57,9 +57,7 @@ session_start();
 #card1 {
     box-shadow: 10px 8px 8px grey;
 }
-.card{
-	border-radius: 50px 0px 20px 20px;
-}
+ 
 
 .card {
         outline-width: 2px;
