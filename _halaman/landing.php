@@ -186,7 +186,7 @@ TemplateMo 570 Chain App Dev
             </div>
             <div class="col-lg-6">
               <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                <img src="logo PESAT.png" alt="">
+                <img src="logo.png" alt="">
               </div>
             </div>
           </div>
@@ -362,7 +362,7 @@ TemplateMo 570 Chain App Dev
           <div class="footer-widget">
 
             <div class="right-image">
-            <img src="PESAT.png" alt="">
+            <img src="logo.png" alt="">
           </div>
   </div>
         </div>

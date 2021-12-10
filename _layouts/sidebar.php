@@ -12,7 +12,7 @@
           <!-- nav bar -->
           <div class="w-100 mb-4 d-flex">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./?halaman=profil">
-              <img src="PESAT.png" id="logo" class="navbar-brand-img brand-sm"  x="0px" y="0px" viewBox="0 0 300 300" xml:space="preserve">
+              <img src="logo.png" id="logo" class="navbar-brand-img brand-sm"  x="0px" y="0px" viewBox="0 0 300 300" xml:space="preserve">
             </a>
           </div>
       <?php
