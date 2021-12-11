@@ -26,6 +26,7 @@
     @$status= $_POST['status'];
     @$bank = $_POST['bank'];
 
+    
     //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
     //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
 
@@ -40,6 +41,7 @@
   
 
     $th = $_POST ['totalHarga'];
+    $tb = $_POST ['totalBerat'];
 
     $mb1 = $_POST ['metbay1']; 
     $mt1 = $_POST ['metodeBayar']; 
@@ -61,8 +63,8 @@
     $rand = array_rand($idPetugasRand);
     $idPetugas = $idPetugasRand[$rand];
 
-    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
-    VALUES ('$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
+    $sql1 = "INSERT INTO `transaksi` (`idp1`, `idp2`, `aktivitas`, `data_sampah`, `berat`, `harga_total`, `metode_bayar`, `metode_transaksi`, `status_setor`, `waktu_tarik`, `jumlah_tarik`, `sandi`, `status_tarik`) 
+    VALUES ('$idp2', '$idPetugas', '0', '$p1 $p2 $p3', '$tb', '$th', '$mb1', '$mt1', '1', '0', '0', '0', '0')";
 
     $query2  = mysqli_query($conn,$sql1);
 
@@ -74,7 +76,7 @@
       $idt = $rowAmbilIdt['idt'];
       //Pengiriman Notifikasi
       $sql2 = "INSERT INTO `notifikasi` (`idt`, `idp2`, `idpetugas`, `aktivitas`, `data_sampah`, `metode_bayar`, `metode_transaksi`, `harga_total`, `jumlah_tarik`, `bank`, `status_tarik`, `status_setor`) 
-      VALUES ('$idt', '$idp2', '$idPetugas', '0', '$p1 / $p2 / $p3', '$mb1', '$mt1', '$th', '1', '1', '0', null)";
+      VALUES ('$idt', '$idp2', '$idPetugas', '0', '$p1 $p2 $p3', '$mb1', '$mt1', '$th', '0', '1', '0', null)";
 
       $sql3 = "INSERT INTO `navigasi` (`idt`, `idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
       VALUES ('$idt', '$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
@@ -89,31 +91,21 @@
  }
 ?>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+
+<script>
+ 
+    function warning(){
+ Swal.fire(
+  'Pilihan Disimpan',
+  'Silahkan Kembali',
+  'success'
+)
+    }
+</script>
+
 <form name="rega" action="" method="POST">
-  
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="slide2.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="slide1.png" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 
 <div class="card">
   <div class="card-body">
@@ -248,7 +240,7 @@
   <option value="" disabled selected hidden>Pilih Disini</option>
   <optgroup label="METODE TRANSAKSI">
     <br>
-    <option value=0> CASH</option>
+    <option value=0> TUNAI</option>
     <option value=1 >SALDO</option>
   </select>
       </div>
@@ -331,11 +323,11 @@
         </button>
       </div>
       <div class="modal-body">
-      <textarea name="message" id="user_input" rows="5" cols="50" placeholder="ISIKAN ALAMAT ANDA DISINI"></textarea>
+      <textarea name="message" id="user_input" rows="5" cols="40" placeholder="ISIKAN ALAMAT ANDA DISINI"></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">KEMBALI</button>
-        <button type="button" onclick="showInput();" class="btn btn-primary">SIMPAN</button>
+        <button type="button" onclick="showInput(); warning()" class="btn btn-primary">SIMPAN</button>
         
         
       </div>
@@ -399,7 +391,7 @@
   <br>
 
 <!-- Button trigger modal -->
-<button type="button" onclick="total1()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" onclick="total1(); berat()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   SETOR
 </button>
 
@@ -468,16 +460,18 @@
       </div>
 </div>
 
-    <div class="row">
+<div class="row">
     <div class="col">
     <h1 class="modal-title" id="exampleModalLabel"><h3>Total</h3></h1>
     </div>
     <div class="col">
     </div>
+    <h5><div id="totalBerat" hidden>0</div><h5>
     <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rp.</h5>
     <div class="col">
     <h5><div id="totalHarga">0</div><h5>
       <input type="hidden" name="totalHarga" id="inputtotalharga">
+      <input type="hidden" name="totalBerat" id="inputtotalberat">
     </div>
   </div>
 
@@ -580,6 +574,22 @@ function zonk() {
  </form>
 
  <script>
+
+function berat(){
+  let b1 = parseInt(document.getElementById("berat1").innerHTML);
+  let b2 = parseInt(document.getElementById("berat2").innerHTML);
+  let b3 = parseInt(document.getElementById("berat3").innerHTML);
+
+  let y = b1 + b2 + b3;
+
+  console.log(y);
+  console.log(b1);
+  console.log(b2);
+  console.log(b3);
+  document.getElementById("totalBerat").innerHTML = y;
+  document.getElementById('inputtotalberat').value = y;
+}
+
 function proses1()
 {
   var harga = document.getElementById("pilih").value;
@@ -597,7 +607,6 @@ function hargaBerat(val){
   let total = a * b;
   document.getElementById('biaya_1').innerHTML = total;
 }
-
 
 function proses2()
 {
