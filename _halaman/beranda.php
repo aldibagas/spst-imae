@@ -42,62 +42,17 @@
    while($row = mysqli_fetch_assoc($Tampil)){
     $data[] = $row;
    }
-?>    
-
-           
-<style>
-		.login
-    {
-			background-color: #ffffff;
-			color: black;
-		}
- 
-        .card1 
-        {
-        outline-width: 2px;
-        outline-style: solid;
-        outline-color: grey;
-        }
-
-  
-  
-    #card1 
-    {
-    box-shadow: 5px 3px 3px grey;
-    }
-    #card2 
-    {
-    box-shadow: 5px 3px 3px grey;
-    }
-    #card3 
-    {
-    box-shadow: 5px 3px 3px grey;
-    }
-
-    #card4 
-    {
-    box-shadow: 5px 3px 3px 3px grey;
-    }
-    #card5 
-    {
-    box-shadow: 5px 3px 3px 3px grey;
-    }
-  
-    .card
-    {
-	border-radius: 20px 20px 20px 20px;
-    }
-	</style>
+?>   
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<center> <h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3></center><br>
-<div class="row">
-  <div class="col-sm-4">
-    <div class="card" name="card1" id="card1">
-      <div class="card-body" style="height: 150px">
-      <center><span class="fe fe-credit-card text-success fe35"></span></center>
-      <center><h5>Saldo Yang tersedia<h5></center>
-      <br>
-      <center> <?php
+<center> <h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3></center>      
+<div class="mb-2 align-items-center">
+            <div class="card shadow mb-4">
+                  <div class="card-body">
+                    <div class="row mt-1 align-items-center">
+                      <div class="col-12 col-lg-4 text-left pl-4">
+                        <span class="fe fe-credit-card text-success fe-12"></span>
+                        <p class="mb-1 small text-muted">Saldo</p>
+                         <?php
                           $id = $_SESSION['id'];
                           $sql = "select * from notifikasi where idp2 = $id and year(`tanggal`)=year(now()) and status_setor between 1 and 2";
                           $run = mysqli_query($conn, $sql);
@@ -106,34 +61,12 @@
                             $total = $total + $row['harga_total'];
                           }
                         ?>
-      <center><span class="h1">Rp <?php echo$total;?></span></center>
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
-  <div class="col-sm-4">
-    <div class="card" name="card2" id="card2">
-      <div class="card-body" style="height: 150px">
-      <center><span class="fe fe-arrow-down text-success fe-25"></span></center>
-      <center><h5>Pemasukan<h5></center>
-      <div class="row">
-    <div class="col">
-    <center><p class="mb-1 small text-muted"> Pemasukan Bulan Ini</p></center>
-    <center> <?php
-                          $id = $_SESSION['id'];
-                          $sql = "select * from notifikasi where idp2 = $id and month(`tanggal`)=month(now()) and status_setor between 1 and 2";
-                          $run = mysqli_query($conn, $sql);
-                          $total = 0;
-                          while($row = mysqli_fetch_assoc($run)){
-                            $total = $total + $row['harga_total'];
-                          }
-                        ?>
-                        <span class="h3">Rp <?php echo $total; ?></span></center>
-    </div>
-    <div class="col">
-    <center><p class="mb-1 small text-muted"> Pemasukan Terakhir</p></center>
-    <center><span class="h3"><?php
+                        <span class="h1">Rp <?php echo$total;?></span></span>                     
+                      </div>
+                      <div class="col-6 col-lg-2 text-center py-4">
+                        <span class="fe fe-arrow-down text-success fe-12"></span>
+                        <p class="mb-1 small text-muted">Pemasukan Terakhir</p>
+                        <span class="h3"><?php
                         $Query = "SELECT * FROM notifikasi where idp2 = '$id' and status_setor between 1 and 2 order by id desc LIMIT 1";
                         $Run1 = mysqli_query($conn, $Query);
                         if(mysqli_num_rows($Run1)>0){
@@ -142,21 +75,12 @@
                         }
                         }else{
                           echo" <span class='h3'>Rp 0</span>";
-                        } ?></span></center>
-    </div>
-  </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card" name="card3" id="card3">
-      <div class="card-body" style="height: 150px">
-      <center><span class="fe fe-arrow-up text-danger fe-25"></span></center>
-      <center><h5>Pengeluaran<h5><center>
-      <div class="row">
-    <div class="col">
-    <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
-    <?php
+                        } ?></span><br />
+                      </div>
+                      <div class="col-6 col-lg-2 text-center py-4">
+                        <span class="fe fe-arrow-up text-danger fe-12"></span>
+                        <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
+                        <?php
     $id = $_SESSION['id'];
     $sql = "select jumlah_tarik from notifikasi where idp2 = '$id' order by id desc LIMIT 1";
     $run = mysqli_query($conn, $sql);
@@ -167,10 +91,26 @@
     }}
     ?>
     <span class="h3">Rp <?php echo $total; ?></span>
-    </div>
-    <div class="col">
-    <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
-    <?php
+                      </div>
+                      
+                      <div class="col-6 col-lg-2 text-center py-4">
+                        <span class="fe fe-arrow-down text-success fe-12"></span>
+                        <p class="mb-1 small text-muted">Pemasukan Bulan Ini </p>
+                        <?php
+                          $id = $_SESSION['id'];
+                          $sql = "select * from notifikasi where idp2 = $id and month(`tanggal`)=month(now()) and status_setor between 1 and 2";
+                          $run = mysqli_query($conn, $sql);
+                          $total = 0;
+                          while($row = mysqli_fetch_assoc($run)){
+                            $total = $total + $row['harga_total'];
+                          }
+                        ?>
+                        <span class="h3">Rp <?php echo $total; ?></span><br />
+                      </div>
+                      <div class="col-6 col-lg-2 text-center py-4">
+                        <span class="fe fe-arrow-up text-danger fe-12"></span>
+                        <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
+                        <?php
                           $id = $_SESSION['id'];
                           $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
                           $run = mysqli_query($conn, $sql);
@@ -179,29 +119,12 @@
                             $total = $total + $row['jumlah_tarik'];
                           }
                         ?>
-                        <span class="h3">Rp <?php echo $total; ?></span>
-    </div>
-  </div>
-
-<div class="mb-2 align-items-center">
-              
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-                   
-                      </div>
-                      
-                      <div class="col-6 col-lg-2 text-center py-4">
-
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-      
+                        <span class="h3">Rp <?php echo $total; ?></span><br />
                       </div>
                     </div>
                   </div> <!-- .card-body -->
                 </div> <!-- .card -->
             </div>
-
-            <br>
             <br>
 
       <div class ="row">

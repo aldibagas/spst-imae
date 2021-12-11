@@ -15,7 +15,7 @@
    include '_helpers/connect.php';
    $title="Penarikan Uang";
    $id;
-   $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
+   $ambil = mysqli_query($conn, "SELECT * FROM notifikasi WHERE idp2='$id'");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=0;
    if($row['saldo']<=0){
@@ -23,6 +23,15 @@
    }else{
     $saldo = $row['saldo'];
    }
+
+    $id = $_SESSION['id'];
+    $sql = "select * from notifikasi where idp2 = $id and year(`tanggal`)=year(now()) and status_setor between 1 and 2";
+    $run = mysqli_query($conn, $sql);
+    $total = 0;
+    while($row = mysqli_fetch_assoc($run)){
+    $total = $total + $row['harga_total'];
+    }
+                        
 
    if(isset($_POST['kirim'])){
     
@@ -45,7 +54,7 @@
 
      //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
      //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
-    $x = $saldo - $jumlah_tarik;
+    $x = $total - $jumlah_tarik;
         if(($jumlah_tarik % 1000) == 0){
             if($x > 0){
 
@@ -134,12 +143,12 @@ if(mysqli_num_rows($runHari) == null){
                                             </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Saldo yang tersedia</p>
-                                            <?php echo '<span class="h2">Rp '.$saldo.'</span>';?>
+                                            <?php echo '<span class="h2">Rp '.$total.'</span>';?>
 
                                             </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Jumlah Saldo Yang ditarik</p>
-                                            <input type="number"placeholder = "kelipatan Rp 1000" class="form-control" aria-label="saldo" name="jumlah_tarik" required min="0" >
+                                            <input type="number"placeholder = "Kelipatan Rp 1000" class="form-control" aria-label="saldo" name="jumlah_tarik" required min="0" >
 
                                             <div>
                                             <form action="" method="POST">
