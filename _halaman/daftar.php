@@ -33,22 +33,48 @@
 
 
 ?>
+
+
 <html>
 <head>
 <title>Daftar</title>
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+
+
 <style>
- .login{
-  background-color: #1b68ff;
-  color: white;
- }
-</style>
+		.login{
+			background-color: #1b68ff;
+			color: black;
+		}
+        body
+        {
+            background-color: lightblue
+        }
+
+		p {
+    padding: 10px;
+		}
+
+
+
+#card1 {
+    box-shadow: 10px 8px 8px grey;
+}
+
+
+.card {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: grey;
+    }
+	</style>
+
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <body>
       
  <div class="d-flex justify-content-center">
- <div class="card" style="margin: 50px">
+ <div class="card" style="margin: 50px" id="card1" name="card1">
  <div class="card-body">
  
   <h1 class="text-center">Daftar</h1> 
@@ -69,7 +95,7 @@
 <script>
      function aff(){
         let e = document.getElementById('affiliasi').value;
-        if(e == 'Pelanggan'){
+        if(e == 'pengguna'){
             document.getElementById("bank").disabled = true;
         }else{
             document.getElementById("bank").disabled = false;
@@ -77,12 +103,11 @@
      }
 </script>
 </br>
-
 <?php
-         $kelas ="Pengguna";
+         $kelas ="pengguna";
 
          if ($kelas == "pengguna") {
-                echo "SHARE ILMU itu sangat bermanfaat";
+                echo "";
           }
 ?>
 

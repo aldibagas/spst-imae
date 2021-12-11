@@ -33,7 +33,7 @@ include '_helpers/connect.php';
                     </div>
 </div>
                     <div class="col-12">
-                      <button class="btn login btn-block rounded-pill" type="submit" name="login">Kirim</button>
+                      <button class="btn login btn-block rounded-pill" type="submit" name="login">Kirim</button> <br>
                     </div>
 		
 	</div>
