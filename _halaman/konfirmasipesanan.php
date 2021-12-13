@@ -4,7 +4,7 @@
 
     $userid = $_SESSION['id'];
 
-    $ambil = mysqli_query($conn, "SELECT SUM(saldo) AS value_sum FROM notifikasi WHERE idp2=$id");
+    $ambil = mysqli_query($conn, "SELECT SUM(saldo) AS value_sum FROM notifikasi WHERE idp2=$userid");
     $row = mysqli_fetch_assoc($ambil);
     $saldo = $row['value_sum'];
 

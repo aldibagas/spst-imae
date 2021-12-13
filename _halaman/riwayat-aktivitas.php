@@ -44,8 +44,12 @@
                 </div>
             </div>-->
             <?php
-
-              $query = mysqli_query($conn, "SELECT * FROM notifikasi ORDER BY idt DESC ");
+              $nama = $_SESSION['nama'];
+              $sqlId = "select * from pengguna where Nama = '$nama'";
+              $idRun = mysqli_query($conn, $sqlId);
+              $ambilId = mysqli_fetch_assoc($idRun);
+              $id  = $ambilId['idp'];
+              $query = mysqli_query($conn, "SELECT * FROM notifikasi where idp2 = '$id' ORDER BY tanggal desc ");
               $results = mysqli_fetch_all ($query, MYSQLI_ASSOC);
 
             ?>
@@ -53,6 +57,8 @@
                 <head>
                   <tr role="row">
                     <th>Tanggal</th>
+                    <td></td>
+                    <td></td>
                     <th>Nama Petugas</th>
                     <th>Aktivitas</th>
                     <th>Keterangan</th>
@@ -60,7 +66,6 @@
                     <th>Metode Bayar</th>
                     <th>Metode Transaksi</th>
                     <th>Bank</th>
-                    <th>Status </th>
                     <th></th>
                   </tr>
                 </head>
@@ -100,6 +105,8 @@
                 <tr>
                   
                     <td><?php echo $result['tanggal']?></td>
+                    <td></td>
+                    <td></td>
                     <td><?php echo $nmpetugas['Nama']?></td>
                     <td><?php echo $aktivitas?></td>
                     <?php
@@ -117,10 +124,8 @@
                     <td><?php echo $metode_bayar?></td>
                     <td><?php echo $metode_transaksi?></td>
                     <td><?php echo $result['bank']?></td>
-                    <td><?php echo $status_setor?></td> 
                     <td>
-                    <div class='d-grid gap-2 d-md-block'>
-                      <a class='btn btn-danger' type='button' href='#'>Hapus</a>
+                    
                       <?php
 
                         $sql = "UPDATE `transaksi` SET `data_sampah` WHERE `metode_bayar`";

@@ -81,6 +81,15 @@
       $sql3 = "INSERT INTO `navigasi` (`idt`, `idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
       VALUES ('$idt', '$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
 
+      //perbarui tabungan pengguna
+      $sql4 = "select * from tabungan where idp1 = $idp2";
+      $run4 = mysqli_query($conn, $sql4);
+      $row4 = mysqli_fetch_assoc($run4);
+      $total = $row4['saldo'] + $th;
+
+      $sql5 = "update `tabungan` SET `tanggal`='curdate()',`saldo`='$total' WHERE idp1 = $idp2";
+      mysqli_query($conn, $sql5);
+
       @$query5 = "SELECT * FROM transaksi ORDER BY idt";
 
       $query3  = mysqli_query($conn,$sql2);
