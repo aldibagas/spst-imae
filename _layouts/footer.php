@@ -60,10 +60,6 @@ if(isset($_POST['btnPenggunaHapusNtf'])){
               //notifikasi untuk setor sampah
               $sqlsetorsampah = "select * from notifikasi where idpetugas = $id and status_setor is null order by idt desc";
               $runsetorsampah = mysqli_query($conn, $sqlsetorsampah);
-              echo "<h3>$num_rows</h3>
-              <p>Total Orders</p> <audio controls autoplay hidden='true'>
-              <source src='bell.wav' type='audio/wav'>
-              </audio>";exit;
               if(mysqli_num_rows($runsetorsampah)>0){
                 while($fch = mysqli_fetch_assoc($runsetorsampah)){
                   echo'
