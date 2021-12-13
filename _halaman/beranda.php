@@ -1,6 +1,6 @@
 <?php
    session_start();
-   $title="Beranda";
+   $title=" ";
    include '_helpers/connect.php';
 
    if($_SESSION['id'] == null){
@@ -37,14 +37,18 @@
    $alamat = $row['alamat'];
  
    $Cari="SELECT * FROM transaksi order by tanggal desc LIMIT 5";
+   $Cari="SELECT * FROM notifikasi where idp2 = '$id' ORDER BY tanggal desc LIMIT 5 ";
    $Tampil = mysqli_query($conn, $Cari);
    $data = array();
    while($row = mysqli_fetch_assoc($Tampil)){
     $data[] = $row;
    }
-?> 
-<p class="mb-1 small text-muted" >Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <p>     
-<div class="mb-2 align-items-center">
+?>   
+  
+	</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<center> <h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3></center><br>
+            <div class="mb-2 align-items-center">
             <div class="card shadow mb-4">
                   <div class="card-body">
                     <div class="row mt-1 align-items-center">
@@ -53,14 +57,15 @@
                         <p class="mb-1 small text-muted">Saldo</p>
                          <?php
                           $id = $_SESSION['id'];
-                          $sql = "select * from notifikasi where idp2 = $id and year(`tanggal`)=year(now()) and status_setor between 1 and 2";
+                          $sql = "select * from tabungan where idp1 = '$id'";
                           $run = mysqli_query($conn, $sql);
-                          $total = 0;
-                          while($row = mysqli_fetch_assoc($run)){
-                            $total = $total + $row['harga_total'];
+                          $row = mysqli_fetch_assoc($run);
+                          $sal = 0;
+                          if($row['saldo'] != null ){
+                            $sal = $row['saldo'];
                           }
                         ?>
-                        <span class="h1">Rp <?php echo$total;?></span></span>                     
+                        <span class="h1">Rp <?php echo$sal;?></span></span>                     
                       </div>
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-down text-success fe-12"></span>
@@ -81,7 +86,7 @@
                         <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
                         <?php
     $id = $_SESSION['id'];
-    $sql = "select jumlah_tarik from notifikasi where idp2 = '$id' order by id desc LIMIT 1";
+    $sql = "select jumlah_tarik from notifikasi where idp2 = '$id' and status_tarik between 1 and 2 order by id desc LIMIT 1";
     $run = mysqli_query($conn, $sql);
     $total = 0;
     if(mysqli_num_rows($run)>0){
