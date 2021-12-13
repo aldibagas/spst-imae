@@ -1,6 +1,6 @@
 <?php
    session_start();
-   $title=" ";
+   $title="Beranda";
    include '_helpers/connect.php';
 
    if($_SESSION['id'] == null){
@@ -44,7 +44,7 @@
    }
 ?>   
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<center> <h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3></center>      
+<h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3>     
 <div class="mb-2 align-items-center">
             <div class="card shadow mb-4">
                   <div class="card-body">
