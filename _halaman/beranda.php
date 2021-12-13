@@ -42,9 +42,8 @@
    while($row = mysqli_fetch_assoc($Tampil)){
     $data[] = $row;
    }
-?>   
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<h3>Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <h3>     
+?> 
+<p class="mb-1 small text-muted" >Pengelolaan Sampah Terintegrasi, Bersama Menjaga Lingkungan Yang Bersih! <p>     
 <div class="mb-2 align-items-center">
             <div class="card shadow mb-4">
                   <div class="card-body">
