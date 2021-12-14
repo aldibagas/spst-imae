@@ -16,6 +16,7 @@
     $afiliasi = $_POST['afiliasi'];
     $confirpass = $_POST['confirpass'];
    
+    
 	$sql = "
     INSERT INTO `pengguna`(`afiliasi`,`Kelas`, `Nama`, `Telepon`, `Sandi`, `email`, `alamat`) 
     VALUES ('$afiliasi', '$kelas','$user','$telp','$pass','$email', '$alamat')";
