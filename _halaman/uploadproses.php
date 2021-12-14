@@ -1,4 +1,6 @@
 <?php
+
+session_start();
     //mengambil data gambar dan menyimpannya kedalam variabel
     include "koneksi.php";
     $nama_file = $_FILES['gambar']['name'];
@@ -19,7 +21,6 @@
             //jika insert data berhasil, maka akan dikembalikan ke halaman tampilgambar.php
             if($sql){ 
               header("location: tampilgambar.php"); 
-              die();
             }else{
               //jika gagal insert data ke database maka akan memunculkan pesan seperti di bawah ini
               echo "Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.";
