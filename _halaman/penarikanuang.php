@@ -59,7 +59,7 @@
                  VALUES ('', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '$bank', '0', '0', null)";
 
                 //pengurangan saldo
-                echo$sqlKurang = "UPDATE `tabungan` SET `tanggal`='curdate()',`saldo`='$x' WHERE idp1 = $id";
+                $sqlKurang = "UPDATE `tabungan` SET `tanggal`='curdate()',`saldo`='$x' WHERE idp1 = $id";
 
                  mysqli_commit($conn);
             

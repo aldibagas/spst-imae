@@ -16,7 +16,7 @@
     $afiliasi = $_POST['afiliasi'];
     $confirpass = $_POST['confirpass'];
    
-    
+
 	$sql = "
     INSERT INTO `pengguna`(`afiliasi`,`Kelas`, `Nama`, `Telepon`, `Sandi`, `email`, `alamat`) 
     VALUES ('$afiliasi', '$kelas','$user','$telp','$pass','$email', '$alamat')";
@@ -27,7 +27,7 @@
 		$cRow = mysqli_fetch_assoc($cRun);
 		$idp = $cRow['idp'];
 		$tgl = date('Y-m-d');
-		echo$tabungan = "INSERT INTO `tabungan`(`tanggal`, `idp1`, `saldo`)
+		$tabungan = "INSERT INTO `tabungan`(`tanggal`, `idp1`, `saldo`)
 				VALUES ('$tgl','$idp','0')";
 		mysqli_query($conn, $tabungan);
 	
