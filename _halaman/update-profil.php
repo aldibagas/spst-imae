@@ -3,9 +3,9 @@ session_start();
 
 $title="Update profil";
 $servername = "localhost";
-$database = "cypr9718_spst"; 
-$username = "cypr9718";
-$password = "pq6SPaHWYiKe38";
+$database = "spst"; 
+$username = "root";
+$password = "";
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) { //cek koneksi
@@ -33,9 +33,7 @@ if ($update){
 }else{
     echo 'Update Data Gagal...';
 }
-?>
 
-<?php
     //mengambil data gambar dan menyimpannya kedalam variabel
     include "koneksi.php";
     $nama_file = $_FILES['gambar']['name'];
@@ -55,7 +53,7 @@ if ($update){
             $sql = mysqli_query($mysqli,"insert into gambar set nama='$nama_file', ukuran='$ukuran_file', tipe='$tipe_file'");
             //jika insert data berhasil, maka akan dikembalikan ke halaman tampilgambar.php
             if($sql){ 
-              header("location: ../index.php?halaman=profil"); 
+              header("location: tampilgambar.php"); 
             }else{
               //jika gagal insert data ke database maka akan memunculkan pesan seperti di bawah ini
               echo "Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.";

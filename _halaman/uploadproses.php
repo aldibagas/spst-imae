@@ -8,7 +8,6 @@ session_start();
     $tipe_file = $_FILES['gambar']['type'];
     $tmp_file = $_FILES['gambar']['tmp_name'];
 
-    
     $path = "images/".$nama_file;
 
     if($tipe_file == "image/jpeg" || $tipe_file == "image/png"){ 

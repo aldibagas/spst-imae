@@ -149,7 +149,6 @@ if(isset($_POST['btnPenggunaHapusNtf'])){
                         <?php } ?>
               
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Hapus Semua</button>
           </div>
         </div>
       </div>

@@ -37,6 +37,7 @@ session_start();
               <div class="card" id="card1">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
+                    
                   <?php
             include "koneksi.php";
             $tampil = mysqli_query($mysqli,"select * from gambar ORDER BY id DESC LIMIT 1");
@@ -44,12 +45,12 @@ session_start();
                 while($hasil = mysqli_fetch_array($tampil)){
             ?>
             <tr>
-            <td><img width="300" height="370" src="<?php echo "images/".$hasil['nama'];?>"></td>
+            <td><img width="200" height="250" src="<?php echo "images/".$hasil['nama'];?>"></td>
             </tr>
-            <?php
-                
+            <?php       
                 }
             ?>
+
              <div class="mt-3">
                       <h4><?php echo$nama;?></h4>
                       <div>
