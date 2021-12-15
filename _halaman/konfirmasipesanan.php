@@ -17,7 +17,7 @@
         }
 
         //ambil id pengguna
-        $ambilIdp   = "select * from notifikasi where idt = $idnotif";
+        $ambilIdp   = "select * from notifikasi where id = $idnotif";
         $runIdp     = mysqli_query($conn, $ambilIdp);
         $fetchIdp   = mysqli_fetch_assoc($runIdp);
         $idp        = $fetchIdp['idp2'];
@@ -66,7 +66,7 @@
                     }
                     
                     
-                  $Query = "SELECT * FROM notifikasi where idt = $notifId and status_tarik is null and idpetugas = $userid ORDER BY idt DESC LIMIT 1";
+                  $Query = "SELECT * FROM notifikasi where id = $notifId and status_tarik is null and idpetugas = $userid ORDER BY idt DESC LIMIT 1";
                   $Run = mysqli_query($conn, $Query);
          
                   

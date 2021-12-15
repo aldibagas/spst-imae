@@ -59,7 +59,7 @@
                  VALUES ('', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '$bank', '0', '0', null)";
 
                 //pengurangan saldo
-                $sqlKurang = "UPDATE `tabungan` SET `tanggal`='curdate()',`saldo`='$x' WHERE idp1 = $id";
+                //$sqlKurang = "UPDATE `tabungan` SET `tanggal`='curdate()',`saldo`='$x' WHERE idp1 = $id";
 
                  mysqli_commit($conn);
             
@@ -71,7 +71,7 @@
                         //jika password benar
                         //update
                         mysqli_query($conn,$sqlnotif);
-                        mysqli_query($conn,$sqlKurang);
+                        //mysqli_query($conn,$sqlKurang);
                         echo "<script> alert('Transaksi Berhasil!')</script>";
                         //header('location:index.php?halaman=transaksi');
                     }else{
