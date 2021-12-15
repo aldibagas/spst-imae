@@ -18,7 +18,7 @@
    $row = mysqli_fetch_assoc($ambil);
    @$jumlah_tarik=$row['jumlah_tarik'];
    
-   $ambil = mysqli_query($conn, "SELECT * FROM notifikasi order by idp2 = '$id' desc LIMIT 1");
+   $ambil = mysqli_query($conn, "SELECT * FROM tabungan where idp1 = '$id'");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=$row['saldo'];
    if($row['saldo']<=0){
@@ -85,7 +85,7 @@
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
                         <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
                         <span class="h3"><?php
-                        $Query2 = "SELECT * FROM notifikasi where idp2 = '$id' order by id desc LIMIT 1";
+                        $Query2 = "SELECT * FROM notifikasi where idp2 = '$id' and aktivitas = 1 order by id desc LIMIT 1";
                         $Run2 = mysqli_query($conn, $Query2);
                         if(mysqli_num_rows($Run2)>0){
                         while($Fetch = mysqli_fetch_assoc($Run2)){
