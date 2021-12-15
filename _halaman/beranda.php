@@ -84,17 +84,16 @@
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
                         <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
-                        <?php
-    $id = $_SESSION['id'];
-    $sql = "select jumlah_tarik from notifikasi where idp2 = '$id' and status_tarik between 1 and 2 order by id desc LIMIT 1";
-    $run = mysqli_query($conn, $sql);
-    $total = 0;
-    if(mysqli_num_rows($run)>0){
-    while($row = mysqli_fetch_assoc($run)){
-    $total = $total + $row['jumlah_tarik'];
-    }}
-    ?>
-    <span class="h3">Rp <?php echo $total; ?></span>
+                        <span class="h3"><?php
+                        $Query2 = "SELECT * FROM notifikasi where idp2 = '$id' order by id desc LIMIT 1";
+                        $Run2 = mysqli_query($conn, $Query2);
+                        if(mysqli_num_rows($Run2)>0){
+                        while($Fetch = mysqli_fetch_assoc($Run2)){
+                            echo" <span class='h3'>Rp ".$Fetch['jumlah_tarik']."</span> ";
+                        }
+                        }else{
+                          echo" <span class='h3'>Rp 0</span>";
+                        } ?></span><br />
                       </div>
                       
                       <div class="col-6 col-lg-2 text-center py-4">
@@ -188,4 +187,3 @@
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
       </div>
-  
