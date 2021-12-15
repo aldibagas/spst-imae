@@ -16,13 +16,22 @@
     $afiliasi = $_POST['afiliasi'];
     $confirpass = $_POST['confirpass'];
    
-    
-    $sql = "
-    INSERT INTO `pengguna` (`afiliasi`, `Kelas`, `Nama`, `email`, `alamat`, `Telepon`, `Sandi`) 
-    VALUES ('$afiliasi', '$kelas', '$user', '$email', '$alamat', '$telp', '$pass')";
+
+	$sql = "
+    INSERT INTO `pengguna`(`afiliasi`,`Kelas`, `Nama`, `Telepon`, `Sandi`, `email`, `alamat`) 
+    VALUES ('$afiliasi', '$kelas','$user','$telp','$pass','$email', '$alamat')";
 	
 	if($run = mysqli_query($conn, $sql)){
-        header('location:index.php?halaman=login');
+		$cari = "select * from pengguna where `Nama` = '$user' and `Sandi` = '$pass'";
+		$cRun = mysqli_query($conn, $cari);
+		$cRow = mysqli_fetch_assoc($cRun);
+		$idp = $cRow['idp'];
+		$tgl = date('Y-m-d');
+		$tabungan = "INSERT INTO `tabungan`(`tanggal`, `idp1`, `saldo`)
+				VALUES ('$tgl','$idp','0')";
+		mysqli_query($conn, $tabungan);
+	
+        //header('location:index.php?halaman=login');
         echo 'Berhasil Daftar';
     }else{
         echo '

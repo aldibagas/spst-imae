@@ -1,147 +1,165 @@
 <?php
 session_start();
 	$title = "Profil";
-  $id = $_SESSION['id'];
   
-  if(isset($_POST['kirim'])){
-    $uNama = $_POST['ubahNama'];
-    $uEmail = $_POST['ubahEmail'];
-    $uTelp = $_POST['ubahTelp'];
-    $uAlamat = $_POST['ubahAlamat'];
-
-    $ganti = "UPDATE `pengguna` SET `Nama`='$uNama',`email`='$uEmail',`alamat`='$uAlamat',`Telepon`='$uTelp' WHERE idp = '$id'";
-    mysqli_query($conn, $ganti);
-  }
-
- 
 
   $nama = $_SESSION['nama'];
-  $sql ="SELECT * FROM `pengguna` WHERE Nama = '$nama'";
+  $sql ="SELECT * FROM pengguna WHERE Nama = '$nama'";
   $run = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($run);  
+  $row = mysqli_fetch_assoc($run);
   $email = $row['email'];
-  $kelas = $row['Kelas'];
-  $nama = $row['Nama'];
   $telp = $row['Telepon'];
   $alamat = $row['alamat'];
-
+  $sandi = $row['Sandi'];
+  $idp =$row['idp'];
+  $kelas = $row['Kelas'];
 ?>
 
-			<div class="my-4">
-                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="home-tab"  href="<?=url('profil')?>" >Umum</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="profile-tab"  href="<?=url('profil1')?>" >Keamanan</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="contact-tab"  href="<?=url('profil2')?>" >Notifikasi</a>
-                  </li>
-                </ul>
-                <form>
-                  <div class="row mt-5 align-items-center">
-                    <div class="col-md-3 text-center mb-5">
-                      <div class="avatar avatar-xl">
-                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="row align-items-center">
-                        <div class="col-md-7">
-                          <h4 class="mb-1"><?php echo$_SESSION['nama'];?></h4>
-                          <p class="medium mb-5"><span class="badge badge-dark"><?php echo$kelas;?></span></p>
-                        </div>
-                      </div>
-                      <div class="row mb-4">
-                        <div class="col">
-                          <p class="small mb-0 text-muted"><?php echo$alamat;?></p>
-                          <p class="mb-1"><?php echo$telp;?></p>
-                         
-                          <hr class="my-4">
+<style>
 
-                        </div>
+#card1 {
+    box-shadow: 5px 3px 3px grey;
+}
+ 
+
+.card {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: grey;
+    }
+	</style>
+
+<form method="post" action="_halaman/update-profil.php" enctype="multipart/form-data">
+
+
+<div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card" id="card1">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    
+                  <?php
+            include "koneksi.php";
+            $tampil = mysqli_query($mysqli,"select * from gambar ORDER BY id DESC LIMIT 1");
+            $sql = mysqli_num_rows($tampil);
+                while($hasil = mysqli_fetch_array($tampil)){
+            ?>
+            <tr>
+            <td><img width="200" height="250" src="<?php echo "images/".$hasil['nama'];?>"></td>
+            </tr>
+            <?php       
+                }
+            ?>
+
+             <div class="mt-3">
+                      <h4><?php echo$nama;?></h4>
+                      <div>
+                      <h3><p class="text-secondary mb-1"><?php echo$kelas;?></p><h3>
                       </div>
                     </div>
-                  </div>
-
-                  <hr class="my-4">
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="firstname">Nama</label>
-                      <h5><div id="firstname" name="firstname"><?php echo$nama;?></div><h5>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
-                    <h5><div id="inputEmail4" name="inputEmail4"><?php echo$email;?></div><h5>
                   </div>
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="telp">Nomor Telepon</label>
-                    <h5><div id="telp" name="telp"><?php echo$telp;?></div><h5>
+              </div>
+
+        
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Nama</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo$nama;?>
+                    </div>
                   </div>
-                </div>
-                  <div class="form-group">
-                    <label for="inputAddress5">Alamat</label>
-                    <h5><div id="inputAddress5" name="inputAddress5"><?php echo$alamat;?></div><h5>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Email</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo$email;?>
+                    </div>
                   </div>
-                  <hr class="my-4">
-                </form>
-              </div> <!-- /.card-body -->
-                <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">No. Handphone</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo$telp;?>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Alamat</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo$alamat;?>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+             
+                  <input type="hidden" value="<?php echo $idp ?>" nama="idpelanggan">
+                  
+
+      <div class="form-row">
+
+                 <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModalLong">
   Edit
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">EDIT PROFILE</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-
       </div>
       <div class="modal-body">
-      <div>
-        <form method="post" action="">
-      <h6>Nama<h6> 
-      <input class="form-control form-control-sm" name="ubahNama" id="aran" type="text" placeholder="Nama"><br>
-      </div>
-      <div>
-      <h6>Email<h6> 
-      <input class="form-control form-control-sm" name="ubahEmail" type="text" placeholder="Email"><br>
-      </div>
-      <div>
-      <h6>Nomer Telepon<h6> 
-      <input class="form-control form-control-sm" name="ubahTelp" type="text" placeholder="Nomer Telepon"><br>
-      </div>
-      <div>
-      <h6>Alamat<h6> 
-      <input class="form-control form-control-sm" name="ubahAlamat" type="text" placeholder="Alamat"><br>
-      </div>  
+
+      <div class="form-row">
+                    <div class="form-group col-md-11">
+                      <input type="hidden" name="Nama" id="firstname" class="form-control form-control-lg" placeholder="Nama" value="<?php echo $nama ?>" readonly>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                  <div class="form-group col-md-11">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" name="email" class="form-control form-control-lg" id="inputEmail4" placeholder="Email" value="<?php echo $email ?>">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-11">
+                    <label for="telp">Nomor Telepon</label>
+                    <input type="telp" name="Telepon" class="form-control form-control-lg" id="telp" placeholder="Nomor Telepon" value="<?php echo $telp ?>">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-11">
+                    <label for="inputAddress5">Alamat</label>
+                    <input type="text" name="alamat" class="form-control form-control-lg" id="inputAddress5" placeholder="Alamat" value="<?php echo $alamat ?>">
+                  </div>
+
+                  <Input type="file" name="gambar">
+
       </div>
       <div class="modal-footer">
-        
-        <input type="submit" name="kirim" value="Simpan" class="btn btn-primary">
-</form>
-
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+        <input type="submit" value="Simpan" name="tombolSimpan" class="btn btn-primary">
       </div>
     </div>
   </div>
 </div>
 
-              <script>
-                document.getElementById('firstname').value =  '<?php echo$_SESSION['nama'];?>';
-                document.getElementById('inputEmail4').value =  '<?php echo$email;?>';
-                document.getElementById('telp').value =  '<?php echo$telp;?>';
-                document.getElementById('inputAddress5').value =  '<?php echo$alamat;?>';
-                
-                
-                </script>
+</form>
+

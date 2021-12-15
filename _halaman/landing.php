@@ -67,7 +67,6 @@ TemplateMo 570 Chain App Dev
               <li class="scroll-to-section"><a href="#top" class="active">Beranda</a></li>
               <li class="scroll-to-section"><a href="#services">Layanan</a></li>
               <li class="scroll-to-section"><a href="#about">Tentang</a></li>
-              <li class="scroll-to-section"><a href="#newsletter">Kontak Kami</a></li>
               <li><div class="gradient-button"><a id="modal_trigger" href="index.php?halaman=login"><i class="fa fa-sign-in-alt"></i> Masuk</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
@@ -312,64 +311,6 @@ TemplateMo 570 Chain App Dev
       </div>
     </div>
   </div>
-
-
-  <footer id="newsletter">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="section-heading">
-      
-          </div>
-        </div>
-        <div class="col-lg-6 offset-lg-7">
-          <form id="search" action="#" method="GET">
-            <div class="row">
-              <div class="col-lg-10 col-sm-10">
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>Hubungi</h4>
-            <p>Departemen Teknik Elektro Otomasi - ITS</p>
-            <p><a href="#"></a></p>
-            <p><a href="#">@gmail.com</a></p>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>About Us</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-    
-            </ul>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-     
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="footer-widget">
-
-            <div class="right-image">
-            <img src="logo.png" alt="">
-          </div>
-  </div>
-        </div>
-
-      </div>
-    </div>
-  </footer>
 
 
   <!-- Scripts -->

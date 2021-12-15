@@ -15,23 +15,7 @@
    include '_helpers/connect.php';
    $title="Penarikan Uang";
    $id;
-   $ambil = mysqli_query($conn, "SELECT * FROM notifikasi WHERE idp2='$id'");
-   $row = mysqli_fetch_assoc($ambil);
-   $saldo=0;
-   if($row['saldo']<=0){
-    $saldo = 0;
-   }else{
-    $saldo = $row['saldo'];
-   }
-
-    $id = $_SESSION['id'];
-    $sql = "select * from notifikasi where idp2 = $id and year(`tanggal`)=year(now()) and status_setor between 1 and 2";
-    $run = mysqli_query($conn, $sql);
-    $total = 0;
-    while($row = mysqli_fetch_assoc($run)){
-    $total = $total + $row['harga_total'];
-    }
-                        
+           
 
    if(isset($_POST['kirim'])){
     
@@ -40,8 +24,6 @@
     $ambilId = mysqli_fetch_assoc($idRun);
     $id  = $ambilId['idp'];
 
-     //$idt = $_POST ['idt'];
-     //$idp1 = $_POST ['idp1'];
      $idp2 = $id;
      @$aktivitas = $_POST ['aktivitas'];
      $waktu_tarik = $_POST ['waktu_tarik'];
@@ -52,9 +34,12 @@
      $pass = $_POST['pass'];
      @$bank = $_POST['bank'];
 
-     //$sql1 ="INSERT INTO `transaksi` ( `idt`, `idp1`, `idp2`, `aktivitas`, `waktu_tarik`, `jumlah_tarik`, `metode_bayar`, `metode_transaksi`, `status_tarik`, `sandi`) 
-     //VALUES ('4', '2', '3', '1', '$waktu_tarik', '$jumlah_tarik', '0', '0', '0','$pass')";
-    $x = $total - $jumlah_tarik;
+     $sqlSaldo = "select * from tabungan where idp1 = $id";
+     $runSaldo = mysqli_query($conn, $sqlSaldo);
+     $rowSaldo = mysqli_fetch_assoc($runSaldo);
+     $saldo = $rowSaldo['saldo'];
+
+    $x = $saldo - $jumlah_tarik;
         if(($jumlah_tarik % 1000) == 0){
             if($x > 0){
 
@@ -72,9 +57,10 @@
                 //pengiriman notifikasi
                  $sqlnotif = "INSERT INTO `notifikasi` (`idt`,`idp2`, `idpetugas`, `aktivitas`, `waktu_tarik`,`jumlah_tarik`, `bank`, `metode_bayar`, `metode_transaksi`,`status_tarik`)
                  VALUES ('', '$id', '$idPetugas', '1', '$waktu_tarik', '$jumlah_tarik', '$bank', '0', '0', null)";
-            
-                 //$query2 = mysqli_query($conn,$sql1); 
-            
+
+                //pengurangan saldo
+                //$sqlKurang = "UPDATE `tabungan` SET `tanggal`='curdate()',`saldo`='$x' WHERE idp1 = $id";
+
                  mysqli_commit($conn);
             
                  $sql = "SELECT * FROM `pengguna` WHERE `Sandi` = '$pass'";
@@ -85,6 +71,7 @@
                         //jika password benar
                         //update
                         mysqli_query($conn,$sqlnotif);
+                        //mysqli_query($conn,$sqlKurang);
                         echo "<script> alert('Transaksi Berhasil!')</script>";
                         //header('location:index.php?halaman=transaksi');
                     }else{
@@ -101,6 +88,15 @@
         }
     }
 
+    //ambil data saldo
+    $ambil = mysqli_query($conn, "SELECT * FROM tabungan WHERE idp1='$id'");
+    $row = mysqli_fetch_assoc($ambil);
+    $saldo=0;
+    if($row['saldo']<=0){
+     $saldo = 0;
+    }else{
+     $saldo = $row['saldo'];
+    }            
 ?>
 <?php
 
@@ -143,7 +139,7 @@ if(mysqli_num_rows($runHari) == null){
                                             </div>
                                             <div class="form-group">
                                             <p class="mb-1 small text-muted">Saldo yang tersedia</p>
-                                            <?php echo '<span class="h2">Rp '.$total.'</span>';?>
+                                            <?php echo '<span class="h2">Rp '.$saldo.'</span>';?>
 
                                             </div>
                                             <div class="form-group">

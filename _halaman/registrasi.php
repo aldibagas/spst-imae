@@ -10,12 +10,12 @@
     $pass = $_POST['pass'];
     $confirpass = $_POST['confirpass'];
     
-    $sql = "
-    INSERT INTO `pengguna`(`id`, `Kelas`, `Nama`, `Nomor Telepon`, `Kata Sandi`, 'email') 
-    VALUES (default,'testing','$user','$telp','$pass','$email')";
+    echo$sql = "
+    INSERT INTO `pengguna`(`Kelas`, `Nama`, `Telepon`, `Sandi`, `email`) 
+    VALUES ('testing','$user','$telp','$pass','$email')";
 	
 	if($run = mysqli_query($conn, $sql)){
-		$cari = "select * from pengguna where `Nama` = '$user' and `Kata Sandi` = '$pass'";
+		$cari = "select * from pengguna where `Nama` = '$user' and `Sandi` = '$pass'";
 		$cRun = mysqli_query($conn, $cari);
 		$cRow = mysqli_fetch_assoc($cRun);
 		$idp = $cRow['idp'];

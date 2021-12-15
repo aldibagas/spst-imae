@@ -37,7 +37,7 @@ if(isset($_POST['btnPenggunaHapusNtf'])){
               if(mysqli_num_rows($runcek)>0){
                 while($fch = mysqli_fetch_assoc($runcek)){
                   echo'
-                  <a href = "?halaman=konfirmasipesanan&notif='.$fch['idt'].'">
+                  <a href = "?halaman=konfirmasipesanan&notif='.$fch['id'].'">
                   <div class="list-group-item bg-transparent">
                     <div class="row align-items-center">
                       <div class="col-auto">
@@ -149,7 +149,6 @@ if(isset($_POST['btnPenggunaHapusNtf'])){
                         <?php } ?>
               
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Hapus Semua</button>
           </div>
         </div>
       </div>

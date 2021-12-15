@@ -49,7 +49,7 @@ body .container .card .box {
   left: 20px;
   right: 20px;
   bottom: 20px;
-  background: #2a2b2f;
+  background: #2f318b;
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -62,15 +62,6 @@ body .container .card .box:hover {
   transform: translateY(-50px);
 }
 
-body .container .card .box:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.03);
-}
 
 body .container .card .box .content {
   padding: 20px;
