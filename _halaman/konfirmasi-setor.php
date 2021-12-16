@@ -34,10 +34,13 @@
             $ambilSaldo = mysqli_fetch_assoc($runAmbil);
 
             //ambil harga total dari sampah pengguna
-            $sqlUangSampah = "select * from notifikasi where idt = '$idnotif' order by id desc limit 1";
+            $sqlUangSampah = "select * from notifikasi where idt = '$idnotif' and metode_bayar = 1";
             $runUangSampah = mysqli_query($conn, $sqlUangSampah);
             $ambilUangSampah = mysqli_fetch_assoc($runUangSampah);
-
+            $uangSampah = 0;
+            if($ambilUangSampah['harga_total'] != null){
+              $uangSampah = $ambilUangSampah['harga_total'];
+            }
             //penambahan
             $saldoAkhir = $ambilSaldo['saldo'] + $ambilUangSampah['harga_total'];
 
