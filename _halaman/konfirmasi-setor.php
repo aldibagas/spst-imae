@@ -51,6 +51,9 @@
              if($ambilUangSampah['metode_transaksi'] == 0){
               header('location: ?halaman=navigasi&idt='.$idnotif);
              }
+             else{
+              header('location: ?halaman=dashboard');
+             }
         }
         if($konfirmasi == 'Tolak'){
             mysqli_query($conn, updateNotif(0, $idnotif));
