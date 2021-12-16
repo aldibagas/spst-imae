@@ -31,26 +31,24 @@ session_start();
 
 <form method="post" action="_halaman/update-profil.php" enctype="multipart/form-data">
 
-
 <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card" id="card1">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    
                   <?php
             include "koneksi.php";
-            $tampil = mysqli_query($mysqli,"select * from gambar ORDER BY id DESC LIMIT 1");
+            $tampil = mysqli_query($mysqli,"select * from gambar order by id desc limit 1");
             $sql = mysqli_num_rows($tampil);
                 while($hasil = mysqli_fetch_array($tampil)){
             ?>
             <tr>
-            <td><img width="200" height="250" src="<?php echo "images/".$hasil['nama'];?>"></td>
+            <td><img width="180" height="250" src="<?php echo "_halaman/images/".$hasil['nama'];?>"></td>
             </tr>
-            <?php       
+            <?php
+                
                 }
             ?>
-
              <div class="mt-3">
                       <h4><?php echo$nama;?></h4>
                       <div>
@@ -120,7 +118,7 @@ session_start();
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Profil</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -162,4 +160,3 @@ session_start();
 </div>
 
 </form>
-
