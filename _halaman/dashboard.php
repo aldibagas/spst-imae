@@ -123,7 +123,7 @@
               <?php 
               //index.php
               $connect = mysqli_connect("localhost", "cypr9718", "pq6SPaHWYiKe38", "cypr9718_spst");
-              $query = "SELECT * FROM datauang";
+              $query = "SELECT * FROM datauang ORDER BY tanggal DESC LIMIT 7";
               $result = mysqli_query($connect, $query);
               $chart_data = '';
               while($row = mysqli_fetch_array($result))
