@@ -9,12 +9,7 @@
    <script src="<?=assets()?>js/leaflet-routing-machine/examples/Control.Geocoder.js"></script>
 
    <script type="text/javascript">
-	   	// ambil titik
-	getLocation();
-	setInterval(() => {
-		getLocation();
-	}, 1000);
-	
+   	let latLng=[-3.824181, 114.8191513];
    	var map = L.map('mapid').setView(latLng, 15);
    	var Layer=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
