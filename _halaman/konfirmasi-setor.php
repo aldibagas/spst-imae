@@ -19,7 +19,7 @@
         }
 
         //ambil id pengguna
-        $ambilIdp   = "select * from notifikasi where idt = $idnotif";
+        $ambilIdp   = "select * from notifikasi where idt = $idnotif order by id desc limit 1";
         $runIdp     = mysqli_query($conn, $ambilIdp);
         $fetchIdp   = mysqli_fetch_assoc($runIdp);
         $idp        = $fetchIdp['idp2'];
@@ -34,11 +34,11 @@
             $ambilSaldo = mysqli_fetch_assoc($runAmbil);
 
             //ambil harga total dari sampah pengguna
-            $sqlUangSampah = "select * from notifikasi where idt = '$idnotif'";
+            $sqlUangSampah = "select * from notifikasi where idt = '$idnotif' order by id desc limit 1";
             $runUangSampah = mysqli_query($conn, $sqlUangSampah);
             $ambilUangSampah = mysqli_fetch_assoc($runUangSampah);
 
-            //pengurangan
+            //penambahan
             $saldoAkhir = $ambilSaldo['saldo'] + $ambilUangSampah['harga_total'];
 
             $sqlTabungan = "UPDATE tabungan SET `saldo`='$saldoAkhir' WHERE `idp1`='$idp'";

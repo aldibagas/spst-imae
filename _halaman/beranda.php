@@ -85,7 +85,7 @@
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
                         <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
                         <span class="h3"><?php
-                        $Query2 = "SELECT * FROM notifikasi where idp2 = '$id' and aktivitas = 1 order by id desc LIMIT 1";
+                        $Query2 = "SELECT * FROM notifikasi where idp2 = '$id' and aktivitas = 1 and status_tarik = 1 or status_tarik = 2 order by id desc LIMIT 1;";
                         $Run2 = mysqli_query($conn, $Query2);
                         if(mysqli_num_rows($Run2)>0){
                         while($Fetch = mysqli_fetch_assoc($Run2)){
@@ -115,7 +115,7 @@
                         <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
                         <?php
                           $id = $_SESSION['id'];
-                          $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
+                          $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now()) and status_tarik between 1 and 2";
                           $run = mysqli_query($conn, $sql);
                           $total = 0;
                           while($row = mysqli_fetch_assoc($run)){
