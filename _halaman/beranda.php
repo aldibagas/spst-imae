@@ -18,7 +18,7 @@
    $row = mysqli_fetch_assoc($ambil);
    @$jumlah_tarik=$row['jumlah_tarik'];
    
-   $ambil = mysqli_query($conn, "SELECT * FROM notifikasi order by idp2 = '$id' desc LIMIT 1");
+   $ambil = mysqli_query($conn, "SELECT * FROM tabungan where idp1 = '$id'");
    $row = mysqli_fetch_assoc($ambil);
    $saldo=$row['saldo'];
    if($row['saldo']<=0){
@@ -71,7 +71,7 @@
                         <span class="fe fe-arrow-down text-success fe-12"></span>
                         <p class="mb-1 small text-muted">Pemasukan Terakhir</p>
                         <span class="h3"><?php
-                        $Query = "SELECT * FROM notifikasi where idp2 = '$id' and status_setor between 1 and 2 order by id desc LIMIT 1";
+                        $Query = "SELECT * FROM notifikasi where idp2 = '$id' and metode_bayar = 1 and status_setor between 1 and 2 order by id desc LIMIT 1";
                         $Run1 = mysqli_query($conn, $Query);
                         if(mysqli_num_rows($Run1)>0){
                         while($Fetch = mysqli_fetch_assoc($Run1)){
@@ -84,17 +84,16 @@
                       <div class="col-6 col-lg-2 text-center py-4">
                         <span class="fe fe-arrow-up text-danger fe-12"></span>
                         <p class="mb-1 small text-muted">Pengeluaran Terakhir</p>
-                        <?php
-    $id = $_SESSION['id'];
-    $sql = "select jumlah_tarik from notifikasi where idp2 = '$id' and status_tarik between 1 and 2 order by id desc LIMIT 1";
-    $run = mysqli_query($conn, $sql);
-    $total = 0;
-    if(mysqli_num_rows($run)>0){
-    while($row = mysqli_fetch_assoc($run)){
-    $total = $total + $row['jumlah_tarik'];
-    }}
-    ?>
-    <span class="h3">Rp <?php echo $total; ?></span>
+                        <span class="h3"><?php
+                        $Query2 = "SELECT * FROM notifikasi where idp2 = '$id' and aktivitas = 1 and status_tarik = 1 or status_tarik = 2 order by id desc LIMIT 1";
+                        $Run2 = mysqli_query($conn, $Query2);
+                        if(mysqli_num_rows($Run2)>0){
+                        while($Fetch = mysqli_fetch_assoc($Run2)){
+                            echo" <span class='h3'>Rp ".$Fetch['jumlah_tarik']."</span> ";
+                        }
+                        }else{
+                          echo" <span class='h3'>Rp 0</span>";
+                        } ?></span><br />
                       </div>
                       
                       <div class="col-6 col-lg-2 text-center py-4">
@@ -102,7 +101,7 @@
                         <p class="mb-1 small text-muted">Pemasukan Bulan Ini </p>
                         <?php
                           $id = $_SESSION['id'];
-                          $sql = "select * from notifikasi where idp2 = $id and month(`tanggal`)=month(now()) and status_setor between 1 and 2";
+                          $sql = "select * from notifikasi where idp2 = $id  and metode_bayar = 1 and month(`tanggal`)=month(now()) and status_setor between 1 and 2";
                           $run = mysqli_query($conn, $sql);
                           $total = 0;
                           while($row = mysqli_fetch_assoc($run)){
@@ -116,7 +115,7 @@
                         <p class="mb-1 small text-muted">Pengeluaran Bulan Ini</p>
                         <?php
                           $id = $_SESSION['id'];
-                          $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now())";
+                          $sql = "select jumlah_tarik from notifikasi where idp2 = $id and month(`tanggal`)=month(now()) and status_tarik between 1 and 2";
                           $run = mysqli_query($conn, $sql);
                           $total = 0;
                           while($row = mysqli_fetch_assoc($run)){
@@ -188,4 +187,3 @@
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
       </div>
-  

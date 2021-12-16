@@ -37,14 +37,13 @@
 	  let latLng=[position.coords.latitude, position.coords.longitude];
 	  console.log(latLng)
         control.spliceWaypoints(0, 1, latLng);
-        map.panTo(latLng);
 	}
 
 	
 	// rute 
 	var control = L.Routing.control({
 	    waypoints: [
-	        latLng, [lat, long]
+	        
 	    ],
 	    geocoder: L.Control.Geocoder.nominatim(),
 		routeWhileDragging: true,

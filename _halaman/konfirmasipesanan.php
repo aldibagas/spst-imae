@@ -24,7 +24,8 @@
         $jumlah_tarik= $fetchIdp['jumlah_tarik'];
 
         if($konfirmasi == 'Terima'){
-            mysqli_query($conn, updateNotif(1, $idnotif));
+            $s = "UPDATE notifikasi SET `status_tarik`='1' WHERE id = $idnotif";
+            mysqli_query($conn, $s);
             
             //ambil tabungan pengguna
             $sqlAmbl = "select * from tabungan where idp1 = '$idp'";

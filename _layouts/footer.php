@@ -32,6 +32,9 @@ if(isset($_POST['btnPenggunaHapusNtf'])){
           <div class="modal-body">
             <div class="list-group list-group-flush my-n3">
         </br>
+        <?php
+                  if ($_SESSION['kelas']=="petugas") {
+                ?>
           <div class="list-group list-group-flush my-n3">Penarikan Uang</div></br>
               <?php
               if(mysqli_num_rows($runcek)>0){
@@ -104,7 +107,8 @@ if(isset($_POST['btnPenggunaHapusNtf'])){
                   </a>
                   ';
                 }
-              }?>
+              }
+            }?>
 
 
               <?php
