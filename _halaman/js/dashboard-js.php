@@ -11,7 +11,7 @@
     ykeys:['uangmasuk','uangkeluar'],
     labels:['uangmasuk','uangkeluar'],
     hideHover:'auto',
-
+    gridTextSize: 10,
     
     });
 </script>
