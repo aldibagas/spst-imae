@@ -1,6 +1,17 @@
 <?php
+   session_start();
    $title="Dashboard";
    $fileJS='dashboard-js';
+   
+   if($_SESSION['id'] == null){
+		header('Location:index.php?halaman=login');
+	}
+
+   $nama = $_SESSION['nama'];
+   $sqlId = "select * from pengguna where Nama = '$nama'";
+   $idRun = mysqli_query($conn, $sqlId);
+   $ambilId = mysqli_fetch_assoc($idRun);
+   $id  = $ambilId['idp'];
 
    $data = mysqli_query($conn, 'SELECT SUM(saldo) AS value_sum FROM tabungan'); 
    $row = mysqli_fetch_assoc($data); 
@@ -121,10 +132,8 @@
               
               <!-- charts-->
               <?php 
-              //index.php
-              $connect = mysqli_connect("localhost", "cypr9718", "pq6SPaHWYiKe38", "cypr9718_spst");
               $query = "SELECT * FROM datauang ORDER BY tanggal DESC LIMIT 7";
-              $result = mysqli_query($connect, $query);
+              $result = mysqli_query($conn, $query);
               $chart_data = '';
               while($row = mysqli_fetch_array($result))
               {
@@ -167,31 +176,68 @@
                   </div> <!-- .card-body -->
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
+               <!-- Recent Activity -->
                <div class="col-md-6 mb-4">
-                  <div class="card shadow">
-                    <div class="card-header">
-                      <strong class="card-title float-left">Catatan Transaksi</strong>
-                      <a class="float-right small text-muted" href="<?=url('riwayat-transaksi')?>">Lihat Semua</a>
+                  <div class="card" id="card5" name="card5">
+                    <div class="card-body">
+                    <h5><center>Catatan Transaksi<center><h5>
+                      <a class="float-right small text-muted" href="<?=url('riwayat-aktivitas')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">
                       <div class="list-group list-group-flush my-n3">
-                        <?php foreach($data as $item){ ?>
+                        <?php foreach($data as $item){
+                          $aktivitas = $item['aktivitas'];
+                          if($aktivitas == 0){
+                            $status = $item['status_setor'];
+                            if($status == 0){
+                              $status_setor = "Gagal";
+                            }
+                            if($status == 2){
+                              $status_setor = "Sukses";
+                            } ?>
                         <div class="list-group-item">
                           <div class="row">
                             <div class="col-auto">
                               <span class="fe fe-arrow-up text-success fe-24"></span>
                             </div>
+                            
                             <div class="col">
                               <small><str><strong><?php echo $item['tanggal'];?></strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan <?php echo$item['pesanan_1'];?>, <?php echo$item['pesanan_2']?>, <?php echo$item['pesanan_3'];?></div>
-                              <small class="badge badge-light text-muted">kemarin</small>
+                              <div class="my-0 text-muted small">Menyerahkan <?php echo$item['data_sampah'];?></div>
+                             
+                              <small class="badge badge-light text-muted"><?php echo$status_setor;?></small>
                             </div>
                           </div>
                         </div>
-                        <?php } ?>
+                        <?php }
                         
+                        if($aktivitas==1){
+                          $status1 = $item['status_tarik'];
+                          if($status1 == 0){
+                            $status_tarik = "Gagal";
+                          }
+                          if($status1 == 1){
+                            $status_tarik = "Sukses";
+                          }
+                          ?>
+                        <div class="list-group-item">
+                          <div class="row">
+                            <div class="col-auto">
+                              <span class="fe fe-arrow-down text-danger fe-24"></span>
+                            </div>
+                            
+                            <div class="col">
+                              <small><str><strong><?php echo $item['tanggal'];?></strong></small>
+                              <div class="my-0 text-muted small">Mengambil Rp <?php echo$item['jumlah_tarik'];?></div>
+                             
+                              <small class="badge badge-light text-muted"><?php echo$status_tarik;?></small>
+                            </div>
+                          </div>
+                        </div>
+                        <?php }
+                        }?>
                       </div> <!-- / .list-group -->
                     </div> <!-- / .card-body -->
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
-              </div>
+      </div>
