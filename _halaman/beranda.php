@@ -36,7 +36,7 @@
    $telp = $row['Telepon'];
    $alamat = $row['alamat'];
  
-   $Cari="SELECT * FROM transaksi order by tanggal desc LIMIT 5";
+
    $Cari="SELECT * FROM notifikasi where idp2 = '$id' ORDER BY tanggal desc LIMIT 5 ";
    $Tampil = mysqli_query($conn, $Cari);
    $data = array();
@@ -165,7 +165,16 @@
                     </div>
                     <div class="card-body">
                       <div class="list-group list-group-flush my-n3">
-                        <?php foreach($data as $item){ ?>
+                        <?php foreach($data as $item){
+                          $aktivitas = $item['aktivitas'];
+                          if($aktivitas == 0){
+                            $status = $item['status_setor'];
+                            if($status == 0){
+                              $status_setor = "Gagal";
+                            }
+                            if($status == 2){
+                              $status_setor = "Sukses";
+                            } ?>
                         <div class="list-group-item">
                           <div class="row">
                             <div class="col-auto">
@@ -176,12 +185,37 @@
                               <small><str><strong><?php echo $item['tanggal'];?></strong></small>
                               <div class="my-0 text-muted small">Menyerahkan <?php echo$item['data_sampah'];?></div>
                              
-                              <small class="badge badge-light text-muted">Berhasil</small>
+                              <small class="badge badge-light text-muted"><?php echo$status_setor;?></small>
                             </div>
                           </div>
                         </div>
-                        <?php } ?>
+                        <?php }
                         
+                        if($aktivitas==1){
+                          $status1 = $item['status_tarik'];
+                          if($status1 == 0){
+                            $status_tarik = "Gagal";
+                          }
+                          if($status1 == 1){
+                            $status_tarik = "Sukses";
+                          }
+                          ?>
+                        <div class="list-group-item">
+                          <div class="row">
+                            <div class="col-auto">
+                              <span class="fe fe-arrow-down text-danger fe-24"></span>
+                            </div>
+                            
+                            <div class="col">
+                              <small><str><strong><?php echo $item['tanggal'];?></strong></small>
+                              <div class="my-0 text-muted small">Mengambil <?php echo$item['jumlah_tarik'];?></div>
+                             
+                              <small class="badge badge-light text-muted"><?php echo$status_tarik;?></small>
+                            </div>
+                          </div>
+                        </div>
+                        <?php }
+                        }?>
                       </div> <!-- / .list-group -->
                     </div> <!-- / .card-body -->
                   </div> <!-- / .card -->
