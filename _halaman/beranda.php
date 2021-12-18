@@ -208,7 +208,7 @@
                             
                             <div class="col">
                               <small><str><strong><?php echo $item['tanggal'];?></strong></small>
-                              <div class="my-0 text-muted small">Mengambil <?php echo$item['jumlah_tarik'];?></div>
+                              <div class="my-0 text-muted small">Mengambil Rp <?php echo$item['jumlah_tarik'];?></div>
                              
                               <small class="badge badge-light text-muted"><?php echo$status_tarik;?></small>
                             </div>
