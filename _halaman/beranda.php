@@ -160,7 +160,7 @@
                <div class="col-md-6 mb-4">
                   <div class="card" id="card5" name="card5">
                     <div class="card-body">
-                    <h5><center>Catatan Transaksi<center><h5>
+                    <h5><center>Riwayat Aktivitas<center><h5>
                       <a class="float-right small text-muted" href="<?=url('riwayat-aktivitas')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">
@@ -178,7 +178,7 @@
                         <div class="list-group-item">
                           <div class="row">
                             <div class="col-auto">
-                              <span class="fe fe-arrow-up text-success fe-24"></span>
+                              <span class="fe fe-arrow-down text-success fe-24"></span>
                             </div>
                             
                             <div class="col">
@@ -203,7 +203,7 @@
                         <div class="list-group-item">
                           <div class="row">
                             <div class="col-auto">
-                              <span class="fe fe-arrow-down text-danger fe-24"></span>
+                              <span class="fe fe-arrow-up text-danger fe-24"></span>
                             </div>
                             
                             <div class="col">

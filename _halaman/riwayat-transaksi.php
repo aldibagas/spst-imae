@@ -2,6 +2,7 @@
 <?php
 session_start();
 $title="Riwayat Transaksi";
+
 $nama = $_SESSION['nama'];
 $sqlId = "select * from pengguna where Nama = '$nama'";
 $idRun = mysqli_query($conn, $sqlId);
@@ -13,45 +14,31 @@ if (!$conn) { //cek koneksi
     die("Tidak bisa terkoneksi ke database");
 }
 ?>
-            <div class="row mb-4 items-align-center">
-                <div class="col-md">
-                  <ul class="nav nav-pills justify-content-start">
-                    <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Semua <span class="badge badge-pill bg-primary text-white ml-2">164</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Pending <span class="badge badge-pill bg-white border text-muted ml-2">64</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Diproses <span class="badge badge-pill bg-white border text-muted ml-2">48</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Selesai <span class="badge badge-pill bg-white border text-muted ml-2">52</span></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-auto ml-auto text-right">
-                  <span class="small bg-white border py-1 px-2 rounded mr-2 d-none d-lg-inline">
-                    <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>
-                    <span class="text-muted">April 14, 2020 - May 13, 2020</span>
-                  </span>
-                  <button type="button" class="btn"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
-                </div>
-            </div>
+            
+                
+            <?php
+              $nama = $_SESSION['nama'];
+              $sqlId = "select * from pengguna where Nama = '$nama'";
+              $idRun = mysqli_query($conn, $sqlId);
+              $ambilId = mysqli_fetch_assoc($idRun);
+              $id  = $ambilId['idp'];
+              $query = mysqli_query($conn, "SELECT * FROM notifikasi where idpetugas = '$id' ORDER BY tanggal desc ");
+              $results = mysqli_fetch_all ($query, MYSQLI_ASSOC);
+
+            ?>
+
             <?php
 
-              $query = mysqli_query($conn, "SELECT * FROM transaksi");
-              $results = mysqli_fetch_all ($query, MYSQLI_ASSOC);
 
             ?>
             <table class="table border table-hover bg-white">
                 <head>
                   <tr role="row">
                     <th>Tanggal</th>
-                    <th>Id Pelanggan</th>
-                    <th>Id Petugas</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Nama Petugas</th>
                     <th>Aktivitas</th>
-                    <th>Data Sampah</th>
+                    <th>Keterangan</th>
                     <th>Harga Total</th>
                     <th>Metode Bayar</th>
                     <th>Metode Transaksi</th>
@@ -68,19 +55,40 @@ if (!$conn) { //cek koneksi
                   }else{
                     $aktivitas = 'Tarik';
                   }
+
+                  $metode_bayar = '';
+                  if($result['metode_bayar'] == 1){
+                    $metode_bayar = 'Tunai';
+                  }else{
+                    $metode_bayar = 'Saldo';
+                  }
                   
+                  $metode_transaksi = '';
+                  if($result['metode_transaksi'] == 1){
+                    $metode_transaksi = 'Dijemput';
+                  }else{
+                    $metode_transaksi = 'Diserahkan';
+                  }
+                  
+                  $status_setor = '';
+                  if($result['status_setor'] == 1){
+                    $status_setor = 'Berhasil';
+                  }else{
+                    $status_setor = 'Gagal';
+                  }
+
                     $idtransaksi =$result['idt'];
-                    $idpelanggan = $result['idp1'];
+                    $idpelanggan = $result['idp2'];
                     $nmpelangganSql = "select * from pengguna where idp = $idpelanggan";
                     $nmpesRunpelanggan = mysqli_query($conn, $nmpelangganSql);
                     $nmpelanggan = mysqli_fetch_assoc($nmpesRunpelanggan);
                     $jeneng = $nmpelanggan['Nama'];
 
-                    $idpetugas=$result['idp2'];
+                    $idpetugas=$result['idpetugas'];
                     $nmpetugasSql = "select * from pengguna where idp = $idpetugas";
                     $nmpesRunpetugas = mysqli_query($conn, $nmpetugasSql);
                     $nmpetugas = mysqli_fetch_assoc($nmpesRunpetugas);
-                    $jeneng2 = $nmpetugas['Nama'];
+                    @$jeneng2 = $nmpetugas['Nama'];
                   ?>
                   
                 <tr>
@@ -89,11 +97,21 @@ if (!$conn) { //cek koneksi
                     <td><?php echo $jeneng?></td>
                     <td><?php echo $jeneng2?></td>
                     <td><?php echo $aktivitas?></td>
-                    <td><?php echo $result['data_sampah']?></td>
-                    <td><?php echo $result['harga_total']?></td>
-                    <td><?php echo $result['metode_bayar']?></td>
-                    <td><?php echo $result['metode_transaksi']?></td>
-                    <td><?php echo $result['status_setor']?></td> 
+                    <?php
+                    if($result['aktivitas']==0){
+                      echo'<td>'.$result['data_sampah'].'</td>';
+                    }else{
+                      echo'<td>'.$result['waktu_tarik'].'</td>';
+                    }
+                    if($result['aktivitas']==0){
+                      echo'<td>'.$result['harga_total'].'</td>';
+                    }else{
+                      echo'<td>'.$result['jumlah_tarik'].'</td>';
+                    }
+                    ?>
+                    <td><?php echo $metode_bayar?></td>
+                    <td><?php echo $metode_transaksi?></td>
+                    <td><?php echo $status_setor?></td> 
                     <td>
                     <div class='d-grid gap-2 d-md-block'>
                       <a class='btn btn-primary' type='button' href="_halaman/edit.php?id=<?php echo $result['idt']?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

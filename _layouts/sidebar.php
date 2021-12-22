@@ -59,21 +59,15 @@
               </a>
             </li>
             <li class="nav-item w-100">
-              <a class="nav-link" href="<?=url('navigasi')?>">
-                <i class="fe fe-map fe-16"></i>
-                <span class="ml-3 item-text">Navigasi</span>
+              <a href="<?=url('pengaturan_harga')?>" class="nav-link">
+                <i class="fe fe-settings fe-16"></i>
+                <span class="ml-3 item-text">Pengaturan Harga</span>
               </a>
             </li>
             <li class="nav-item w-100">
               <a href="<?=url('riwayat-transaksi')?>" class="nav-link">
                 <i class="fe fe-clock fe-16"></i>
                 <span class="ml-3 item-text">Riwayat Transaksi</span>
-              </a>
-            </li>
-            <li class="nav-item w-100">
-              <a href="<?=url('pengaturan_harga')?>" class="nav-link">
-                <i class="fe fe-settings fe-16"></i>
-                <span class="ml-3 item-text">Pengaturan Harga</span>
               </a>
             </li>
             <li class="nav-item w-100">

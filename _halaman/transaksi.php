@@ -1,14 +1,13 @@
 <?php
    $title="Transaksi";
+   
 ?>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
 
@@ -113,7 +112,7 @@ body .container .card .box .content a {
       <div class="content">
     
         <h3>SETOR SAMPAH</h3>
-        <p>Sampah yang telah dikumpulkan dapat dijemput atau diantarkan ke petugas, kemudian akan menjadi saldo pada tabungan setiap pelanggan</p>
+        <p>Sampah yang telah dikumpulkan dapat dijemput atau diantarkan ke Bank Sampah, kemudian akan menjadi saldo pada tabungan setiap pelanggan</p>
         <a href="<?=url('setor')?>">Pilih</a>
       </div>
     </div>

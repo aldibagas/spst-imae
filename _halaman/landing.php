@@ -65,8 +65,8 @@ TemplateMo 570 Chain App Dev
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="#top" class="active">Beranda</a></li>
-              <li class="scroll-to-section"><a href="#services">Layanan</a></li>
-              <li class="scroll-to-section"><a href="#about">Tentang</a></li>
+              <li class="scroll-to-section"><a href="#services">Prosedur</a></li>
+              <li class="scroll-to-section"><a href="#about">Fitur</a></li>
               <li><div class="gradient-button"><a id="modal_trigger" href="index.php?halaman=login"><i class="fa fa-sign-in-alt"></i> Masuk</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
@@ -173,11 +173,8 @@ TemplateMo 570 Chain App Dev
                     <h5>Bersama Menjaga Lingkungan Yang Bersih!</h5><br>
                   </div>
                   <div class="col-lg-12">
-                    <div class="white-button first-button scroll-to-section">
-                      <a href="#contact">IOS <i class="fab fa-apple"></i></a>
-                    </div>
                     <div class="white-button scroll-to-section">
-                      <a href="#contact">ANDROID <i class="fab fa-google-play"></i></a>
+                      <a href="pesataplikasi.apk">ANDROID <i class="fab fa-google-play"></i></a>
                     </div>
                   </div>
                 </div>
@@ -199,105 +196,88 @@ TemplateMo 570 Chain App Dev
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
           <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4><em>Fitur</em> yang tersedia di PESAT</h4>
+            <h4>Cara Menggunakan Aplikasi <em>PESAT</em></h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <p>PESAT menyediakan berbagai fitur yang dapat mempermudah penggunaan web</p>
           </div>
         </div>
       </div>
     </div>
+    
     <div class="container">
       <div class="row">
         <div class="col-lg-3">
           <div class="service-item first-service">
-            
-            <h4>UPDATE HARGA</h4>
-            <p>Web PESAT menyediakan halaman untuk melihat kenaikan atau penurunan harga dari masing-masing jenis sampah</p>
+          <img src="layanan11.png" alt=""><br><br>
+            <h4>Download Aplikasi PESAT di ANDROID</h4><br>
             <div class="text-button">
-
             </div>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="service-item second-service">
-           
-            <h4>NAVIGASI</h4>
-            <p>Fitur navigasi memiliki peta dan rute untuk mempermudah petugas menemukan lokasi tujuan pengambilan dengan cepat dan tepat</p>
+          <img src="layanan97.png" alt=""><br><br>
+            <h4>Masuk Menggunakan Akun Yang Sudah Terdaftar</h4><br>
             <div class="text-button">
- 
             </div>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="service-item third-service">
-           
-            <h4>SETOR SAMPAH</h4>
-            <p>Setor sampah merupakan program yang berfungsi sebagai tempat untuk menyetorkan sampah yang dipilah sesuai dengan jenis dan beratnya</p>
+          <img src="layanan98.png" alt=""><br><br>
+            <h4>Buka Aplikasi Di Smartphone</h4><br>
             <div class="text-button">
-           
             </div>
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="service-item fourth-service">
-         
-            <h4>PENARIKAN UANG</h4>
-            <p>Merupakan program tempat dimana pengguna dapat melakukan penarikan uang yang dapat ditarik sesuai dengan saldo yang dimiliki</p>
+          <div class="service-item third-service">
+          <img src="layanan99.png" alt=""><br><br>
+            <h4>Mulai Penyetoran Sampah atau Penarikan Uang</h4><br>
             <div class="text-button">
-   
             </div>
+          </div>
+        </div>
+        
           </div>
         </div>
       </div>
     </div>
   </div>
-
+     
   <div id="about" class="about-us section">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 align-self-center">
           <div class="section-heading">
-            <h4><em>PESAT</em> (Pengolahan Sampah Terintegrasi)</h4>
+            <h4>Fitur - fitur <em>PESAT</em></h4>
             <img src="assets/images/heading-line-dec.png" alt="">
-            <h6>PESAT adalah sistem pengelolaan sampah yang terintegrasi dengan web yang bertujuan untuk mempermudah transaksi sampah<h6>
           </div>
           <div class="row">
             <div class="col-lg-6">
               <div class="box-item">
-                <h4><a href="#">PET (Polyethylene Terephthalate)</a></h4>
-                <p>Merupakan jenis plastik yang biasanya digunakan sebagai bahan botol plastik untuk air minum kemasan dan tidak memiliki warna atau transparan</p>
+                <h4><a href="#">Jemput Sampah </a></h4>
+                <p>Fitur ini berfungsi untuk menjemput sampah dari pelanggan oleh petugas bank sampah</p>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="box-item">
-                <h4><a href="#">HDPE (High Density Polyethylene)</a></h4>
-                <p>Botol plastik satu ini juga biasa digunakan untuk minuman dan cenderung dikemas dengan warna putih susu.</p><br>
+                <h4><a href="#">Transparansi Harga</a></h4>
+                <p>PESAT menyediakan halaman untuk melihat kenaikan atau penurunan harga dari masing-masing jenis sampah </p><br>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="box-item">
-                <h4><a href="#">PVC (Polyvinyl Chloride)</a></h4>
-                <p>Bentuknya fleksibel ataupun kaku dan biasa digunakan untuk pipa, plastik kemasan bungkus makanan, mainan anak.&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p><br>
+                <h4><a href="#">Edukasi Sampah</a></h4>
+                <p>Informasi mengenai jenis sampah dan penanganan sampah yang harus dilakukan. &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p><br>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="box-item">
-                <h4><a href="#">LDPE (Low Density Polyethylene)</a></h4>
-                <p>Bahan plastik ini paling mudah didaur ulang dan sangat cocok untuk wadah kemasan yang kuat namun tetap fleksibel.</p>
+                <h4><a href="#">Tabungan</a></h4>
+                <p>Fitur ini berfungsi untuk menyimpan uang pelanggan setelah melakukan transaksi </p><br>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="box-item">
-                <h4><a href="#">PP (Polypropylene)</a></h4>
-                <p>Jenis ini cukup sulit untuk didaur ulang digunakan untuk plastik yang terbuat dari Polypropylene. Misalnya tempat makanan/minuman, botol sirup,  kotak yogurt, sedotan plastik, selotip, dan tali berbahan plastik.</p>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="box-item">
-                <h4><a href="#">PS (Polystyrene)</a></h4>
-                <p>Plastik jenis ini banyak digunakan sebagai tempat atau minuman dan tempat makan styrofoam, tempat telur, sendok/garpu plastik, foam packaging hingga bahan bangunan (bahan flooring).</p>
-              </div>
-            </div>
+            
             <div class="col-lg-12">
 
             </div>
@@ -305,13 +285,22 @@ TemplateMo 570 Chain App Dev
         </div>
         <div class="col-lg-6">
           <div class="right-image">
-            <img src="assets/images/about-right-dec.png" alt="">
+            <img src="landingreal111.png" alt="">
           </div>
         </div>
       </div>
     </div>
   </div>
+<br>
+<br>
+  <footer id="newsletter">
+  <div class="container">
 
+</div>
+
+  </footer>
+
+  
 
   <!-- Scripts -->
   <script src="vendor/jquery/jquery.min.js"></script>

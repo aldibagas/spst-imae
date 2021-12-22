@@ -1,17 +1,19 @@
 <?php
-   session_start();
    $title="Dashboard";
    $fileJS='dashboard-js';
-   
-   if($_SESSION['id'] == null){
-		header('Location:index.php?halaman=login');
-	}
 
-   $nama = $_SESSION['nama'];
+
+   @$nama = $_SESSION['nama'];
    $sqlId = "select * from pengguna where Nama = '$nama'";
    $idRun = mysqli_query($conn, $sqlId);
    $ambilId = mysqli_fetch_assoc($idRun);
-   $id  = $ambilId['idp'];
+   @$id  = $ambilId['idp'];
+   $query = mysqli_query($conn, "SELECT * FROM notifikasi where idpetugas = '$id' ORDER BY tanggal desc");
+   $results = mysqli_fetch_all ($query, MYSQLI_ASSOC);
+
+   $ambil = mysqli_query($conn, "SELECT * FROM transaksi WHERE idp2='$id'");
+   $row = mysqli_fetch_assoc($ambil);
+
 
    $data = mysqli_query($conn, 'SELECT SUM(saldo) AS value_sum FROM tabungan'); 
    $row = mysqli_fetch_assoc($data); 
@@ -21,14 +23,23 @@
    $row1 = mysqli_fetch_assoc($data1); 
    $berat_total = $row1['berat_total'];
 
-   $data2 = mysqli_query($conn, 'SELECT COUNT(status) AS n FROM transaksi WHERE status=2'); 
+   $data2 = mysqli_query($conn, 'SELECT COUNT(status_setor) AS n FROM notifikasi WHERE status_setor=2'); 
    $row2= mysqli_fetch_assoc($data2); 
    $n = $row2['n'];
 
-   $data3 = mysqli_query($conn, 'SELECT COUNT(status) AS jumlah FROM transaksi'); 
+   $data3 = mysqli_query($conn, 'SELECT COUNT(status_setor) AS jumlah FROM notifikasi'); 
    $row3= mysqli_fetch_assoc($data3); 
    $jumlah = $row3['jumlah'];
    $persen_proses = round(($n / $jumlah)*100,1);
+
+   $data4 = mysqli_query($conn, 'SELECT COUNT(status_tarik) AS n1 FROM notifikasi WHERE status_tarik=1'); 
+   $row4= mysqli_fetch_assoc($data4); 
+   $n1 = $row4['n1'];
+
+   $data5 = mysqli_query($conn, 'SELECT COUNT(status_tarik) AS jumlah2 FROM notifikasi'); 
+   $row5= mysqli_fetch_assoc($data5); 
+   $jumlah2 = $row5['jumlah2'];
+   $persen_proses2 = round(($n1 / $jumlah2)*100,1);
 
    $sekarang = 0;
    $data4 = mysqli_query($conn, "SELECT SUM(berat) AS berat_avg FROM transaksi WHERE date(tanggal) = CURDATE()"); 
@@ -38,14 +49,12 @@
      $berat_avg = 0;
    }
 
-   $Cari="SELECT * FROM transaksi order by tanggal desc LIMIT 5";
+   $Cari="SELECT * FROM notifikasi ORDER BY tanggal desc LIMIT 5 ";
    $Tampil = mysqli_query($conn, $Cari);
    $data = array();
    while($row = mysqli_fetch_assoc($Tampil)){
     $data[] = $row;
    }
-
-   
 ?>
 
               <div class="row">
@@ -72,13 +81,21 @@
                       <div class="row align-items-center">
                         <div class="col-3 text-center">
                           <span class="circle circle-sm bg-primary">
-                            <i class="fe fe-16 fe-shopping-cart text-white mb-0"></i>
+                            <i class="fe fe-16 fe-filter text-white mb-0"></i>
                           </span>
                         </div>
-                        <div class="col pr-0">
-                          <p class="small text-muted mb-0">Total Penyimpanan</p>
-                          <?php echo '<span class="h3 mb-0">'.$berat_total.'</span>'; ?>
-                          <span class="small text-success">kg</span>
+                        <div class="col">
+                          <p class="small text-muted mb-0">Penyetoran Sampah Berhasil</p>
+                          <div class="row align-items-center no-gutters">
+                            <div class="col-auto">
+                              <?php echo '<span class="h3 mr-2 mb-0">'.$persen_proses.' % </span>'; ?>
+                            </div>
+                            <div class="col-md-12 col-lg">
+                              <div class="progress progress-sm mt-2" style="height:3px">
+                                <?php echo '<div class="progress-bar bg-success" role="progressbar" style="width: '.$persen_proses.'%" aria-valuenow="'.$persen_proses.'" aria-valuemin="0" aria-valuemax="100"></div>'; ?>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -94,14 +111,14 @@
                           </span>
                         </div>
                         <div class="col">
-                          <p class="small text-muted mb-0">Sudah Diproses</p>
+                          <p class="small text-muted mb-0">Penarikan Uang Berhasil</p>
                           <div class="row align-items-center no-gutters">
                             <div class="col-auto">
-                              <?php echo '<span class="h3 mr-2 mb-0">'.$persen_proses.' % </span>'; ?>
+                              <?php echo '<span class="h3 mr-2 mb-0">'.$persen_proses2.' % </span>'; ?>
                             </div>
                             <div class="col-md-12 col-lg">
                               <div class="progress progress-sm mt-2" style="height:3px">
-                                <?php echo '<div class="progress-bar bg-success" role="progressbar" style="width: '.$persen_proses.'%" aria-valuenow="'.$persen_proses.'" aria-valuemin="0" aria-valuemax="100"></div>'; ?>
+                                <?php echo '<div class="progress-bar bg-success" role="progressbar" style="width: '.$persen_proses2.'%" aria-valuenow="'.$persen_proses2.'" aria-valuemin="0" aria-valuemax="100"></div>'; ?>
                               </div>
                             </div>
                           </div>
@@ -132,20 +149,49 @@
               
               <!-- charts-->
               <?php 
-              $query = "SELECT * FROM datauang ORDER BY tanggal DESC LIMIT 7";
-              $result = mysqli_query($conn, $query);
+              //index.php
+              $connect = mysqli_connect("localhost", "root", "", "spst");
+              $query = "SELECT * FROM datauang where tanggal > current_date - interval 7 day order by date(tanggal) desc";
+              $result = mysqli_query($connect, $query);
               $chart_data = '';
               while($row = mysqli_fetch_array($result))
               {
-              $chart_data .= "{ tanggal:'".$row["tanggal"]."', uangmasuk:".$row["uangmasuk"].", uangkeluar:".$row["uangkeluar"]." }, ";
+                $tgl = date_create($row["tanggal"]);
+                $tgl = date_format($tgl, 'd-m');
+                $chart_data .= "{ tanggal:'".$tgl."', uangmasuk:".$row["uangmasuk"].", uangkeluar:".$row["uangkeluar"]." }, ";
               }
               $chart_data = substr($chart_data, 0, -2);
               
               ?>
+
+              <style>
+                  .mbox {   
+                      display: inline-block;
+                      border: 1px solid black;
+                      width: 20px;
+                      height: 20px;
+                      margin: 10px 10px 10px 10px;
+                      padding-left: 4px;
+                  }
+              </style>
+
               <div class="row my-5">
                 <div class="col-md-12">
                 <div class="card shadow">
                   <div class="chart-box">
+                    
+                  <div class="row fw-semi-bold m-0 justify-content-md-center">
+                    <span class="col-auto m-1 mr-2">
+                      <div class="border border-dark mt-1" style="background-color:rgb(11, 98, 164);width:15px;height:15px;display:inline-block;"></div>
+                      uang masuk
+                    </span>
+                    
+                    <span class="col-auto m-1 mr-2">
+                      <div class="border border-dark mt-1" style="background-color:rgb(122, 146, 163);width:15px;height:15px;display:inline-block;"></div>
+                      uang keluar
+                    </span>
+                  </div>
+
                     <div id="chart"></div>
                   </div>
                 </div>
@@ -176,11 +222,11 @@
                   </div> <!-- .card-body -->
                   </div> <!-- / .card -->
                 </div> <!-- / .col-md-3 -->
-               <!-- Recent Activity -->
+                
                <div class="col-md-6 mb-4">
                   <div class="card" id="card5" name="card5">
                     <div class="card-body">
-                    <h5><center>Catatan Transaksi<center><h5>
+                    <h5><center>Catatan Aktivitas<center><h5>
                       <a class="float-right small text-muted" href="<?=url('riwayat-aktivitas')?>">Lihat Semua</a>
                     </div>
                     <div class="card-body">
@@ -198,12 +244,12 @@
                         <div class="list-group-item">
                           <div class="row">
                             <div class="col-auto">
-                              <span class="fe fe-arrow-up text-success fe-24"></span>
+                              <span class="fe fe-arrow-down text-success fe-24"></span>
                             </div>
                             
                             <div class="col">
                               <small><str><strong><?php echo $item['tanggal'];?></strong></small>
-                              <div class="my-0 text-muted small">Menyerahkan <?php echo$item['data_sampah'];?></div>
+                              <div class="my-0 text-muted small">Sampah Masuk <?php echo$item['data_sampah'];?></div>
                              
                               <small class="badge badge-light text-muted"><?php echo$status_setor;?></small>
                             </div>
@@ -223,12 +269,12 @@
                         <div class="list-group-item">
                           <div class="row">
                             <div class="col-auto">
-                              <span class="fe fe-arrow-down text-danger fe-24"></span>
+                              <span class="fe fe-arrow-up text-danger fe-24"></span>
                             </div>
                             
                             <div class="col">
                               <small><str><strong><?php echo $item['tanggal'];?></strong></small>
-                              <div class="my-0 text-muted small">Mengambil Rp <?php echo$item['jumlah_tarik'];?></div>
+                              <div class="my-0 text-muted small">Penarikan Uang Rp <?php echo$item['jumlah_tarik'];?></div>
                              
                               <small class="badge badge-light text-muted"><?php echo$status_tarik;?></small>
                             </div>

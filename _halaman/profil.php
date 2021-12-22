@@ -1,8 +1,10 @@
 <?php
 session_start();
 	$title = "Profil";
+    if($_SESSION['id'] == null){
+		header('Location:index.php?halaman=login');
+	}
   
-
   $nama = $_SESSION['nama'];
   $sql ="SELECT * FROM pengguna WHERE Nama = '$nama'";
   $run = mysqli_query($conn, $sql);
@@ -13,20 +15,28 @@ session_start();
   $sandi = $row['Sandi'];
   $idp =$row['idp'];
   $kelas = $row['Kelas'];
+
 ?>
 
 <style>
 
 #card1 {
-    box-shadow: 5px 3px 3px grey;
+  box-shadow: 0px 0px 5px 5px #d1cfc8;
+}
+#card2 {
+  box-shadow: 0px 0px 5px 5px #d1cfc8;
 }
  
+body {
+    margin: 0;
+    padding: 0;
+}
 
-.card {
-        outline-width: 2px;
-        outline-style: solid;
-        outline-color: grey;
-    }
+img { 
+    max-width: 100%; 
+    height: auto; 
+}
+
 	</style>
 
 <form method="post" action="_halaman/update-profil.php" enctype="multipart/form-data">
@@ -38,15 +48,19 @@ session_start();
                   <div class="d-flex flex-column align-items-center text-center">
                   <?php
             include "koneksi.php";
-            $tampil = mysqli_query($mysqli,"select * from gambar order by id desc limit 1");
+            $nama = $_SESSION['nama'];
+            $sqlId = "select * from pengguna where Nama = '$nama'";
+            $idRun = mysqli_query($conn, $sqlId);
+            $ambilId = mysqli_fetch_assoc($idRun);
+            $id  = $ambilId['idp'];
+            $tampil = mysqli_query($mysqli,"SELECT * FROM gambar WHERE idp=$id ORDER BY id=$id DESC LIMIT 1");
             $sql = mysqli_num_rows($tampil);
                 while($hasil = mysqli_fetch_array($tampil)){
             ?>
             <tr>
-            <td><img width="180" height="250" src="<?php echo "_halaman/images/".$hasil['nama'];?>"></td>
+            <td><img width="180" height="250" src=" <?php echo "_halaman/images/".$hasil['nama'];?>" ></td>
             </tr>
-            <?php
-                
+            <?php  
                 }
             ?>
              <div class="mt-3">
@@ -61,8 +75,9 @@ session_start();
 
         
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
               <div class="card mb-3">
+              <div class="card" id="card2">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
@@ -118,7 +133,7 @@ session_start();
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edit Profil</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Ubah Profil</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -148,7 +163,8 @@ session_start();
                     <input type="text" name="alamat" class="form-control form-control-lg" id="inputAddress5" placeholder="Alamat" value="<?php echo $alamat ?>">
                   </div>
 
-                  <Input type="file" name="gambar">
+                  <Input type="file" name="gambar"> </br>
+                  <p>Maksimal 1 MB</p>
 
       </div>
       <div class="modal-footer">
@@ -160,3 +176,4 @@ session_start();
 </div>
 
 </form>
+

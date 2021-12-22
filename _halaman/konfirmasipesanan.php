@@ -1,7 +1,6 @@
 <?php
     @session_start();
     $title="Konfirmasi Pesanan";
-
     $userid = $_SESSION['id'];
 
     $ambil = mysqli_query($conn, "SELECT SUM(saldo) AS value_sum FROM notifikasi WHERE idp2=$userid");

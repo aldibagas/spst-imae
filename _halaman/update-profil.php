@@ -33,7 +33,9 @@ if ($update){
 }else{
     echo 'Update Data Gagal...';
 }
+?>
 
+<?php
     //mengambil data gambar dan menyimpannya kedalam variabel
     include "koneksi.php";
     $nama_file = $_FILES['gambar']['name'];
@@ -50,10 +52,10 @@ if ($update){
           //memiliki 2 parameter yang harus diisi, yaitu parameter tempat asal gambar dan paramter tempat tujuan gambar
           if(move_uploaded_file($tmp_file, $path)){ 
             //query untuk memasukkan data ke dalam database
-            $sql = mysqli_query($mysqli,"insert into gambar set nama='$nama_file', ukuran='$ukuran_file', tipe='$tipe_file'");
+            $sql = mysqli_query($mysqli,"insert into gambar set idp='$idp', nama='$nama_file', ukuran='$ukuran_file', tipe='$tipe_file'");
             //jika insert data berhasil, maka akan dikembalikan ke halaman tampilgambar.php
             if($sql){ 
-              header("location: tampilgambar.php"); 
+              header("location: ../index.php?halaman=profil"); 
             }else{
               //jika gagal insert data ke database maka akan memunculkan pesan seperti di bawah ini
               echo "Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.";

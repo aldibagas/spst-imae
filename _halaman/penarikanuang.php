@@ -32,7 +32,7 @@
      @$metode_transaksi= $_POST['metode_transaksi'];
      @$status= $_POST['status'];
      $pass = $_POST['pass'];
-     @$bank = $_POST['bank'];
+     $bank = $_POST['bank'];
 
      $sqlSaldo = "select * from tabungan where idp1 = $id";
      $runSaldo = mysqli_query($conn, $sqlSaldo);
@@ -151,12 +151,12 @@ if(mysqli_num_rows($runHari) == null){
                                             <div class="row">
                                                 <div class="col">
                                                 <p class="mb-1 small text-muted">Tempat Penarikan Uang</p>
-                                                <select class="form-control select2" >
+                                                <select class="form-control select2" name="bank" >
                                                 <option value="" disabled selected hidden>Bank</option>
-                                                        <option value=>Bank 1</option>
-                                                        <option value=>Bank 2</option>
-                                                        <option value=>Bank 3</option>
-                                                        <option value=>Bank 4</option>
+                                                        <option value="1">Bank 1</option>
+                                                        <option value="2">Bank 2</option>
+                                                        <option value="3">Bank 3</option>
+                                                        <option value="4">Bank 4</option>
                                                         </select>
                                                         </div>
                                                         </div>

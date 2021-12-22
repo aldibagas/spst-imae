@@ -2,7 +2,7 @@
 
    session_start();
    include '_helpers/connect.php';
-   $title="SETOR";
+   $title="SETOR SAMPAH";
    if($_SESSION['nama'] == null){
     header('Location:index.php?halaman=login');
 }
@@ -81,19 +81,17 @@
       $sql3 = "INSERT INTO `navigasi` (`idt`, `idp1`, `idp2`, `latitude`, `longitude`, `alamat`) 
       VALUES ('$idt', '$idp2', '$idPetugas', '$latitude', '$longitude','$ala')";
 
-      //perbarui tabungan pengguna
-      //$sql4 = "select * from tabungan where idp1 = $idp2";
-      //$run4 = mysqli_query($conn, $sql4);
-      //$row4 = mysqli_fetch_assoc($run4);
-      //$total = $row4['saldo'] + $th;
-
-      //$sql5 = "update `tabungan` SET `tanggal`='curdate()',`saldo`='$total' WHERE idp1 = $idp2";
-      //mysqli_query($conn, $sql5);
-
       @$query5 = "SELECT * FROM transaksi ORDER BY idt";
 
       $query3  = mysqli_query($conn,$sql2);
       $query4  = mysqli_query($conn,$sql3);
+    
+    if($query2 = mysqli_query($conn,$sql1))
+      {
+        echo'<script>alert("Berhasil Di Kirim")</script>';
+      }else{
+        echo'<script>alert("Ada Masalah saat Prosses")</script>';
+      }
     
       mysqli_commit($conn);
     }
@@ -104,10 +102,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
 
 <script>
- 
-    function warning(){
- Swal.fire(
-  'Pilihan Disimpan',
+      function warning(){
+    
+  Swal.fire(
+  'Berhasil',
   'Silahkan Kembali',
   'success'
 )
@@ -136,14 +134,14 @@
     <div class="col">
     <label for="simple-select2">Sampah</label>
       <select class="form-control select2" id="pilih" onchange="proses1()" name ="pesanan_1">
-      <option value="" disabled selected hidden>Pilih Bahan</option>
+      <option value="0" disabled selected hidden>Pilih Bahan</option>
                                 <optgroup label="Plastik">
-                                  <option value="PET">PET</option>
-                                  <option value="HDPE">HDPE</option>
-                                  <option value="PVC">PVC</option>
-                                  <option value="LDPE">LDPE</option>
-                                  <option value="PP">PP</option>
-                                  <option value="PS">PS</option>
+                                  <option value="PET">PET (Contoh: Botol Plastik Bening)</option>
+                                  <option value="HDPE">HDPE (Contoh: Botol Plastik Putih)</option>
+                                  <option value="PVC">PVC (Contoh: Pipa Plastik)</option>
+                                  <option value="LDPE">LDPE (Contoh: Kemasan Plastik)</option>
+                                  <option value="PP">PP (Contoh: Botol Minum Bayi)</option>
+                                  <option value="PS">PS (Contoh: Peralatan Makan)</option>
                                 </optgroup>
                                 <optgroup label="Kertas">
                                   <option value="HVS">HVS</option>
@@ -152,22 +150,22 @@
                             </select>
     </div>
     <div class="col">
-    <label>Jumlah (Kilograms)</label>
-     <input type="text" onchange="hargaBerat(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_1" id="jumlah_1">
+    <label>Jumlah (Kilogram)</label>
+     <input type="text" onchange="hargaBerat(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_1" id="jumlah_1" value="0">
     </div>
   </div>
 
   <div class="row">
     <div class="col">
      <select class="form-control select2" id="pilih1" onchange="proses2()" name ="pesanan_2">
-     <option value="" disabled selected hidden>Pilih Bahan</option>
+     <option value="0" disabled selected hidden>Pilih Bahan</option>
                                 <optgroup label="Plastik">
-                                  <option value="PET">PET</option>
-                                  <option value="HDPE">HDPE</option>
-                                  <option value="PVC">PVC</option>
-                                  <option value="LDPE">LDPE</option>
-                                  <option value="PP">PP</option>
-                                  <option value="PS">PS</option>
+                                  <option value="PET">PET (Contoh: Botol Plastik Bening)</option>
+                                  <option value="HDPE">HDPE (Contoh: Botol Plastik Putih)</option>
+                                  <option value="PVC">PVC (Contoh: Pipa Plastik)</option>
+                                  <option value="LDPE">LDPE (Contoh: Kemasan Plastik)</option>
+                                  <option value="PP">PP (Contoh: Botol Minum Bayi)</option>
+                                  <option value="PS">PS (Contoh: Peralatan Makan)</option>
                                 </optgroup>
                                 <optgroup label="Kertas">
                                   <option value="HVS">HVS</option>
@@ -182,21 +180,21 @@
 
     </div>
     <div class="col">
-    <input type="text" onchange="hargaBerat2(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_2" id="jumlah_2"> 
+    <input type="text" onchange="hargaBerat2(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_2" id="jumlah_2" value="0"> 
   </div>
   </div>
 
   <div class="row">
     <div class="col">
     <select class="form-control select2" id="pilih2" onchange="proses3()" name ="pesanan_3">
-    <option value="" disabled selected hidden>Pilih Bahan</option>
+    <option value="0" disabled selected hidden>Pilih Bahan</option>
                                 <optgroup label="Plastik">
-                                  <option value="PET">PET</option>
-                                  <option value="HDPE">HDPE</option>
-                                  <option value="PVC">PVC</option>
-                                  <option value="LDPE">LDPE</option>
-                                  <option value="PP">PP</option>
-                                  <option value="PS">PS</option>
+                                  <option value="PET">PET (Contoh: Botol Plastik Bening)</option>
+                                  <option value="HDPE">HDPE (Contoh: Botol Plastik Putih)</option>
+                                  <option value="PVC">PVC (Contoh: Pipa Plastik)</option>
+                                  <option value="LDPE">LDPE (Contoh: Kemasan Plastik)</option>
+                                  <option value="PP">PP (Contoh: Botol Minum Bayi)</option>
+                                  <option value="PS">PS (Contoh: Peralatan Makan)</option>
                                 </optgroup>
                                 <optgroup label="Kertas">
                                   <option value="HVS">HVS</option>
@@ -210,7 +208,7 @@
                             </select>
     </div>
     <div class="col">
-    <input type="text" onchange="hargaBerat3(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_3" id="jumlah_3">
+    <input type="text" onchange="hargaBerat3(this.value)" class="form-control" placeholder="berat sampah" aria-label="berat sampah" name="biaya_3" id="jumlah_3" value="0">
     </div>
   </div>
  
@@ -244,13 +242,13 @@
     <div class="card">
       <div class="card-body">
       <h5>PEMBAYARAN</h5>
-    <p>Silahkan memilih metode transaksi  :</p>
+    <p>Silahkan memilih metode pembayaran  :</p>
   <select class="form-control" id="metbay1" name="metbay1" onchange="metran()">
   <option value="" disabled selected hidden>Pilih Disini</option>
-  <optgroup label="METODE TRANSAKSI">
+  <optgroup label="METODE PEMBAYARAN">
     <br>
     <option value=0> TUNAI</option>
-    <option value=1 >SALDO</option>
+    <option value=1> SALDO</option>
   </select>
       </div>
     </div>
@@ -258,7 +256,7 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-      <h5>LOKASI CABANG</h5>
+      <h5>LOKASI CABANG BANK SAMPAH</h5>
     <p>Silahkan memilih Lokasi :</p>
   <select class="form-control" id="lokasi1" name="lokasi1" onchange="lokasi()">
   <option value="" disabled selected hidden>Pilih Disini</option>
@@ -310,7 +308,7 @@
                     <p class="text-muted"></p>
                     <span class="h1 mb-0">DIJEMPUT</span>
                     <p class="text-muted"></p>
-                      <li>Petugas akan menjemput ke rumah anda</li>
+                      <li>Petugas akan menjemput sampah ke rumah anda</li>
                     </ul>
 
 </a>                    
@@ -358,16 +356,16 @@
 <div class="card mb-4">      
                   <div class="card-body text-center my-4">
                     <a href="#">
-</a>
+    </a>
                     <ul class="list-unstyled">
                     <p class="text-muted"></p>
                     <span class="h1 mb-0">DISERAHKAN </span>
                     <p class="text-muted"></p>
-                      <li>Antarkan sampah anda ke bank yang sudah dipilih</li>
+                      <li>Antarkan sampah anda ke bank sampah yang sudah dipilih</li>
                     </ul>
                     <div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button" id="metodeBayar"  name="metodeBayar" class="btn btn-primary btn-lg btn-block" data-toggle="modal" value=1 data-target="#myModal" onclick="myFunction1(); zonk()">PILIH</button>
+  <button type="button" id="metodeBayar"  name="metodeBayar" class="btn btn-primary btn-lg btn-block" data-toggle="modal" value=1 data-target="#myModal" onclick="myFunction1(); zonk(); zonk1()">PILIH</button>
   <input type="hidden" name="metodeBayar" id="inputmetodeBayar">
   <input type="radio" name="metodeBayar" id="metodeBayar0" value="0" style="display: none;">
   <input type="radio" name="metodeBayar" id="metodeBayar1" value="1" style="display: none;">
@@ -420,11 +418,11 @@
                       <br>
                       <div class="row">
     <div class="col">
-    <h5><div id="harga" name="harga"></div><h5>
+    <h5><div id="harga" name="harga" value="0"></div><h5>
     </div>
     <h5>x</h5>
     <div class="col">
-    <h5><div id="berat1" name="berat1">0</div><h5>
+    <h5><div id="berat1" name="berat1" value="0">0</div><h5>
     </div>
     <h5> = </h5>
     <h5> &nbsp Rp.</h5>
@@ -436,26 +434,26 @@
 
   <div class="row">
     <div class="col">
-    <h5><div id="harga1" name="harga1"></div><h5>
+    <h5><div id="harga1" name="harga1" value="0"></div><h5>
     </div>
     <h5>x</h5>
     <div class="col">
-    <h5><div id="berat2" name="berat2">0</div><h5>
+    <h5><div id="berat2" name="berat2" value="0">0</div><h5>
     </div>
     <h5> = </h5>
     <h5>&nbsp Rp. </h5>
     <div class="col">
-    <h5><div id="biaya_2" name="biaya_2">0</div><h5>
+    <h5><div id="biaya_2" name="biaya_2" >0</div><h5>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-    <h5><div id="harga2" name="harga2"></div><h5>
+    <h5><div id="harga2" name="harga2" value="0"></div><h5>
     </div>
     <h5>x</h5>
     <div class="col">
-    <h5><div id="berat3" name="berat3">0</div><h5>
+    <h5><div id="berat3" name="berat3" value="0">0</div><h5>
     </div>
     <h5> = </h5>
     <h5> &nbsp Rp.</h5>
@@ -480,6 +478,7 @@
     <div class="col">
     <h5><div id="totalHarga">0</div><h5>
       <input type="hidden" name="totalHarga" id="inputtotalharga">
+      <input type="hidden" name="totalHarga2" id="inputtotalharga2">
       <input type="hidden" name="totalBerat" id="inputtotalberat">
     </div>
   </div>
@@ -571,6 +570,19 @@ function zonk() {
     x =''
   }
   document.getElementById("demo").innerHTML = x; 
+}
+
+
+function zonk1() {
+  var aksi = document.getElementById("myBtn").value;
+  let x =` `;
+  aksi=parseInt(aksi);
+  if(aksi==1){
+    x = '';
+  }else{
+    x =''
+  }
+  document.getElementById("display").innerHTML = x; 
 }
 </script>
                       

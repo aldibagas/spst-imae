@@ -18,7 +18,6 @@ session_start();
 		$userid = $row['idp'];
 		$_SESSION['id'] = $userid;
 		$_SESSION['kelas'] = $row['Kelas'];
-
 		if ($row['Kelas']=="pengguna")	{
 			if(strtotime('Y-m-d') >= strtotime(date('Y-m-d', strtotime('+3 months', strtotime($row['tanggal']))))){
 				header('Location:expired.php');
@@ -36,27 +35,50 @@ session_start();
 		}
 	}
 
-?>
-
+	?>
 	<head>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 	<title>Masuk</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+	
 	<style>
 		.login{
 			background-color: #1b68ff;
-			color: white;
+			color: black;
 		}
+        body
+        {
+            background-color: lightblue
+        }
+
+		p {
+    padding: 10px;
+		}
+
+
+
+#card1 {
+    box-shadow: 10px 8px 8px grey;
+}
+ 
+
+.card {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: grey;
+    }
 	</style>
 	</head>
 
 	<body>
 		
 	<div class="d-flex justify-content-center">
-		<div class="card" style="margin: 50px">
+		<div class="card" id="card1" style="margin: 50px">
 		<div class="card-body">
+
 		
-			<h1 class="text-center">Masuk</h1>	
+			<h1 class="text-center">MASUK</h1>	
 			<form action="" method="post" >
 				<label class="card-title">Nama Pengguna</label><br>
 				<input name="username" placeholder="Nama Pengguna" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="text"/><br>
@@ -64,7 +86,8 @@ session_start();
 				<input name="pass" placeholder="Kata Sandi" class="form-control border-0 rounded-pill" style="background-color:#d1d1d1" type="password"/><br>
 				<input type="submit" name="kirim" value="Masuk" class="btn login btn-block rounded-pill">
 				</br>
-				<span class="d-flex justify-content-center">Lupa Kata Sandi?</span>
+				<a class="d-flex justify-content-center" href="index.php?halaman=lupasandi" style="color:#000000">Lupa Kata Sandi?</a>
+					
 				</br>
 				
 				<div class="row d-flex justify-content-center">
@@ -93,10 +116,6 @@ session_start();
 
 				<div class="row d-flex justify-content-center">
 					<div class="col-sm">
-						<a class="btn btn-outline-dark btn-block rounded-pill" href="" role="button" style="text-transform:none">
-							<img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1365px-Facebook_f_logo_%282019%29.svg.png" />
-						Masuk Dengan Facebook
-						</a>
 					</div>
 				</div>
 				</br>

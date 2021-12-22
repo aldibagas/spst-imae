@@ -2,10 +2,6 @@
    session_start();
    $title="Riwayat Aktivitas";
 
-   if($_SESSION['nama'] == null){
-		header('Location:index.php?halaman=login');
-	}
-
    if(isset($_POST['edit'])){
     $jenis = $_POST['jenis'];
     $harga = $_POST['harga'];
@@ -18,23 +14,6 @@
     $runAmbil = mysqli_query($conn, $sqlAmbil);
 
 ?>
-            <div class="row mb-4 items-align-center">
-                <div class="col-md">
-                  <ul class="nav nav-pills justify-content-start">
-                    <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">Semua <span class="badge badge-pill bg-primary text-white ml-2"></span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Pending <span class="badge badge-pill bg-white border text-muted ml-2"></span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Diproses <span class="badge badge-pill bg-white border text-muted ml-2"></span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-muted px-2" href="#">Selesai <span class="badge badge-pill bg-white border text-muted ml-2"></span></a>
-                    </li>
-                  </ul>
-                </div>
                 <!--<div class="col-md-auto ml-auto text-right">
                   <span class="small bg-white border py-1 px-2 rounded mr-2 d-none d-lg-inline">
                     <a href="#" class="text-muted"><i class="fe fe-x mx-1"></i></a>
@@ -79,7 +58,7 @@
                   }
                   $metode_bayar = '';
                   if($result['metode_bayar'] == 0){
-                    $metode_bayar = 'Cash';
+                    $metode_bayar = 'Tunai';
                   }else{
                     $metode_bayar = 'Saldo';
                   }
