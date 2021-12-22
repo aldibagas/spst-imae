@@ -3,9 +3,9 @@
 $title="Edit Data";
 $idt = $_GET['id'];
 $servername = "localhost";
-$database = "cypr9718_spst"; 
-$username = "cypr9718";
-$password = "pq6SPaHWYiKe38";
+$database = "spst"; 
+$username = "root";
+$password = "";
 
 
 $conn = mysqli_connect($servername, $username, $password, $database);
