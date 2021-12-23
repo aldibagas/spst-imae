@@ -163,12 +163,6 @@ function berita_head(){
         <div class="block text-center">
           <span class="text">Blog</span>
           <h1 class="text-capitalize mb-5 text-lg">Edukasi Sampah</h1>
-
-          <!-- <ul class="list-inline breadcumb-nav">
-            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
-            <li class="list-inline-item"><span class="text-white">/</span></li>
-            <li class="list-inline-item"><a href="#" class="text-white-50">Our blog</a></li>
-          </ul> -->
         </div>
       </div>
     </div>
